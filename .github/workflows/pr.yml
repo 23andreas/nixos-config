@@ -1,3 +1,4 @@
+# https://github.com/EdenEast/nyx/blob/main/.github/workflows/pr.yml
 name: Pull Request
 permissions:
   pull-requests: write
@@ -52,7 +53,7 @@ jobs:
 
       - uses: cachix/cachix-action@v14
         with:
-          name: edeneast
+          name: 23andreas
           skipPush: true
           extraPullNames: nix-community
 
@@ -60,7 +61,7 @@ jobs:
         run: nix-collect-garbage
 
       - name: Fetch old system profile
-        run: nix build github:EdenEast/nyx#top.${{ matrix.target }} -v --log-format raw --profile ./profile
+        run: nix build github:23andreas/nixos-config#top.${{ matrix.target }} -v --log-format raw --profile ./profile
 
       - name: Add new system to profile
         run: |
