@@ -14,13 +14,8 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            target: pride
-          - os: ubuntu-latest
-            target: sloth
-          - os: ubuntu-latest
-            target: eden
-          - os: ubuntu-latest
-            target: wrath
+            target: default
+
     runs-on: ${{ matrix.os }}
     steps:
       - name: Create nix mount point
