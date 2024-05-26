@@ -1,0 +1,52 @@
+# https://github.com/EdenEast/nyx/blob/main/.github/workflows/update.yml
+# https://github.com/sandhose/nixconf/blob/055de30/.github/workflows/update.yaml
+name: Update
+on:
+  # Manual triggering
+  workflow_dispatch:
+
+  # Every two weeks 1st, and 15th
+  schedule:
+    - cron: "0 0 1,15 * *"
+
+jobs:
+  flake-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v25
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            access-tokens = github.com=${{ secrets.CACHIX_TOKEN }}
+
+      - name: Update lock file
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email noreply@github.com
+          nix flake update --commit-lock-file
+
+      - name: Get commit message
+        id: commit
+        run: |
+          delimiter="$(openssl rand -hex 16)"
+          echo "message<<${delimiter}" >> "${GITHUB_OUTPUT}"
+          git log -1 --pretty=%B | tail +3 | awk -f ./scripts/flake-to-markdown.awk >> "${GITHUB_OUTPUT}"
+          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.PAT }} # needed so that this triggers further flows. not ideal.
+          title: "chore(flake): update flake.lock"
+          body: "${{ steps.commit.outputs.message }}"
+          branch: automated/flake-updates
+          delete-branch: true
+          labels: |
+            automated pr
+            nix
+
