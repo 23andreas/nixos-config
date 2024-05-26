@@ -26,8 +26,8 @@ jobs:
 
       - name: Update lock file
         run: |
-          git config user.name github-actions[bot]
-          git config user.email noreply@github.com
+          git config user.name 'GitHub Actions'
+          git config user.email 'noreply@github.com'
           nix flake update --commit-lock-file
 
       - name: Get commit message
