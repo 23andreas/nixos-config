@@ -22,7 +22,7 @@ jobs:
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
-            access-tokens = github.com=${{ secrets.CACHIX_TOKEN }}
+            access-tokens = github.com=${{ secrets.GH_TOKEN }}
 
       - name: Update lock file
         run: |
