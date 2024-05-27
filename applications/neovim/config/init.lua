@@ -17,3 +17,5 @@ require("undotree-config")
 require("vim-be-good-config")
 require("zen-mode-config")
 
+require("neogit-config")
+

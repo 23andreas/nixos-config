@@ -13,10 +13,12 @@
     vimdiffAlias = true;
 
     plugins = with pkgs.vimPlugins; [
+      # Themes
       tokyonight-nvim
       vscode-nvim
       dracula-nvim
 
+      #Lsp
       lazy-lsp-nvim
       lsp-zero-nvim
       lsp_signature-nvim
@@ -34,8 +36,6 @@
       nvim-treesitter.withAllGrammars
       nvim-notify
 
-      rainbow-delimiters-nvim
-
       nvim-cmp
       cmp-nvim-lsp
       luasnip
@@ -43,6 +43,8 @@
       undotree
       vim-be-good
       zen-mode-nvim
+
+      neogit
     ];
 
     extraPackages = with pkgs; [
