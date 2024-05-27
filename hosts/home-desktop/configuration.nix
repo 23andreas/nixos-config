@@ -72,6 +72,7 @@
   suites.gnome.enable = true;
   suites.gnome.enablePaperWM = true;
 
+  programs.hyprland.enable = true;
   # xdg portal
   xdg.portal = {
     enable = true;
