@@ -6,5 +6,9 @@ end
 
 vim.keymap.set("n", "<leader>pv", oil.open, { desc = "Open oil" })
 
-oil.setup()
+oil.setup({
+  view_options = {
+    show_hidden = true
+  }
+})
 

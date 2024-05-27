@@ -7,6 +7,11 @@ if not ok or not ok_telescope  then
 end
 
 telescope.setup{
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+  },
 	defaults = {
 		path_display = { "truncate" }
 	}
