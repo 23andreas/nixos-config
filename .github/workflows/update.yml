@@ -5,9 +5,9 @@ on:
   # Manual triggering
   workflow_dispatch:
 
-  # Every two weeks 1st, and 15th
+  # Every Saturday 00:00
   schedule:
-    - cron: "0 0 1,15 * *"
+    - cron: "0 0 * * 6"
 
 jobs:
   flake-update:
