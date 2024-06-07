@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "NixOS Config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -18,20 +18,24 @@
       url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprcursor-phinger = {
-      url = "github:Jappie3/hyprcursor-phinger";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { nixpkgs, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
+      home-desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          inputs.home-manager.nixosModules.default
-          ./hosts/home-desktop/configuration.nix
+          ./system/hosts/home-desktop/configuration.nix
+          home-manager.nixosModules.default
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.andreas = import ./home/users/andreas.nix;
+            };
+          }
         ];
       };
     };

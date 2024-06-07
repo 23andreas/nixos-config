@@ -80,26 +80,6 @@
         "type": "github"
       }
     },
-    "hyprcursor-phinger": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1715636322,
-        "narHash": "sha256-66UJUns0ZEk3TdvUi0+4WY9nhTFZusSPca1saM8JbiI=",
-        "owner": "Jappie3",
-        "repo": "hyprcursor-phinger",
-        "rev": "3b8f975e16ffb6ff18ccf86481e6274a8d08893b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Jappie3",
-        "repo": "hyprcursor-phinger",
-        "type": "github"
-      }
-    },
     "hyprlang": {
       "inputs": {
         "nixpkgs": "nixpkgs_2",
@@ -194,7 +174,6 @@
         "ags": "ags",
         "anyrun": "anyrun",
         "home-manager": "home-manager",
-        "hyprcursor-phinger": "hyprcursor-phinger",
         "hyprpaper": "hyprpaper",
         "nixpkgs": "nixpkgs_3"
       }
