@@ -39,5 +39,13 @@
         ];
       };
     };
+
+    top =
+      let
+        nixtop = inputs.nixpkgs.lib.genAttrs
+          (builtins.attrNames inputs.self.nixosConfigurations)
+          (attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel);
+      in
+      nixtop;
   };
 }

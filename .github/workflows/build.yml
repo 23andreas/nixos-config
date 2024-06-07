@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            target: default
+            target: home-desktop
 
     runs-on: ${{ matrix.os }}
     steps:
