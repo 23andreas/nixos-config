@@ -19,7 +19,7 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            target: default
+            target: home-desktop
 
     steps:
       - name: Create nix mount point
@@ -61,7 +61,7 @@ jobs:
         run: nix-collect-garbage
 
       - name: Fetch old system profile
-        run: nix build github:23andreas/nixos-config#${{ matrix.target }} -v --log-format raw --profile ./profile
+        run: nix build github:23andreas/nixos-config#top.${{ matrix.target }} -v --log-format raw --profile ./profile
 
       - name: Add new system to profile
         run: |
