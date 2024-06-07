@@ -39,7 +39,7 @@ in
         hyprland.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = builtins.toPath ../../resources/wallpapers/wall.png;
+          wallpaperPath = builtins.toPath ../../resources/wallpapers/1308922.jpg;
         };
       };
     };
