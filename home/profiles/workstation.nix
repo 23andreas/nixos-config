@@ -17,6 +17,7 @@ in
 
       firefox
       google-chrome
+      czkawka
     ];
 
     nixosConfig = {
@@ -39,7 +40,7 @@ in
         hyprland.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = builtins.toPath ../../resources/wallpapers/1308922.jpg;
+          wallpaperPath = builtins.toPath ../../resources/wallpapers/34.jpg;
         };
       };
     };
