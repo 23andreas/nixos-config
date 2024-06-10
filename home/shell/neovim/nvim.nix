@@ -26,6 +26,7 @@ in
         tokyonight-nvim
         vscode-nvim
         dracula-nvim
+        rose-pine
 
         #Lsp
         lazy-lsp-nvim

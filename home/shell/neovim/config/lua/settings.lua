@@ -1,21 +1,27 @@
 require("tokyonight").setup({
-	transparent = true;
+  transparent = true,
 })
 
 require("vscode").setup({
-	transparent = true
+  transparent = true
 })
 
 require("dracula").setup({
   transparent_bg = true
 })
 
-function SetColorScheme(color)
-	color = color or "vscode"
-	vim.cmd.colorscheme(color)
+require("rose-pine").setup({
+  styles = {
+    transparency = true
+  }
+})
 
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+function SetColorScheme(color)
+  color = color or "rose-pine"
+  vim.cmd.colorscheme(color)
+
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 SetColorScheme()
@@ -29,7 +35,7 @@ vim.wo.number = true
 local numbertoggle_group = augroup('numbertoggle', { clear = true })
 
 autocmd(
-  {'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter'}, {
+  { 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
     pattern = '*',
     callback = function()
       if vim.wo.number and vim.api.nvim_get_mode().mode ~= 'i' then
@@ -41,7 +47,7 @@ autocmd(
 )
 
 autocmd(
-  {'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'}, {
+  { 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' }, {
     pattern = '*',
     callback = function()
       if vim.wo.number then
@@ -55,22 +61,22 @@ autocmd(
 -- HIGLIGHT TEXT WHEN YANKED
 local yank_group = augroup('HighlighYank', {})
 autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 200,
-        })
-    end,
+  group = yank_group,
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = 'IncSearch',
+      timeout = 200,
+    })
+  end,
 })
 
 -- REMOVE TRAILING WHITESPACES ON WRITE
 local whitespace_group = augroup('WhitespaceGroup', { clear = true })
 autocmd('BufWritePre', {
-    group = whitespace_group,
-    pattern = '*',
-    command = [[%s/\s\+$//e]],
+  group = whitespace_group,
+  pattern = '*',
+  command = [[%s/\s\+$//e]],
 })
 
 -- Diagnositc gutter icons instead of letters
@@ -120,4 +126,3 @@ vim.opt.smartcase = true
 
 -- auto indent
 vim.opt.autoindent = true
-

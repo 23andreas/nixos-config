@@ -40,8 +40,13 @@ in
         hyprland.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = builtins.toPath ../../resources/wallpapers/34.jpg;
+          wallpaperPath = builtins.toPath ../../resources/wallpapers/30.png;
         };
+        hyprlock = {
+          enable = true;
+          backgroundPath = builtins.toPath ../../resources/wallpapers/30.png;
+        };
+        hypridle.enable = true;
       };
     };
   };

@@ -5,7 +5,7 @@
       gaps_out = 4;
       border_size = 3;
 
-      "col.active_border" = "rgb(d62828)";
+      "col.active_border" = "rgb(EB6F92)";
       "col.inactive_border" = "0x00000000";
 
       border_part_of_window = false;

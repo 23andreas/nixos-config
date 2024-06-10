@@ -23,6 +23,62 @@ in
         background_opacity = " 0.9 ";
         background_blur = 60;
 
+        ## name: Rosé Pine
+        ## author: mvllow
+        ## license: MIT
+        ## upstream: https://github.com/rose-pine/kitty/blob/main/dist/rose-pine.conf
+        ## blurb: All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+
+        foreground = "#e0def4";
+        background = "#191724";
+        selection_foreground = "#e0def4";
+        selection_background = "#403d52";
+
+        cursor = "#524f67";
+        cursor_text_color = "#e0def4";
+
+        url_color = "#c4a7e7";
+
+        active_tab_foreground = "#e0def4";
+        active_tab_background = "#26233a";
+        inactive_tab_foreground = "#6e6a86";
+        inactive_tab_background = "#191724";
+
+        active_border_color = "#31748f";
+        inactive_border_color = "#403d52";
+
+        # black
+        color0 = "#26233a";
+        color8 = "#6e6a86";
+
+        # red
+        color1 = "#eb6f92";
+        color9 = "#eb6f92";
+
+        # green
+        color2 = "#31748f";
+        color10 = "#31748f";
+
+        # yellow
+        color3 = "#f6c177";
+        color11 = "#f6c177";
+
+        # blue
+        color4 = "#9ccfd8";
+        color12 = "#9ccfd8";
+
+        # magenta
+        color5 = "#c4a7e7";
+        color13 = "#c4a7e7";
+
+        # cyan
+        color6 = "#ebbcba";
+        color14 = "#ebbcba";
+
+        # white
+        color7 = "#e0def4";
+        color15 = "#e0def4";
+
         # Dracula
         # foreground = "#f8f8f2";
         # background = "#0A0A0A";
@@ -84,43 +140,43 @@ in
         # vscode dark color scheme for Kitty
         # By https://github/mofiqul
 
-        foreground = "#d4d4d4";
-        background = "#0A0A0A";
-        selection_foreground = "#1f1f1f";
-        selection_background = "#d7ba7d";
-        url_color = "#0087BD";
-
-        # black
-        color0 = "#1f1f1f";
-        color8 = "#808080";
-
-        # red
-        color1 = "#f44747";
-        color9 = "#f44747";
-
-        # green
-        color2 = "#608b4e";
-        color10 = "#608b4e";
-
-        # yellow
-        color3 = "#dcdcaa";
-        color11 = "#dcdcaa";
-
-        # blue
-        color4 = "#569cd6";
-        color12 = "#569cd6";
-
-        # magenta
-        color5 = "#c678dd";
-        color13 = "#c678dd";
-
-        # cyan
-        color6 = "#56b6c2";
-        color14 = "#56b6c2";
-
-        # white
-        color7 = "#d4d4d4";
-        color15 = "#d4d4d4";
+        # foreground = "#d4d4d4";
+        # background = "#0A0A0A";
+        # selection_foreground = "#1f1f1f";
+        # selection_background = "#d7ba7d";
+        # url_color = "#0087BD";
+        #
+        # # black
+        # color0 = "#1f1f1f";
+        # color8 = "#808080";
+        #
+        # # red
+        # color1 = "#f44747";
+        # color9 = "#f44747";
+        #
+        # # green
+        # color2 = "#608b4e";
+        # color10 = "#608b4e";
+        #
+        # # yellow
+        # color3 = "#dcdcaa";
+        # color11 = "#dcdcaa";
+        #
+        # # blue
+        # color4 = "#569cd6";
+        # color12 = "#569cd6";
+        #
+        # # magenta
+        # color5 = "#c678dd";
+        # color13 = "#c678dd";
+        #
+        # # cyan
+        # color6 = "#56b6c2";
+        # color14 = "#56b6c2";
+        #
+        # # white
+        # color7 = "#d4d4d4";
+        # color15 = "#d4d4d4";
       };
     };
   };
