@@ -47,7 +47,7 @@ in
           fade_on_empty = true;
           rounding = 0;
           # font_family = "JetBrains Mono Nerd Font Mono";
-          placeholder_text = "...";
+          # placeholder_text = "...";
           hide_input = false;
           position = "0, -120";
           halign = "center";
