@@ -47,11 +47,19 @@
       numlock_by_default = true;
     };
 
+    # windowrulev2 = [
+    #   "workspace 1,^(Slack)$"
+    #   "workspace 9,^(1Password)$"
+    #   "workspace 0,(Spotify)"
+    # ];
+
     exec-once = [
       "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
       "ags -b hyprland &"
       "hyprpaper &"
+      "[workspace 9 silent] 1password"
+      "[workspace 0 silent] spotify"
     ];
   };
 }
