@@ -53,7 +53,8 @@ in
 
         undotree
         vim-be-good
-        zen-mode-nvim
+        # zen-mode-nvim
+        colorizer
       ];
 
       extraPackages = with pkgs; [
