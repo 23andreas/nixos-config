@@ -59,7 +59,7 @@ in
           {
             monitor = "";
             text = ''
-              cmd[update:1000] echo "$(date +"%-I:%M%p")"
+              cmd[update:1000] echo "$(date +"%H:%M")"
             '';
             # color = "$foreground";
             color = "rgb(255, 255, 255)";
