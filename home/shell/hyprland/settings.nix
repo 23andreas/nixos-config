@@ -58,8 +58,9 @@
       "dbus-update-activation-environment --systemd &"
       "ags -b hyprland &"
       "hyprpaper &"
+      "[workspace 8 silent] todoist-electron"
       "[workspace 9 silent] 1password"
-      "[workspace 0 silent] spotify"
+      "[workspace 10 silent] spotify"
     ];
   };
 }
