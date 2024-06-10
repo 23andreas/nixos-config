@@ -17,7 +17,9 @@ in
 
       firefox
       google-chrome
-      czkawka
+      czkawka # find duplicate files
+
+      todoist-electron
     ];
 
     nixosConfig = {
