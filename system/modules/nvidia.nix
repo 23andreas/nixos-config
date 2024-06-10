@@ -1,7 +1,5 @@
 { config, lib, ... }:
 
-
-
 {
   boot.blacklistedKernelModules = [ "nouveau" ];
 
@@ -22,7 +20,6 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct"; #NVIDIA video acceleration
   };
-
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -68,4 +65,3 @@
       };
   };
 }
-
