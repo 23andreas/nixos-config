@@ -20,20 +20,20 @@ in
         listener = [
           # Lockscreen
           {
-            timeout = 300;
+            timeout = 180;
             on-timeout = "loginctl lock-session";
           }
 
           # Screen off
           {
-            timeout = 330;
+            timeout = 210;
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }
 
           # Suspend
           {
-            timeout = 600;
+            timeout = 300;
             on-timeout = "systemctl suspend";
           }
         ];
