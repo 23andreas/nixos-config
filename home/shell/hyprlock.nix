@@ -41,10 +41,10 @@ in
           dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
           dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = true;
-          outer_color = "rgba (0, 0, 0, 0)";
-          inner_color = "rgba (0, 0, 0, 0.5)";
-          font_color = "rgb (200, 200, 200)";
-          fade_on_empty = false;
+          outer_color = "rgba(25, 23, 36, 0.5)";
+          inner_color = "rgba(25, 23, 36, 0.6)";
+          font_color = "rgb(200, 200, 200)";
+          fade_on_empty = true;
           rounding = 0;
           # font_family = "JetBrains Mono Nerd Font Mono";
           placeholder_text = "...";
@@ -59,27 +59,26 @@ in
           {
             monitor = "";
             text = ''
-              cmd[update:1000] echo "$(date + "%-I:%M%p")
+              cmd[update:1000] echo "$(date +"%-I:%M%p")"
             '';
-            color = "$foreground";
-            #color = "rgba(255, 255, 255, 0.6)";
+            # color = "$foreground";
+            color = "rgb(255, 255, 255)";
             font_size = "120";
             # font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
             position = "0, -300";
             halign = "center";
             valign = "top";
           }
-          {
-            monitor = "";
-            text = "Hi there, $USER";
-            color = "$foreground";
-            #color = "rgba(255, 255, 255, 0.6)
-            font_size = 25;
-            font_family = "JetBrains Mono Nerd Font Mono";
-            position = "0, -40";
-            halign = "center";
-            valign = "center";
-          }
+          # {
+          #   monitor = "";
+          #   text = "Hi there, $USER";
+          #   color = "rgb(255, 255, 255)";
+          #   font_size = 25;
+          #   font_family = "JetBrains Mono Nerd Font Mono";
+          #   position = "0, -40";
+          #   halign = "center";
+          #   valign = "center";
+          # }
         ];
 
       };
