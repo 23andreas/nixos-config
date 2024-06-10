@@ -119,7 +119,7 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 -- cursor line
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- smart case
 vim.opt.smartcase = true
