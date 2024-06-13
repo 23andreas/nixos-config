@@ -5,7 +5,7 @@ require("lualine-config")
 require("lsp-config")
 require("cmp-config")
 require("trouble-config")
-require("refactoring-config")
+-- require("refactoring-config")
 
 require("tree-sitter-config")
 require("telescope-config")

@@ -38,7 +38,7 @@ in
         oil-nvim
         nvim-web-devicons
 
-        refactoring-nvim
+        # refactoring-nvim
 
         which-key-nvim
         lualine-nvim
@@ -49,6 +49,8 @@ in
 
         nvim-cmp
         cmp-nvim-lsp
+        cmp-path
+        cmp-buffer
         luasnip
 
         undotree
