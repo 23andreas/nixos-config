@@ -16,7 +16,6 @@
     ../../applications/kitty/kitty.nix
     ../../applications/git/git.nix
 
-    ../../modules/system/fonts.nix
     ../../modules/system/terminal.nix
 
     ../../modules/suites/hyprland/hyprland.nix
