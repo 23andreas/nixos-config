@@ -15,7 +15,7 @@ in
 
       mpv
 
-      firefox
+      # firefox
       google-chrome
       czkawka # find duplicate files
 
