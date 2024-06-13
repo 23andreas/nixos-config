@@ -1,5 +1,11 @@
 require("tokyonight").setup({
   transparent = true,
+  styles = {
+    comments = {},
+    keywords = {},
+    functions = {},
+    variables = {},
+  }
 })
 
 require("vscode").setup({
@@ -12,6 +18,7 @@ require("dracula").setup({
 
 require("rose-pine").setup({
   styles = {
+    italic = false,
     transparency = true
   }
 })
