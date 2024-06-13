@@ -9,8 +9,8 @@
     ../applications
     ../shell
     ../profiles
+    ../fonts.nix
 
-    ../../system/modules/system/fonts.nix
     ../../system/modules/system/terminal.nix
   ];
 
