@@ -105,8 +105,8 @@
       packages."x86_64-linux" = {
         cachix-deploy-spec = cachix-deploy-lib.spec {
           agents = {
-            home-desktop = self.nixosConfigurations.home-desktop.config.system.build.toplevel;
-            work-laptop = self.nixosConfigurations.home-desktop.config.system.build.toplevel;
+            andreas-home-desktop = self.nixosConfigurations.home-desktop.config.system.build.toplevel;
+            andreas-work-laptop = self.nixosConfigurations.home-desktop.config.system.build.toplevel;
           };
         };
       };
