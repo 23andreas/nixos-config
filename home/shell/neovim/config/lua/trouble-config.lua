@@ -1,11 +1,11 @@
-local trouble_telescope = require("trouble.providers.telescope")
+local trouble_telescope = require("trouble.sources.telescope")
 local telescope = require("telescope")
 
 telescope.setup {
   defaults = {
     mappings = {
-      i = { ["<c-t>"] = trouble_telescope.open_with_trouble },
-      n = { ["<c-t>"] = trouble_telescope.open_with_trouble },
+      i = { ["<c-t>"] = trouble_telescope.open },
+      n = { ["<c-t>"] = trouble_telescope.open },
     },
   },
 }
@@ -24,4 +24,3 @@ vim.keymap.set("n", "<leader>xd", create_trouble_toggle("document_diagnostics"),
 vim.keymap.set("n", "<leader>xq", create_trouble_toggle("quickfix"), { desc = "Quickfix" })
 vim.keymap.set("n", "<leader>xl", create_trouble_toggle("loclist"), { desc = "Loclist" })
 vim.keymap.set("n", "gR", create_trouble_toggle("lsp_references"), { desc = "Lsp references" })
-

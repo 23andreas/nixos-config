@@ -20,6 +20,8 @@ require('gitsigns').setup({
     map('n', '[c', function() gitsigns.nav_hunk('prev') end, { desc = "Prev hunk" })
 
     local wk = require('which-key')
-    wk.register({ h = { name = "+Git" } }, { prefix = "<leader>" })
+    wk.add({
+      { "<leader>h", group = "Git" }
+    })
   end
 })
