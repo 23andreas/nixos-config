@@ -16,5 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland.enable = true;
+    # used for processing hyprctl json output in keybindings
+    programs.jq.enable = true;
   };
 }

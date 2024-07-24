@@ -72,6 +72,8 @@ in
         "$mod, M, exit,"
         "$mod, semicolon, exec, ags -b hyprland --toggle-window bar-1"
 
+        "$mod, semicolon, exec, sh -c 'ags -b hyprland --toggle-window bar-$(hyprctl activeworkspace -j | jq -r \".monitorID\")'"
+
         "$mod, V, togglefloating,"
         "$mod, F, fullscreen"
         "$mod, C, killactive,"
