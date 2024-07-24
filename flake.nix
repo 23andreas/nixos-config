@@ -106,7 +106,7 @@
         cachix-deploy-spec = cachix-deploy-lib.spec {
           agents = {
             andreas-home-desktop = self.nixosConfigurations.home-desktop.config.system.build.toplevel;
-            andreas-work-laptop = self.nixosConfigurations.home-desktop.config.system.build.toplevel;
+            andreas-work-laptop = self.nixosConfigurations.work-laptop.config.system.build.toplevel;
           };
         };
       };
