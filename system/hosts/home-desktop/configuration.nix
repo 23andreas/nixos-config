@@ -54,6 +54,7 @@
   environment.systemPackages = with pkgs; [
     os-prober
     home-manager
+    cowsay
   ];
 
   # Boot loader
