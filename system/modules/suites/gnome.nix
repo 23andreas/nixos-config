@@ -3,17 +3,17 @@
 let
   defaultExcludePackages = [
     pkgs.gnome-tour
-    pkgs.gnome.cheese
+    pkgs.cheese
     pkgs.gnome.gnome-music
     pkgs.gnome.gnome-clocks
     pkgs.gnome.gnome-maps
-    pkgs.gnome.gnome-calculator
-    pkgs.gnome.simple-scan
-    pkgs.gnome.epiphany
-    pkgs.gnome.geary
-    pkgs.gnome.totem
+    pkgs.gnome-calculator
+    pkgs.simple-scan
+    pkgs.epiphany
+    pkgs.geary
+    pkgs.totem
     pkgs.gnome.gnome-contacts
-    pkgs.gnome.yelp
+    pkgs.yelp
   ];
 
   cfg = config.suites.gnome;
