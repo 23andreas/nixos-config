@@ -29,13 +29,10 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://cache.nixos.org"
       "https://23andreas.cachix.org"
-      "https://nix-community.cachix.org"
     ];
     extra-trusted-public-keys = [
       "23andreas.cachix.org-1:P9ng+DdiASGCO+NbxXnfeWPh66pvkb62xsRAN30JyTc="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 

@@ -58,7 +58,7 @@ jobs:
       #     nix build .#top.${{ matrix.target }} --fallback --show-trace -v --log-format raw > >(tee /tmp/nix-build-out.log) 2> >(tee /tmp/nix-build-err.log >&2)
 
       - name: Build
-        run: nix build --print-build-logs .#cachix-deploy-spec
+        run: nix build --accept-flake-config --print-build-logs .#cachix-deploy-spec
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
