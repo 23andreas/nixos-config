@@ -3,7 +3,7 @@
 {
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     # driSupport = true;
     # driSupport32Bit = true;
