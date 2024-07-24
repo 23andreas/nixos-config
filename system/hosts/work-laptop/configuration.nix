@@ -50,7 +50,6 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
-    cowsay
   ];
 
   # Boot loader
