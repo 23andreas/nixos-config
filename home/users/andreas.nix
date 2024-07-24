@@ -29,6 +29,11 @@
     '';
   };
 
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   services.playerctld.enable = true;
 
   home = {

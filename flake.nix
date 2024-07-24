@@ -68,9 +68,6 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
             modules = [
-              {
-                nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-              }
               ./system/hosts/home-desktop/configuration.nix
               home-manager.nixosModules.default
               {
@@ -87,9 +84,6 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
             modules = [
-              {
-                nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-              }
               disko.nixosModules.disko
               ./system/hosts/work-laptop/configuration.nix
               home-manager.nixosModules.default
