@@ -1,0 +1,11 @@
+@import "./widgets/workspaces/styles.scss";
+@import "./widgets/systray/styles.scss";
+
+window.menubar {
+  background-color: $bg-color-transparent;
+  color: $fg-color-inactive;
+
+  .container {
+    padding: 3px 5px;
+  }
+}

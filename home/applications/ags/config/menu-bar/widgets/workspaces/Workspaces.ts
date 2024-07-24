@@ -1,52 +1,45 @@
-import * as utils from "../utils";
-import type { Client, Monitor } from "types/service/hyprland";
+import { Chip } from "elements/index";
+import * as utils from "../../utils";
+import type { Client } from "types/service/hyprland";
 
 const hyprland = await Service.import("hyprland");
 
-const switchToWorkspace = (workspace) => {
-  hyprland.messageAsync(`dispatch workspace ${workspace}`);
+const switchToWorkspace = (id: number) => {
+  hyprland.messageAsync(`dispatch workspace ${id}`);
 };
 
-const WorkspaceClientIcons = (id: number) => {
+
+const ClientIcons = (workspaceId: number) => {
   const clients: Client[] = JSON.parse(hyprland.message("j/clients"));
   const swallowed = clients.filter((c) => c.swallowing !== "0x0");
 
   return clients
-    .filter((client) => client.workspace.id === id)
+    .filter((client) => client.workspace.id === workspaceId)
     .filter((client) => !swallowed.some((c) => c.swallowing === client.address))
     .sort((a, b) => a.at[0] - b.at[0])
     .map((client) => {
-      // console.log(client);
       return Widget.Icon({
         className: "app-icon",
         vexpand: false,
         icon: utils.getIconName(client),
-        size: 16,
+        size: 14,
       });
     });
 };
 
-function WorkspaceLabel(id: number) {
-  return Widget.Label({
+const WorkspaceLabel = (id: number) =>
+  Widget.Label({
     className: "workspace-label",
     label: `${id}`,
   });
-}
 
-// TODO RENAME ME
-const WorkspaceClientsS = (id: number) => {
-  return Widget.Box({
-    children: [WorkspaceLabel(id), ...WorkspaceClientIcons(id)],
-  });
-};
-
-const WorkspaceButton = (workspaceId) =>
+const WorkspaceItem = (workspaceId: number) =>
   Widget.Button({
     attribute: {
       workspaceId: workspaceId,
     },
-    className: `workspace-${workspaceId}-button`,
-    child: WorkspaceClientsS(workspaceId),
+    className: `workspace-${workspaceId} workspace-item`,
+    child: Chip({ children: [WorkspaceLabel(workspaceId), ...ClientIcons(workspaceId)] }),
     setup: (self) =>
       self.hook(hyprland, () => {
         self.toggleClassName(
@@ -56,16 +49,17 @@ const WorkspaceButton = (workspaceId) =>
       }),
   });
 
-const WorkspacesList = () =>
+const WorkspaceList = () =>
   Widget.Box({
-    className: "workspaces-list",
+    className: "workspace-list",
+    spacing: 2,
     children: hyprland.workspaces
       .filter((w) => !w.name.includes("special:"))
       .sort((a, b) => a.id - b.id)
-      .map((workspace) => WorkspaceButton(workspace.id)),
+      .map((workspace) => WorkspaceItem(workspace.id)),
   });
 
-export default () =>
+const Workspaces = () =>
   Widget.Button({
     className: "group",
     onScrollUp: () => {
@@ -78,5 +72,7 @@ export default () =>
         switchToWorkspace(hyprland.active.workspace.id + 1);
       }
     },
-    child: hyprland.bind("workspaces").as(WorkspacesList),
+    child: hyprland.bind("workspaces").as(WorkspaceList),
   });
+
+export default Workspaces;

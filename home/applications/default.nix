@@ -6,6 +6,8 @@
     ./kitty.nix
     ./slack.nix
     ./spotify.nix
+    ./swaync
     ./visual-studio-code.nix
+    ./waybar
   ];
 }

@@ -8,6 +8,7 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./neovim
+    ./tmux
     ./zellij
   ];
 }

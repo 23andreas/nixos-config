@@ -1,0 +1,14 @@
+$white: #ffffff;
+$black-night: #0A0A0A;
+
+$fg-color: $white;
+$fg-color-active: $fg-color;
+$fg-color-hover: rgba($fg-color, 0.8);
+$fg-color-inactive: rgba($fg-color, 0.7);
+
+$bg-color: $black-night;
+$bg-color-transparent: rgba($black-night, 0.5);
+$bg-color-transparent-secondary: rgba($black-night, 0.7);
+$bg-color-light: $white;
+$bg-color-light-transparent: rgba($bg-color-light, 0.2);
+$bg-color-light-transparent-secondary: rgba($bg-color-light, 0.1);

@@ -12,7 +12,7 @@
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
+    # driSupport = true;
     extraPackages = with pkgs; [
       intel-media-driver
       # intel-vaapi-driver

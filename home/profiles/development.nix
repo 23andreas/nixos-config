@@ -13,7 +13,9 @@ in
     home.packages = with pkgs; [
       vim
       bat
+
       lazygit
+
       nixpkgs-fmt
       direnv
     ];

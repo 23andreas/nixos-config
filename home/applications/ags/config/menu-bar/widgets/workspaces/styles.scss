@@ -1,0 +1,20 @@
+.workspace-item {
+  // padding: 0 5px;
+  // margin: 2px 0;
+
+  font-size: 13px;
+
+  color: $fg-color-inactive;
+
+  .active {
+    color: $fg-color-active;
+  }
+
+  .workspace-label {
+    margin-right: 5px;
+  }
+
+  .app-icon {
+    margin-right: 1px;
+  }
+}

@@ -1,0 +1,9 @@
+keys:
+  - &home-desktop age15tw455vm6xv3d8wyf4rkmt8p8fncfmq95s225wtnugk02lphgyhsqlatm9
+  - &nixos-config-key age10t7vyhnjzqqyg2kks67trjles74ah357agp74mp6g6zt9ela6s3sww82l9
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+        - *home-desktop
+        - *nixos-config-key

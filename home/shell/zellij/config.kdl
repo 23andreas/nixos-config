@@ -125,8 +125,11 @@ keybinds clear-defaults=true {
     }
 }
 
-simplified_ui false
-pane_frames false
+ui {
+  pane_frames {
+    hide_session_name true
+  }
+}
 
 themes {
   vscode {
@@ -158,5 +161,5 @@ themes {
 	}
 }
 
-theme "rose-pine"
+theme "catppuccin-mocha"
 copy_on_select true

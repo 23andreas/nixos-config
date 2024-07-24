@@ -2,7 +2,7 @@ import { CurrentDateTime } from "../lib/variables";
 
 const CurrentDateTimeFormatted = Utils.derive(
   [CurrentDateTime],
-  (t) => t.format("%A%e. %B %H:%M") || "N/A"
+  (t) => t.format("%A %e. %B %H:%M") || "N/A"
 );
 
 export default () =>

@@ -20,11 +20,15 @@ in
       czkawka # find duplicate files
 
       todoist-electron
+      # todoist
     ];
 
     nixosConfig = {
       app = {
         ags.enable = true;
+        # waybar.enable = true;
+        swaync.enable = true;
+
         anyrun.enable = true;
         kitty.enable = true;
 
@@ -42,11 +46,11 @@ in
         hyprland.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = builtins.toPath ../../resources/wallpapers/30.png;
+          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/30.png";
         };
         hyprlock = {
           enable = true;
-          backgroundPath = builtins.toPath ../../resources/wallpapers/30.png;
+          backgroundPath = "${config.home.homeDirectory}/Pictures/Wallpapers/30.png";
         };
         hypridle.enable = true;
       };

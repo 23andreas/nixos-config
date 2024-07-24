@@ -1,7 +1,6 @@
 import { Applications } from "resource:///com/github/Aylur/ags/service/applications.js";
 import type { Client } from "types/service/hyprland";
 
-const hyprland = await Service.import("hyprland");
 
 const queryApplications = (query: string) => {
   const applications = new Applications();

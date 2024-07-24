@@ -11,12 +11,14 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       fastfetch
+      sops
       yazi
     ];
 
     nixosConfig = {
       shell = {
-        zellij.enable = true;
+        # zellij.enable = true;
+        tmux.enable = true;
       };
     };
   };

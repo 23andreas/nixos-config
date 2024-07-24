@@ -15,8 +15,13 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.bun
+      pkgs.sassc
     ];
+
     nixosConfig.shell.gtk.enable = true;
+
+    # Symlink ags config folder when testing out changes
+    # xdg.configFile.ags.source = config.lib.file.mkOutOfStoreSymlink "/home/andreas/nixos/home/applications/ags/config";
 
     programs.ags = {
       enable = true;

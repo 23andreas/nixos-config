@@ -5,7 +5,7 @@
       gaps_out = 4;
       border_size = 3;
 
-      "col.active_border" = "rgb(EB6F92)";
+      "col.active_border" = "rgb(f5e0dc)";
       "col.inactive_border" = "0x00000000";
 
       border_part_of_window = false;
@@ -57,6 +57,7 @@
       "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
       "ags -b hyprland &"
+      # "waybar &"
       "hyprpaper &"
       "[workspace 8 silent] todoist-electron"
       "[workspace 9 silent] 1password"

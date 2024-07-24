@@ -4,6 +4,10 @@ const main = "/tmp/ags/main.js";
 const entry = `${App.configDir}/main.ts`;
 const bundler = GLib.getenv("AGS_BUNDLER") || "bun";
 
+const scss = `${App.configDir}/styles.scss`
+const css = `/tmp/ags/styles.css`
+Utils.exec(`sassc ${scss} ${css}`)
+
 const v = {
   ags: pkg.version?.split(".").map(Number) || [],
   expect: [1, 8, 0],
@@ -59,4 +63,4 @@ try {
   App.quit();
 }
 
-export {};
+export { };

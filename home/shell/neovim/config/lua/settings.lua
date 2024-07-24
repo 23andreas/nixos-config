@@ -23,8 +23,13 @@ require("rose-pine").setup({
   }
 })
 
+require("catppuccin").setup({
+  transparent_background = true,
+  no_italic = true,
+})
+
 function SetColorScheme(color)
-  color = color or "rose-pine"
+  color = color or "catppuccin"
   vim.cmd.colorscheme(color)
 
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -92,7 +97,18 @@ vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSig
 vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
--- INDENTATION
+--- GBrowse
+vim.api.nvim_create_user_command(
+  'Browse',
+  function (opts)
+    vim.fn.system { 'xdg-open', opts.fargs[1] }
+  end,
+  { nargs = 1 }
+)
+
+-- Save marks
+vim.opt.viminfo = "'100,f20"
+
 -- Set the number of spaces to use for each step of (auto)indent
 vim.opt.shiftwidth = 2
 
@@ -129,6 +145,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.cursorline = false
 
 -- smart case
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- auto indent

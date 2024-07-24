@@ -1,5 +1,4 @@
-{ ... }:
-
+{ config, ... }:
 {
   home.username = "andreas";
   home.homeDirectory = "/home/andreas";
@@ -33,6 +32,10 @@
   services.playerctld.enable = true;
 
   home = {
+    file."${config.home.homeDirectory}/Pictures/Wallpapers" = {
+      source = ../../resources/wallpapers;
+      recursive = true;
+    };
     sessionVariables = {
       #Electron
       NIXOS_OZONE_WL = "1";
@@ -50,6 +53,8 @@
 
       # Hardware acceleration
       WLR_RENDERER_ALLOW_SOFTWARE = "1";
+
+      EDITOR = "vim";
     };
   };
 

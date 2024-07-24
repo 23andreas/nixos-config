@@ -70,6 +70,7 @@ in
         "$mod, backslash, exec, google-chrome-stable"
         "$mod, E, exec, nautilus"
         "$mod, M, exit,"
+        "$mod, semicolon, exec, ags -b hyprland --toggle-window bar-1"
 
         "$mod, V, togglefloating,"
         "$mod, F, fullscreen"
@@ -77,7 +78,12 @@ in
 
         "$mod, P, pseudo, # dwindle"
         "$mod, O, togglesplit, # dwindle"
-        "$mod, T, togglegroup, # dwindle"
+
+        #GROUPS
+        "$mod, T, togglegroup,"
+        "$mod, Y, changegroupactive, f"
+        "$mod, U, moveoutofgroup,"
+        "$mod, I, moveintogroup, r"
 
         # Move focus with mainMod + arrow keys
         "$mod, h, movefocus, l"

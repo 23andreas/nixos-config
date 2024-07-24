@@ -1,21 +1,39 @@
-{ pkgs, inputs, ... }:
-
+{ pkgs, inputs, config, ... }:
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
 
-      ../../modules/nvidia.nix
-      ../../modules/intel.nix
-      ../../modules/ssd.nix
+    ../../modules/nvidia.nix
+    ../../modules/intel.nix
+    ../../modules/ssd.nix
 
-      ../../modules/system/locale.nix
-      ../../modules/system/sound.nix
-      ../../modules/system/gnome-polkit.nix
+    ../../modules/system/locale.nix
+    ../../modules/system/sound.nix
+    ../../modules/system/gnome-polkit.nix
 
-      ../../modules/suites/gnome.nix
+    ../../modules/suites/gnome.nix
+  ];
+
+  sops = {
+    defaultSopsFile = ../../../secrets/secrets.yaml;
+    age.sshKeyPaths = [
+      "/var/lib/sops-nix/nixos-config-key"
     ];
+    secrets = {
+      "users/andreas/hashed_password".neededForUsers = true;
+      wireless_env = { };
+      "home-desktop/cachix-credentials-file" = { };
+    };
+  };
+
+  networking.wireless.environmentFile = config.sops.secrets.wireless_env.path;
+  networking.wireless.networks = {
+    "@home_uuid@" = {
+      psk = "@home_psk@";
+    };
+  };
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
@@ -58,6 +76,12 @@
   # Netorking
   networking.hostName = "andreas-office-nixos";
   networking.networkmanager.enable = true;
+
+  # Cachix
+  services.cachix-agent = {
+    enable = true;
+    credentialsFile = config.sops.secrets."home-desktop/cachix-credentials-file".path;
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

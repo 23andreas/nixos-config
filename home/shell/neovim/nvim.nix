@@ -27,25 +27,17 @@ in
         vscode-nvim
         dracula-nvim
         rose-pine
+        catppuccin-nvim
+        cyberdream-nvim
 
         #Lsp
         lazy-lsp-nvim
         lsp-zero-nvim
         lsp_signature-nvim
+        lspsaga-nvim
 
-        trouble-nvim
-
-        oil-nvim
-        nvim-web-devicons
-
-        # refactoring-nvim
-
-        which-key-nvim
-        lualine-nvim
-        telescope-nvim
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
-        nvim-notify
 
         nvim-cmp
         cmp-nvim-lsp
@@ -53,10 +45,35 @@ in
         cmp-buffer
         luasnip
 
+        trouble-nvim
+
+        gitsigns-nvim
+        vim-fugitive
+        vim-rhubarb
+
+        which-key-nvim
+        lualine-nvim
+        telescope-nvim
+        telescope-fzf-native-nvim
+        nvim-notify
+
         undotree
+
+        oil-nvim
+        nvim-web-devicons
+
+        # refactoring-nvim
         vim-be-good
+
+        vim-illuminate
+        # nvim-autopairs
+
+        # auto-session
+        # persistence-nvim
+        vim-obsession
+
         # zen-mode-nvim
-        colorizer
+        # colorizer
       ];
 
       extraPackages = with pkgs; [
