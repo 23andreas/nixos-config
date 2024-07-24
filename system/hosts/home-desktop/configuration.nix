@@ -54,7 +54,6 @@
   environment.systemPackages = with pkgs; [
     os-prober
     home-manager
-    cowsay
   ];
 
   # Boot loader
@@ -75,7 +74,7 @@
   hardware.keyboard.zsa.enable = true;
 
   # Netorking
-  networking.hostName = "andreas-office-nixos";
+  networking.hostName = "andreas-home-desktop";
   networking.networkmanager.enable = true;
 
   # Cachix
