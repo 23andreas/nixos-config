@@ -51,6 +51,7 @@
   environment.systemPackages = with pkgs; [
     home-manager
   ];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Boot loader
   boot = {
