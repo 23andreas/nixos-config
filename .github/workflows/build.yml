@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - "**.nix"
-      - "flake.lock"
+    # paths:
+    #   - "**.nix"
+    #   - "flake.lock"
+    #   - "home/**"
+    #   - "resources/wallpapers/**"
+    #   - "secrets/**"
+    #   - "system/**"
 
 jobs:
   build:
