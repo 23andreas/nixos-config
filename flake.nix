@@ -36,7 +36,7 @@
     ];
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, cachix-deploy, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, cachix-deploy, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -85,6 +85,7 @@
             specialArgs = { inherit inputs; };
             modules = [
               disko.nixosModules.disko
+              nixos-hardware.nixosModules.dell-xps-15-9510
               ./system/hosts/work-laptop/configuration.nix
               home-manager.nixosModules.default
               {
