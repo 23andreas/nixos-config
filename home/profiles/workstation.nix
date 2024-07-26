@@ -37,6 +37,8 @@ in
           enableWaylandFix = true;
         };
 
+        spotify-player.enable = true;
+
         slack = {
           enable = true;
           enableWaylandFix = true;
