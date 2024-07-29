@@ -34,10 +34,10 @@ in
           }
 
           # Suspend
-          # {
-          #   timeout = 480;
-          #   on-timeout = "systemctl suspend";
-          # }
+          {
+            timeout = 480;
+            on-timeout = "systemctl suspend";
+          }
         ];
       };
     };
