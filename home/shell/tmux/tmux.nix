@@ -12,6 +12,8 @@ in
     programs.tmux = {
       enable = true;
       keyMode = "vi";
+      clock24 = true;
+      mouse = true;
       extraConfig = ''
         resurrect_dir="$HOME/.tmux/resurrect"
         set -g @resurrect-dir $resurrect_dir
