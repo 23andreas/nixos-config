@@ -85,7 +85,7 @@
             specialArgs = { inherit inputs; };
             modules = [
               disko.nixosModules.disko
-              nixos-hardware.nixosModules.dell-xps-15-9510-nvidia
+              nixos-hardware.nixosModules.dell-xps-15-9510
               ./system/hosts/work-laptop/configuration.nix
               home-manager.nixosModules.default
               {
