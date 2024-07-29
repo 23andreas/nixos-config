@@ -41,7 +41,7 @@ in
 
         slack = {
           enable = true;
-          enableWaylandFix = true;
+          enableWaylandFix = false;
         };
       };
       shell = {
