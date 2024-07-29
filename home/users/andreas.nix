@@ -21,13 +21,16 @@
     workstation.enable = true;
   };
 
+
   programs.ssh = {
     enable = true;
     extraConfig = ''
       Host *
+        IdentityFile ~/.ssh/id_ed25519
         IdentityAgent ~/.1password/agent.sock
     '';
   };
+  services.ssh-agent.enable = true;
 
   programs.nix-index = {
     enable = true;
