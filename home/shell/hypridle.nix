@@ -21,11 +21,11 @@ in
 
         listener = [
           # Screen off
-          {
-            timeout = 180;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
+          # {
+          #   timeout = 180;
+          #   on-timeout = "hyprctl dispatch dpms off";
+          #   on-resume = "hyprctl dispatch dpms on";
+          # }
 
           # Lockscreen
           {
@@ -34,10 +34,10 @@ in
           }
 
           # Suspend
-          {
-            timeout = 480;
-            on-timeout = "systemctl suspend";
-          }
+          # {
+          #   timeout = 480;
+          #   on-timeout = "systemctl suspend";
+          # }
         ];
       };
     };
