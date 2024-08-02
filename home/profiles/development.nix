@@ -18,6 +18,7 @@ in
 
       nixpkgs-fmt
       direnv
+      postman
     ];
 
     nixosConfig = {
