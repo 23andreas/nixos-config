@@ -67,6 +67,8 @@
 
   hardware.logitech.wireless.enable = true;
   hardware.keyboard.zsa.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   # Netorking
   networking.hostName = "andreas-work-laptop";
