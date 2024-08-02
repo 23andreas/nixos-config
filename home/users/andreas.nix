@@ -63,6 +63,8 @@
       WLR_RENDERER_ALLOW_SOFTWARE = "1";
 
       EDITOR = "vim";
+
+      XCURSOR_SIZE = "24";
     };
   };
 
