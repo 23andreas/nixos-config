@@ -27,7 +27,6 @@
     cachix-deploy.url = "github:cachix/cachix-deploy-flake";
 
     walker.url = "github:abenz1267/walker";
-    mcmojave-hyprcursor.url = "github:libadoxon/mcmojave-hyprcursor";
   };
 
   nixConfig = {

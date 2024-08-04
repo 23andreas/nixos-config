@@ -20,12 +20,7 @@ in
       czkawka # find duplicate files
 
       todoist-electron
-
-      inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
-
-    home.sessionVariables.HYPRCURSOR_THEME = "McMojave";
-    home.sessionVariables.HYPRCURSOR_SIZE = "22";
 
     nixosConfig = {
       app = {
