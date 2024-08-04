@@ -30,7 +30,7 @@ in
         swaync.enable = true;
 
         anyrun.enable = true;
-        walker.enable = true;
+        # walker.enable = true;
         kitty.enable = true;
 
         spotify = {
