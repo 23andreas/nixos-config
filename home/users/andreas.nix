@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
   home.username = "andreas";
   home.homeDirectory = "/home/andreas";
@@ -11,7 +11,17 @@
     ../fonts.nix
 
     ../../system/modules/system/terminal.nix
+    inputs.catppuccin.homeManagerModules.catppuccin
   ];
+
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    pointerCursor = {
+      enable = true;
+      accent = "dark";
+    };
+  };
 
   nixosConfig.profiles = {
     development.enable = true;
@@ -20,7 +30,6 @@
     utils.enable = true;
     workstation.enable = true;
   };
-
 
   programs.ssh = {
     enable = true;
