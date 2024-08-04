@@ -28,13 +28,6 @@
     };
   };
 
-  networking.wireless.environmentFile = config.sops.secrets.wireless_env.path;
-  networking.wireless.networks = {
-    "@home_uuid@" = {
-      psk = "@home_psk@";
-    };
-  };
-
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
