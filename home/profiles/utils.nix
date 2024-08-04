@@ -11,6 +11,8 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       fastfetch
+      btop
+      htop
       sops
       yazi
     ];
