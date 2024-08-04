@@ -14,7 +14,7 @@ in
 
     gtk = lib.mkIf cfg.enable {
       enable = true;
-      theme = {
+      theme = lib.mkDefault {
         name = "adw-gtk3-dark";
         package = pkgs.adw-gtk3;
       };
