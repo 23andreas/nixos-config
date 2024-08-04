@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   cfg = config.nixosConfig.profiles.workstation;
@@ -20,8 +20,12 @@ in
       czkawka # find duplicate files
 
       todoist-electron
-      # todoist
+
+      inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
+
+    home.sessionVariables.HYPRCURSOR_THEME = "McMojave";
+    home.sessionVariables.HYPRCURSOR_SIZE = "22";
 
     nixosConfig = {
       app = {
