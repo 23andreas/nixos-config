@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   home.username = "andreas";
   home.homeDirectory = "/home/andreas";
@@ -18,10 +18,14 @@
     enable = true;
     accent = "blue";
     flavor = "mocha";
-    pointerCursor = {
-      enable = true;
-      accent = "light";
-    };
+  };
+
+  home.pointerCursor = {
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
+    gtk.enable = true;
+    x11.enable = true;
+    size = 24;
   };
 
   nixosConfig.profiles = {
