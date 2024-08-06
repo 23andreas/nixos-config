@@ -18,9 +18,9 @@ local function create_trouble_toggle(mode)
   end
 end
 
-vim.keymap.set("n", "<leader>xx", create_trouble_toggle(), { desc = "Toggle trouble" })
-vim.keymap.set("n", "<leader>xw", create_trouble_toggle("workspace_diagnostics"), { desc = "Workspace diagnostics" })
-vim.keymap.set("n", "<leader>xd", create_trouble_toggle("document_diagnostics"), { desc = "Document diagnostics" })
+vim.keymap.set("n", "<leader>xx", create_trouble_toggle("diagnostics"), { desc = "Toggle trouble" })
+-- vim.keymap.set("n", "<leader>xw", create_trouble_toggle("workspace_diagnostics"), { desc = "Workspace diagnostics" })
+-- vim.keymap.set("n", "<leader>xd", create_trouble_toggle("diagnostics"), { desc = "Diagnostics" })
 vim.keymap.set("n", "<leader>xq", create_trouble_toggle("quickfix"), { desc = "Quickfix" })
 vim.keymap.set("n", "<leader>xl", create_trouble_toggle("loclist"), { desc = "Loclist" })
 vim.keymap.set("n", "gR", create_trouble_toggle("lsp_references"), { desc = "Lsp references" })
