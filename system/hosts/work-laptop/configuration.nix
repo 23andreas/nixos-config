@@ -3,7 +3,6 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
-    # "${inputs.nixos-hardware}/dell/xps/15-9510"
     ../../../disk-config.nix
 
     ../../modules/system/locale.nix
@@ -20,10 +19,14 @@
     ];
     secrets = {
       "users/andreas/hashed_password".neededForUsers = true;
-      wireless_env = { };
       "work-laptop/cachix-credentials-file" = { };
+      "work-laptop/github-access-token-file" = { };
     };
   };
+
+  nix.extraOptions = ''
+    !include ${config.sops.secrets."work-laptop/github-access-token-file".path}
+  '';
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
