@@ -41,12 +41,12 @@ in
           dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
           dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = true;
-          outer_color = "rgba(25, 23, 36, 0.9)";
-          inner_color = "rgba(25, 23, 36, 0.9)";
+          outer_color = "rgba(25, 23, 36, 0.7)";
+          inner_color = "rgba(25, 23, 36, 0.7)";
           font_color = "rgb(200, 200, 200)";
           fade_on_empty = true;
-          rounding = 0;
-          # font_family = "JetBrains Mono Nerd Font Mono";
+          rounding = 5;
+          font_family = "SFProText Nerd Font";
           # placeholder_text = "...";
           hide_input = false;
           position = "0, -120";
@@ -64,7 +64,7 @@ in
             # color = "$foreground";
             color = "rgb(255, 255, 255)";
             font_size = "120";
-            # font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
+            font_family = "SFProText Nerd Font";
             position = "0, -300";
             halign = "center";
             valign = "top";
