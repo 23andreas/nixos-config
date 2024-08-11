@@ -21,6 +21,8 @@ in
 
       # used by some scripts for notify-send command
       libnotify
+
+      pwvucontrol
     ];
 
     programs.fastfetch.enable = true;

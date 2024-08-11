@@ -18,7 +18,6 @@
       # "memory"
       # "disk"
       "battery"
-      "wireplumber"
       "network"
       "pulseaudio"
       "custom/notification"
@@ -92,13 +91,7 @@
 
       };
       scroll-step = 5;
-      on-click = "pamixer -t";
-    };
-    wireplumber = {
-      format = "{icon}";
-      format-muted = "";
-      on-click = "helvum";
-      format-icons = [ "" "" "" ];
+      on-click = "pwvucontrol";
     };
     battery = {
       format = "{icon} {capacity}%";
