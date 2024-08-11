@@ -16,6 +16,11 @@ in
     programs.walker = {
       enable = true;
       runAsService = true;
+
+      config = {
+        disabled = [ "runner" ];
+        ui.anchors = [];
+      };
     };
   };
 }

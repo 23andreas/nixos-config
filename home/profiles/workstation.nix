@@ -24,20 +24,19 @@ in
 
     nixosConfig = {
       app = {
-        ags.enable = true;
-        # waybar.enable = true;
+        # ags.enable = true;
+        waybar.enable = true;
         swaync.enable = true;
 
         anyrun.enable = true;
-        # walker.enable = true;
+        walker.enable = true;
         kitty.enable = true;
 
         spotify = {
           enable = true;
-          enableWaylandFix = true;
         };
 
-        spotify-player.enable = true;
+        # spotify-player.enable = true;
 
         slack = {
           enable = true;
@@ -46,13 +45,14 @@ in
       };
       shell = {
         hyprland.enable = true;
+        gtk.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/30.png";
+          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/green_leaves_4.jpg";
         };
         hyprlock = {
           enable = true;
-          backgroundPath = "${config.home.homeDirectory}/Pictures/Wallpapers/30.png";
+          backgroundPath = "${config.home.homeDirectory}/Pictures/Wallpapers/green_leaves_3.jpg";
         };
         hypridle.enable = true;
       };

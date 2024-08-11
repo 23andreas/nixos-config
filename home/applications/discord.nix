@@ -12,7 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = lib.mkMerge [
       (lib.mkIf (!cfg.enableWaylandFix) [
-        pkgs.spotify
+        pkgs.discord
       ])
       (lib.mkIf cfg.enableWaylandFix [
         (pkgs.writeShellApplication {

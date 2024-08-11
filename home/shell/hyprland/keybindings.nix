@@ -64,7 +64,8 @@ in
       ];
 
       bind = [
-        "$mod, Space, exec, pgrep anyrun && pkill anyrun || anyrun"
+        # "$mod, Space, exec, pgrep anyrun && pkill anyrun || anyrun"
+        "$mod, Space, exec, pgrep walker && pkill walker || walker"
         "$mod+Alt, Space, exec, ags -b hyprland -t applauncher"
         "$mod, Return, exec, kitty"
         "$mod, backslash, exec, google-chrome-stable"

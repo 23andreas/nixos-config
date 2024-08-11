@@ -17,12 +17,16 @@ in
 
     programs.kitty = {
       enable = true;
-      theme = "Catppuccin-Mocha";
+      catppuccin = {
+        enable = true;
+        flavor = "macchiato";
+      };
+
       settings = {
         window_padding_width = 4;
         confirm_os_window_close = 0;
-        background_opacity = "0.9";
-        background_blur = 60;
+        # background_opacity = "0.9";
+        # background_blur = 60;
         font_size = 11;
         modify_font = "cell_height 110%";
       };

@@ -28,6 +28,7 @@
 
     walker.url = "github:abenz1267/walker";
     catppuccin.url = "github:catppuccin/nix";
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
   };
 
   nixConfig = {
@@ -39,7 +40,7 @@
     ];
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, cachix-deploy, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, cachix-deploy, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};

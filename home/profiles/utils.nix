@@ -10,12 +10,17 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      fastfetch
-      btop
-      htop
       sops
-      yazi
     ];
+
+    programs.fastfetch.enable = true;
+    programs.btop.enable = true;
+    programs.htop.enable = true;
+
+    programs.yazi = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
     nixosConfig = {
       shell = {

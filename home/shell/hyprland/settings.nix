@@ -3,10 +3,11 @@
     general = {
       gaps_in = 2;
       gaps_out = 4;
-      border_size = 3;
+      border_size = 2;
 
-      "col.active_border" = "rgb(f5e0dc)";
-      "col.inactive_border" = "0x00000000";
+      # "col.active_border" = "rgb(f5e0dc)";
+      "col.active_border" = "$red";
+      # "col.inactive_border" = "0x00000000";
 
       border_part_of_window = false;
       no_border_on_floating = false;
@@ -18,6 +19,27 @@
 
     dwindle = {
       no_gaps_when_only = 1;
+    };
+
+    windowrulev2 = [
+      "move 0 0,title:^(is sharing your screen)(.*)$"
+    ];
+
+    decoration = {
+      rounding = 2;
+      drop_shadow = true;
+    };
+
+    group = {
+      "col.border_active" = "$green";
+      groupbar = {
+        enabled = false;
+        font_family = [ "SFProText Nerd Font" ];
+        font_size = 10;
+        text_color = "$text";
+        "col.active" = "$surface0";
+        "col.inactive" = "$base";
+      };
     };
 
     animations = {
@@ -56,8 +78,10 @@
     exec-once = [
       "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
-      "ags -b hyprland &"
-      # "waybar &"
+      # "ags -b hyprland &"
+      "walker --gapplication-service"
+      "waybar &"
+      "swaync &"
       "hyprpaper &"
       "[workspace 8 silent] todoist-electron"
       "[workspace 9 silent] 1password"
