@@ -11,8 +11,16 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       sops
+
       grimblast
       wf-recorder
+
+      # used by recorder to convert output
+      ffmpeg
+      gifsicle
+
+      # used by some scripts for notify-send command
+      libnotify
     ];
 
     programs.fastfetch.enable = true;
