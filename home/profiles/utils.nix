@@ -23,6 +23,8 @@ in
       libnotify
 
       pwvucontrol
+
+      # safeeyes
     ];
 
     programs.fastfetch.enable = true;
