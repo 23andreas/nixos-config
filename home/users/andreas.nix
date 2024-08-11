@@ -1,4 +1,8 @@
 { config, inputs, pkgs, ... }:
+
+let
+  record = pkgs.writeScriptBin "record" (builtins.readFile ../../resources/scripts/record.sh);
+in
 {
   home.username = "andreas";
   home.homeDirectory = "/home/andreas";
@@ -27,6 +31,10 @@
     x11.enable = true;
     size = 24;
   };
+
+  home.packages =  [
+    record
+  ];
 
   nixosConfig.profiles = {
     development.enable = true;
