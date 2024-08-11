@@ -12,6 +12,7 @@ in
     home.packages = with pkgs; [
       sops
       grimblast
+      wf-recorder
     ];
 
     programs.fastfetch.enable = true;
