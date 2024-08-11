@@ -9,7 +9,7 @@ in
     enableWaylandFix = lib.mkEnableOption "Enable wayland fix";
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = lib.mkMerge [
       (lib.mkIf (!cfg.enableWaylandFix) [
         pkgs.spotify
