@@ -86,11 +86,12 @@
     };
     pulseaudio = {
       format = "{icon}";
-      format-muted = "  {volume}%";
-      format-icons = {
-        default = [ " " ];
-
-      };
+      format-muted = "󰸈";
+      format-icons = [ "" "" "" ];
+      # format-icons = {
+      #   default = [ " " ];
+      #
+      # };
       scroll-step = 5;
       on-click = "pwvucontrol";
     };
