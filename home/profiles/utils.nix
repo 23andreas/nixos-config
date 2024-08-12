@@ -23,6 +23,7 @@ in
       libnotify
 
       pwvucontrol
+      blueberry
 
       # safeeyes
     ];

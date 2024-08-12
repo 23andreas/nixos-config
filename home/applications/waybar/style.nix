@@ -52,7 +52,7 @@ in
         color: @text;
     }
 
-    #tray, #pulseaudio, #network, #cpu, #memory, #disk, #clock, #battery, #custom-notification, #privacy {
+    #tray, #pulseaudio, #bluetooth, #network, #cpu, #memory, #disk, #clock, #battery, #custom-notification, #privacy {
         font-size: ${custom.font_size};
         color: @text;
         margin-left: 5px;
