@@ -110,7 +110,7 @@
       # "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
     };
     battery = {
-      format = "{icon}%";
+      format = "{icon}";
       format-icons = [ " " " " " " " " " " ];
       format-charging = " {capacity}%";
       format-full = " {capacity}%";
