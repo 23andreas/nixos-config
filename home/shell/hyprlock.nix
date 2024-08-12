@@ -42,12 +42,12 @@ in
           dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = true;
           outer_color = "rgba(25, 23, 36, 0)";
-          inner_color = "rgba(25, 23, 36, 0.6)";
-          font_color = "rgb(200, 200, 200)";
+          inner_color = "rgba(255, 255, 255, 0.4)";
+          font_color = "rgb(0, 0, 0)";
           fade_on_empty = true;
           rounding = 5;
           font_family = "SFProText Nerd Font";
-          # placeholder_text = "...";
+          placeholder_text = "";
           hide_input = false;
           position = "0, -120";
           halign = "center";
