@@ -6,7 +6,7 @@
       border_size = 2;
 
       # "col.active_border" = "rgb(f5e0dc)";
-      "col.active_border" = "$red";
+      "col.active_border" = "$green";
       # "col.inactive_border" = "0x00000000";
 
       border_part_of_window = false;
@@ -31,7 +31,7 @@
     };
 
     group = {
-      "col.border_active" = "$green";
+      "col.border_active" = "$red";
       groupbar = {
         enabled = false;
         font_family = [ "SFProText Nerd Font" ];
