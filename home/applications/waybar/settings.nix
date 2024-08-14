@@ -8,6 +8,7 @@
     modules-left = [
       "hyprland/workspaces"
       "tray"
+      "hyprland/submap"
     ];
     modules-center = [
       "clock"
@@ -57,9 +58,15 @@
       #     "5"= [];
       # };
     };
+    "hyprland/submap" = {
+      format = "{}";
+      max-length = 8;
+      tooltip = false;
+    };
     memory = {
-      format = "󰟜 {}%";
-      format-alt = "󰟜 {used} GiB"; # 
+      format = "󰟜
+        { }%";
+      format-alt = "󰟜 { used } GiB"; # 
       interval = 2;
     };
     cpu = {
