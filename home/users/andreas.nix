@@ -49,7 +49,6 @@ in
     extraConfig = ''
       Host *
         IdentityFile ~/.ssh/id_ed25519
-        IdentityAgent ~/.1password/agent.sock
     '';
   };
   services.ssh-agent.enable = true;
