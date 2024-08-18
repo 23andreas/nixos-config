@@ -19,6 +19,9 @@ in
       nixpkgs-fmt
       direnv
       postman
+
+      awscli2
+      kubectl
     ];
 
     nixosConfig = {
