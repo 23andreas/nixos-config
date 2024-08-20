@@ -17,7 +17,10 @@ require("which-key-config")
 
 require("undotree-config")
 require("vim-be-good-config")
+require("guard-config")
+
+require("hardtime-config")
+require("precognition-config")
 -- require("persistence-config")
 -- require("auto-session-config")
 -- require("zen-mode-config")
-

@@ -1,27 +1,27 @@
-require("tokyonight").setup({
-  transparent = true,
-  styles = {
-    comments = {},
-    keywords = {},
-    functions = {},
-    variables = {},
-  }
-})
+-- require("tokyonight").setup({
+--   transparent = true,
+--   styles = {
+--     comments = {},
+--     keywords = {},
+--     functions = {},
+--     variables = {},
+--   }
+-- })
 
 require("vscode").setup({
   transparent = true
 })
 
-require("dracula").setup({
-  transparent_bg = true
-})
-
-require("rose-pine").setup({
-  styles = {
-    italic = false,
-    transparency = true
-  }
-})
+-- require("dracula").setup({
+--   transparent_bg = true
+-- })
+--
+-- require("rose-pine").setup({
+--   styles = {
+--     italic = false,
+--     transparency = true
+--   }
+-- })
 
 require("catppuccin").setup({
   transparent_background = true,
@@ -100,7 +100,7 @@ vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSig
 --- GBrowse
 vim.api.nvim_create_user_command(
   'Browse',
-  function (opts)
+  function(opts)
     vim.fn.system { 'xdg-open', opts.fargs[1] }
   end,
   { nargs = 1 }

@@ -11,16 +11,34 @@ telescope.setup {
 }
 
 -- helper function to create a closure for trouble.toggle
-local trouble = require("trouble")
+local opts = {
+  modes = {
+    preview_float = {
+      mode = "diagnostics",
+      preview = {
+        type = "float",
+        relative = "editor",
+        border = "rounded",
+        title = "Preview",
+        title_pos = "center",
+        position = { 0, -2 },
+        size = { width = 0.3, height = 0.3 },
+        zindex = 200,
+      },
+    },
+  },
+}
+
+require("trouble").setup(opts)
+
 local function create_trouble_toggle(mode)
   return function()
-    trouble.toggle(mode)
+    require("trouble").toggle(mode)
   end
 end
 
 vim.keymap.set("n", "<leader>xx", create_trouble_toggle("diagnostics"), { desc = "Toggle trouble" })
--- vim.keymap.set("n", "<leader>xw", create_trouble_toggle("workspace_diagnostics"), { desc = "Workspace diagnostics" })
--- vim.keymap.set("n", "<leader>xd", create_trouble_toggle("diagnostics"), { desc = "Diagnostics" })
-vim.keymap.set("n", "<leader>xq", create_trouble_toggle("quickfix"), { desc = "Quickfix" })
-vim.keymap.set("n", "<leader>xl", create_trouble_toggle("loclist"), { desc = "Loclist" })
-vim.keymap.set("n", "gR", create_trouble_toggle("lsp_references"), { desc = "Lsp references" })
+vim.keymap.set("n", "gR", create_trouble_toggle("lsp_references"), { desc = "lsp references" })
+
+-- test
+vim.keymap.set("n", "<leader>xs", create_trouble_toggle("lsp_document_symbols"), { desc = "Toggle trouble" })

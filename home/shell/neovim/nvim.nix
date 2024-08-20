@@ -23,12 +23,8 @@ in
 
       plugins = with pkgs.vimPlugins; [
         # Themes
-        tokyonight-nvim
         vscode-nvim
-        dracula-nvim
-        rose-pine
         catppuccin-nvim
-        cyberdream-nvim
 
         #Lsp
         lazy-lsp-nvim
@@ -43,7 +39,13 @@ in
         cmp-nvim-lsp
         cmp-path
         cmp-buffer
+        cmp_luasnip
         luasnip
+
+        guard-nvim
+
+        hardtime-nvim
+        precognition-nvim
 
         trouble-nvim
 
@@ -74,6 +76,8 @@ in
 
         # zen-mode-nvim
         # colorizer
+
+
       ];
 
       extraPackages = with pkgs; [
@@ -91,6 +95,9 @@ in
         fd
       ];
 
+
+      # :luafile ~/.config/nvim/init.lua
+      # :luafile ~/nixos/home/shell/neovim/config/init.lua
       extraConfig = ''
         :luafile ~/.config/nvim/init.lua
       '';
@@ -101,6 +108,8 @@ in
       pkgs.cliphist
     ];
 
+    # home.file.".config/nvim/init.lua".source = "/home/andreas/nixos/home/shell/neovim/config/init.lua";
+    # xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "/home/andreas/nixos/home/shell/neovim/config/init.lua";
     xdg.configFile.nvim = {
       source = ./config;
       recursive = true;
