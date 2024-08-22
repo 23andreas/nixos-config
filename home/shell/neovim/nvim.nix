@@ -73,11 +73,10 @@ in
         # auto-session
         # persistence-nvim
         vim-obsession
+        typescript-tools-nvim
 
         # zen-mode-nvim
         # colorizer
-
-
       ];
 
       extraPackages = with pkgs; [
