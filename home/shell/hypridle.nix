@@ -15,29 +15,29 @@ in
       settings = {
         general = {
           lock_cmd = "pidof hyprlock || hyprlock";
-          # before_sleep_cmd = "loginctl lock-session";
-          # after_sleep_cmd = "hyprctl dispatch dpms on";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
         };
 
         listener = [
           # Screen off
-          # {
-          #   timeout = 180;
-          #   on-timeout = "hyprctl dispatch dpms off";
-          #   on-resume = "hyprctl dispatch dpms on";
-          # }
+          {
+            timeout = 180;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
 
           # # Lockscreen
-          # {
-          #   timeout = 240;
-          #   on-timeout = "loginctl lock-session";
-          # }
+          {
+            timeout = 240;
+            on-timeout = "loginctl lock-session";
+          }
 
           # Suspend
-          {
-            timeout = 480;
-            on-timeout = "systemctl suspend";
-          }
+          # {
+          #   timeout = 480;
+          #   on-timeout = "systemctl suspend";
+          # }
         ];
       };
     };
