@@ -34,6 +34,8 @@ in
 
   home.packages =  [
     record
+    pkgs.catppuccin-papirus-folders
+    pkgs.nautilus
   ];
 
   nixosConfig.profiles = {
@@ -59,6 +61,13 @@ in
   };
 
   services.playerctld.enable = true;
+
+  xsession = {
+    enable = true;
+    gtk = {
+      iconTheme = "catppuccin-papirus-folders";
+    };
+  };
 
   home = {
     file."${config.home.homeDirectory}/Pictures/Wallpapers" = {

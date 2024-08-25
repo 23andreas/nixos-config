@@ -66,14 +66,10 @@ in
       bind = [
         # "$mod, Space, exec, pgrep anyrun && pkill anyrun || anyrun"
         "$mod, Space, exec, pgrep walker && pkill walker || walker"
-        "$mod+Alt, Space, exec, ags -b hyprland -t applauncher"
         "$mod, Return, exec, kitty"
         "$mod, backslash, exec, google-chrome-stable"
         "$mod, E, exec, nautilus"
         "$mod, M, exit,"
-        "$mod, semicolon, exec, ags -b hyprland --toggle-window bar-1"
-
-        "$mod, semicolon, exec, ags -b hyprland --toggle-window bar-\"$(hyprctl activeworkspace -j | jq -r \".monitorID\")\""
 
         "$mod, V, togglefloating,"
         "$mod, F, fullscreen"
