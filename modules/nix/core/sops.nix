@@ -9,10 +9,5 @@
     age.sshKeyPaths = [
       "/var/lib/sops-nix/nixos-config-key"
     ];
-    # secrets = {
-    #   "users/andreas/hashed_password".neededForUsers = true;
-    #   wireless_env = { };
-    #   "home-desktop/cachix-credentials-file" = { };
-    # };
   };
 }

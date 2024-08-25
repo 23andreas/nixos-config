@@ -5,84 +5,99 @@ let
   users = config._23andreas.users;
   hostname = config._23andreas.hostname;
 
-  userType = types.attrsOf (types.submodule {
-    options = {
-      groups = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = "List of groups the user should belong to.";
-      };
+  userType = types.attrsOf (
+    types.submodule {
+      options = {
+        description = mkOption {
+          type = types.str;
+          default = "";
+          description = "User description";
+        };
 
-      homeManagerFile = mkOption {
-        type = types.str;
-        default = "";
-        description = "Home manager configuration file";
-      };
+        hashedPasswordFile = mkOption {
+          type = types.str;
+          default = null;
+          description = "Path to a file containing the hashed password for the user.";
+        };
 
-      description = mkOption {
-        type = types.str;
-        default = "";
-        description = "User description";
-      };
+        sshAuthorizedKeyFiles = mkOption {
+          type = types.listOf types.str;
+          default = [];
+          description = "An SSH public key to authorize for this user.";
+        };
 
-      nixSettingsAllowed = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Whether the user is allowed to modify Nix settings.";
+        groups = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = "List of groups the user should belong to.";
+        };
+
+        homeManagerFile = mkOption {
+          type = types.nullOr types.path;
+          default = null;
+          description = "Home manager configuration file";
+        };
+
+        nixSettingsAllowed = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Whether the user is allowed to modify Nix settings.";
+        };
       };
-    };
-  });
+    }
+  );
+
+  usersWithHomeManager = filter (username: users.${username}.homeManagerFile != null) (builtins.attrNames users);
+  hasUsersWithHomeManager = length usersWithHomeManager > 0;
 
 in {
   options._23andreas.users = mkOption {
     type = userType;
-    default = {};
+    default = { };
     description = "Users configuration";
   };
 
   imports = [ inputs.home-manager.nixosModules.home-manager ];
-  config = {
 
-    home-manager = {
+  config = {
+    home-manager = mkIf hasUsersWithHomeManager {
       useUserPackages = true;
       useGlobalPkgs = true;
-      extraSpecialArgs = { inherit inputs users hostname; };
-
-      users = builtins.listToAttrs (map (username: {
-        name = username;
-        value = let
-          user = users.${username};
-          homeManagerFile = if user ? homeManagerFile && user.homeManagerFile != "" then user.homeManagerFile else "${username}.nix";
-        in {
-          imports = [ ../../home-manager/users/${homeManagerFile} ];
-
-          home.username = username;
-          home.homeDirectory = "/home/${username}";
-          home.stateVersion = "23.11";
-          programs.home-manager.enable = true;
-        };
-      }) (builtins.attrNames users));
+      extraSpecialArgs = {
+        inherit inputs users hostname;
+      };
+      users = builtins.listToAttrs (
+        map (username: {
+          name = username;
+          value = {
+              imports = [ users.${username}.homeManagerFile ];
+              home.username = username;
+              home.homeDirectory = "/home/${username}";
+              home.stateVersion = "23.11";
+              programs.home-manager.enable = true;
+          };
+        }) usersWithHomeManager
+      );
     };
 
-   users.users = builtins.listToAttrs (map (username: {
-      name = username;
-      value = let
-        user = users.${username};
-        userDescription = if user ? description && user.description != "" then user.description else username;
-      in {
-        hashedPasswordFile = config.sops.secrets."users/${username}/hashed_password".path;
-        isNormalUser = true;
-        description = userDescription;
-        extraGroups = user.groups;
-        shell = pkgs.fish;
-      };
-    }) (builtins.attrNames users));
+    users.users = builtins.listToAttrs (
+      map (username: {
+        name = username;
+        value = {
+          isNormalUser = true;
+          description = users.${username}.description;
+          extraGroups = users.${username}.groups;
+          shell = pkgs.fish;
+          hashedPasswordFile = users.${username}.hashedPasswordFile;
+          openssh.authorizedKeys.keyFiles = users.${username}.sshAuthorizedKeyFiles;
+        };
+      }) (builtins.attrNames users)
+    );
 
-    nix.settings.allowed-users =
-      builtins.filter (username:
-        let user = users.${username};
-        in user ? nixSettingsAllowed && user.nixSettingsAllowed
-      ) (builtins.attrNames users);
+    nix.settings.allowed-users = builtins.filter (
+      username:
+        users.${username} ? nixSettingsAllowed && users.${username}.nixSettingsAllowed
+    ) (builtins.attrNames users);
   };
 }
 

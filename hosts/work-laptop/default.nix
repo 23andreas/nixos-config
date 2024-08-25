@@ -1,4 +1,5 @@
 { config, ... }:
+
 {
   imports = [
     ../../modules/nix/core
@@ -13,6 +14,8 @@
     hostname = "work-laptop";
     users = {
       andreas = {
+        homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
+        hashedPasswordFile = config.sops.secrets."users/andreas/hashed_password".path;
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
       };
@@ -27,6 +30,7 @@
     };
   };
 
+  # Github rate limits Cognite office IP without this
   nix.extraOptions = ''
     !include ${config.sops.secrets."work-laptop/github-access-token-file".path}
   '';

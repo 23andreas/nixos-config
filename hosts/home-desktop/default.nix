@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [
@@ -14,19 +14,21 @@
     ../../modules/nix/hardware/ssd.nix
   ];
 
+  sops.secrets = {
+    "users/andreas/hashed_password".neededForUsers = true;
+    "home-desktop/cachix-credentials-file" = { };
+  };
+
   _23andreas = {
     hostname = "home-desktop";
     users = {
       andreas = {
+        homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
+        hashedPasswordFile = config.sops.secrets."users/andreas/hashed_password".path;
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
       };
     };
-  };
-
-  sops.secrets = {
-    "users/andreas/hashed_password".neededForUsers = true;
-    "home-desktop/cachix-credentials-file" = { };
   };
 
   environment.systemPackages = with pkgs; [

@@ -49,9 +49,9 @@
             modules = [ (import ./iso/nixos-installer-iso.nix) ];
           };
 
-          desktop = nixpkgs.lib.nixosSystem {
+          home-desktop = nixpkgs.lib.nixosSystem {
             inherit system;
-            modules = [ (import ./hosts/desktop) ];
+            modules = [ (import ./hosts/home-desktop) ];
             specialArgs = { inherit self inputs; };
           };
 
@@ -64,10 +64,9 @@
 
       packages.${system} = {
         cachix-deploy-spec = cachix-deploy-lib.spec {
-          agents = {
-            home-desktop = self.nixosConfigurations.desktop.config.system.build.toplevel;
-            work-laptop = self.nixosConfigurations.work-laptop.config.system.build.toplevel;
-          };
+          agents = inputs.nixpkgs.lib.genAttrs
+            (builtins.attrNames inputs.self.nixosConfigurations)
+            (attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel);
         };
       };
 
