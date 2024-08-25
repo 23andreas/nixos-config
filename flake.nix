@@ -35,7 +35,7 @@
     ];
   };
 
-  outputs = { self, nixpkgs, cachix-deploy, ... }@inputs:
+  outputs = { self, nixpkgs, disko, cachix-deploy, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -58,7 +58,7 @@
           work-laptop = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [ (import ./hosts/work-laptop) ];
-            specialArgs = { inherit self inputs; };
+            specialArgs = { inherit self inputs disko; };
           };
         };
 
