@@ -10,6 +10,7 @@ in
     ../profiles
     ../fonts.nix
     ../terminal.nix
+    ../dark-mode.nix
 
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
