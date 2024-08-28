@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -29,6 +29,12 @@
       "work-laptop/github-access-token-file" = { };
     };
   };
+
+  services.thermald.enable = true;
+  powerManagement.powertop.enable = true;
+  environment.systemPackages = with pkgs; [
+    power-profiles-daemon
+  ];
 
   # Github rate limits Cognite office IP without this
   nix.extraOptions = ''
