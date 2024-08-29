@@ -23,7 +23,6 @@ in
 
       plugins = with pkgs.vimPlugins; [
         # Themes
-        vscode-nvim
         catppuccin-nvim
 
         #Lsp
@@ -79,7 +78,7 @@ in
         # colorizer
 
         indent-blankline-nvim
-        nvim-treesitter-context
+        # nvim-treesitter-context
         nvim-treesitter-textobjects
         #ssr.nvim?
         treesj

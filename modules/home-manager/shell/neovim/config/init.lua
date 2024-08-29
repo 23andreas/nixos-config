@@ -22,7 +22,8 @@ require("precognition-config")
 -- require("typescript-tools-config")
 
 -- Indent blankline?
-require("treesitter-context-config")
+require("indent-blankline-config")
+-- require("treesitter-context-config")
 require("treesitter-textobjects-config")
 require("treesj-config")
 
