@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   hostname = "work-laptop";
@@ -33,6 +33,12 @@ in {
       "${hostname}/ssh-key/public" = { };
     };
   };
+
+  services.thermald.enable = true;
+  powerManagement.powertop.enable = true;
+  environment.systemPackages = with pkgs; [
+    power-profiles-daemon
+  ];
 
   # Github rate limits Cognite office IP without this
   nix.extraOptions = ''
