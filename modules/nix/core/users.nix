@@ -15,15 +15,21 @@ let
         };
 
         hashedPasswordFile = mkOption {
-          type = types.str;
+          type = types.nullOr types.str;
           default = null;
           description = "Path to a file containing the hashed password for the user.";
         };
 
-        sshAuthorizedKeyFiles = mkOption {
+        # sshAuthorizedKeyFiles = mkOption {
+        #   type = types.listOf types.str;
+        #   default = [];
+        #   description = "An SSH public key to authorize for this user.";
+        # };
+
+        sshAuthorizedKeys = mkOption {
           type = types.listOf types.str;
           default = [];
-          description = "An SSH public key to authorize for this user.";
+          description = "SSH Public keys to authorize for this user";
         };
 
         groups = mkOption {
@@ -89,7 +95,8 @@ in {
           extraGroups = users.${username}.groups;
           shell = pkgs.fish;
           hashedPasswordFile = users.${username}.hashedPasswordFile;
-          openssh.authorizedKeys.keyFiles = users.${username}.sshAuthorizedKeyFiles;
+          openssh.authorizedKeys.keys = users.${username}.sshAuthorizedKeys;
+          # openssh.authorizedKeys.keyFiles = users.${username}.sshAuthorizedKeyFiles;
         };
       }) (builtins.attrNames users)
     );

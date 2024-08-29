@@ -65,6 +65,10 @@
       disable_splash_rendering = true;
     };
 
+    render = {
+      direct_scanout = true;
+    };
+
     input = {
       numlock_by_default = true;
     };

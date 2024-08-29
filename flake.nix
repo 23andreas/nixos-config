@@ -60,6 +60,12 @@
             modules = [ (import ./hosts/work-laptop) ];
             specialArgs = { inherit self inputs disko; };
           };
+
+          server = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [ (import ./hosts/server) ];
+            specialArgs = { inherit self inputs disko; };
+          };
         };
 
       packages.${system} = {

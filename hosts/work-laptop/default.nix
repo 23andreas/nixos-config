@@ -1,17 +1,20 @@
 { config, ... }:
 
-{
+let
+  hostname = "work-laptop";
+in {
   imports = [
     ../../modules/nix/core
 
     ./hardware-configuration.nix
-    ../../disk-config.nix
+    # ../../disk-config.nix
+    ./disk-config.nix
 
     ../../modules/nix/presets/workstation.nix
   ];
 
   _23andreas = {
-    hostname = "work-laptop";
+    hostname = hostname;
     users = {
       andreas = {
         homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
@@ -25,8 +28,9 @@
   sops = {
     secrets = {
       "users/andreas/hashed_password".neededForUsers = true;
-      "work-laptop/cachix-credentials-file" = { };
-      "work-laptop/github-access-token-file" = { };
+      "${hostname}/cachix-credentials-file" = { };
+      "${hostname}/github-access-token-file" = { };
+      "${hostname}/ssh-key/public" = { };
     };
   };
 

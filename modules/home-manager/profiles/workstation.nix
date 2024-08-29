@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.nixosConfig.profiles.workstation;
@@ -52,7 +52,7 @@ in
           enable = true;
           backgroundPath = "${config.home.homeDirectory}/Pictures/Wallpapers/green_leaves_3.jpg";
         };
-        hypridle.enable = true;
+        hypridle.enable = false;
       };
     };
   };

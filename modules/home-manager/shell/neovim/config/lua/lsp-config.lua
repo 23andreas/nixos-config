@@ -12,7 +12,6 @@ require("lazy-lsp").setup {
     "tailwindcss",
     "denols",
     "quick_lint_js",
-    "tsserver"
   },
   preferred_servers = {
     nix = { "nixd" },

@@ -34,3 +34,4 @@ read -rp "Nix config hostname (--flake '.#<hostname>'): " hostname
 
 cd ../../
 nixos-anywhere --extra-files "$temp" --flake ".#${hostname}" root@"${target_ip}"
+

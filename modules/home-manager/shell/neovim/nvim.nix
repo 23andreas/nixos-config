@@ -73,10 +73,16 @@ in
         # auto-session
         # persistence-nvim
         vim-obsession
-        typescript-tools-nvim
+        # typescript-tools-nvim
 
         # zen-mode-nvim
         # colorizer
+
+        indent-blankline-nvim
+        nvim-treesitter-context
+        nvim-treesitter-textobjects
+        #ssr.nvim?
+        treesj
       ];
 
       extraPackages = with pkgs; [

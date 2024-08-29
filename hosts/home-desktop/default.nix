@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 
-{
+let
+  hostname = "home-desktop";
+in {
   imports = [
     ../../modules/nix/core
 
@@ -16,11 +18,12 @@
 
   sops.secrets = {
     "users/andreas/hashed_password".neededForUsers = true;
-    "home-desktop/cachix-credentials-file" = { };
+    "${hostname}/cachix-credentials-file" = { };
+    "${hostname}/ssh-key/public" = { };
   };
 
   _23andreas = {
-    hostname = "home-desktop";
+    hostname = hostname;
     users = {
       andreas = {
         homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
@@ -31,6 +34,7 @@
     };
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
     os-prober
   ];
