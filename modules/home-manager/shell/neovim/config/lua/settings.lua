@@ -1,28 +1,3 @@
--- require("tokyonight").setup({
---   transparent = true,
---   styles = {
---     comments = {},
---     keywords = {},
---     functions = {},
---     variables = {},
---   }
--- })
-
-require("vscode").setup({
-  transparent = true
-})
-
--- require("dracula").setup({
---   transparent_bg = true
--- })
---
--- require("rose-pine").setup({
---   styles = {
---     italic = false,
---     transparency = true
---   }
--- })
-
 require("catppuccin").setup({
   transparent_background = true,
   no_italic = true,
