@@ -16,8 +16,8 @@ require('gitsigns').setup({
 
     map('n', '<leader>hp', gitsigns.preview_hunk)
 
-    map('n', ']c', function() gitsigns.nav_hunk('next') end, { desc = "Next hunk" })
-    map('n', '[c', function() gitsigns.nav_hunk('prev') end, { desc = "Prev hunk" })
+    -- map('n', ']c', function() gitsigns.nav_hunk('next') end, { desc = "Next hunk" })
+    -- map('n', '[c', function() gitsigns.nav_hunk('prev') end, { desc = "Prev hunk" })
 
     local wk = require('which-key')
     wk.add({

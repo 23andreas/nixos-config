@@ -46,7 +46,7 @@ in
         gtk.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/green_leaves_4.jpg";
+          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain_2.jpg";
         };
         hyprlock = {
           enable = true;

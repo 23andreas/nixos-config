@@ -1,8 +1,10 @@
-require('lspsaga').setup({
-  code_action_lightbulb = {
-    enable = false
+local saga = require('lspsaga')
+
+saga.setup({
+  lightbulb = {
+    virtual_text = false
   },
-  breadcrumb = {
+  symbol_in_winbar = {
     enable = false
   }
 })

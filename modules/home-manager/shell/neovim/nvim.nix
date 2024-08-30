@@ -24,6 +24,20 @@ in
       plugins = with pkgs.vimPlugins; [
         # Themes
         catppuccin-nvim
+        palenightfall-nvim
+        palenight-vim
+        cyberdream-nvim
+        kanagawa-nvim
+        tokyonight-nvim
+        onedark-nvim
+        onedarkpro-nvim
+        sonokai
+        nordic-nvim
+        everforest
+        bamboo-nvim
+        dracula-nvim
+        nightly-nvim
+        vscode-nvim
 
         #Lsp
         lazy-lsp-nvim
@@ -44,7 +58,7 @@ in
         guard-nvim
 
         hardtime-nvim
-        precognition-nvim
+        # precognition-nvim
 
         trouble-nvim
 
@@ -78,7 +92,7 @@ in
         # colorizer
 
         indent-blankline-nvim
-        # nvim-treesitter-context
+        nvim-treesitter-context
         nvim-treesitter-textobjects
         #ssr.nvim?
         treesj

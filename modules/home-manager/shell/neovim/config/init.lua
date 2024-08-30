@@ -23,10 +23,11 @@ require("precognition-config")
 
 -- Indent blankline?
 require("indent-blankline-config")
--- require("treesitter-context-config")
+require("treesitter-context-config")
 require("treesitter-textobjects-config")
 require("treesj-config")
 
+require("luasnip-config")
 -- require("refactoring-config")
 -- require("hardtime-config")
 -- require("persistence-config")
