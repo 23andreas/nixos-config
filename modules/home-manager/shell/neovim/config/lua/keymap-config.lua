@@ -27,12 +27,23 @@ vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
+-- Create an autocommand to set keymaps for oil.nvim
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'oil',
+  callback = function()
+    -- Navigate windows in oil.nvim
+    vim.api.nvim_buf_set_keymap(0, 'n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
+  end
+})
 
 -- Resize windows
-vim.api.nvim_set_keymap('n', '<C-M-h>', ':vertical resize -5<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-M-l>', ':vertical resize +5<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-M-j>', ':resize +5<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-M-k>', ':resize -5<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-M-h>', ':vertical resize -10<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-M-l>', ':vertical resize +10<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-M-j>', ':resize +10<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-M-k>', ':resize -10<CR>', { noremap = true, silent = true })
 
 -- Clear search highligh ESC
 vim.api.nvim_set_keymap('n', '<ESC>', ':noh<CR>', { noremap = true, silent = true })
