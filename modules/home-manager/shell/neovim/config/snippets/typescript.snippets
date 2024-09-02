@@ -4,7 +4,7 @@ snippet tconst "ts const"
 	const ${1}: ${2:any} = ${3};
 	${0}
 snippet tlet "ts let"
-	let ${1}: ${2:any} = ${3};
+	lrt ${1}: ${2:any} = ${3};
 	${0}
 snippet tvar "ts var"
 	var ${1}: ${2:any} = ${3};
@@ -21,6 +21,11 @@ snippet tprofi "ts create protected field"
 	protected ${1}: ${0:any}
 snippet int "interface"
 	interface ${1} {
+		${2}: ${3:any};
+		${0}
+	}
+snippet type "type"
+	type ${1} = {
 		${2}: ${3:any};
 		${0}
 	}
