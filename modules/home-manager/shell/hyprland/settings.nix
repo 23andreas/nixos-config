@@ -26,7 +26,7 @@
     ];
 
     decoration = {
-      rounding = 2;
+      # rounding = 0;
       drop_shadow = true;
     };
 
