@@ -17,10 +17,10 @@ in
 
     programs.kitty = {
       enable = true;
-      # catppuccin = {
-      #   enable = true;
-      #   flavor = "macchiato";
-      # };
+      catppuccin = {
+        enable = true;
+        flavor = "macchiato";
+      };
 
       settings = {
         # window_padding_width = 4;
