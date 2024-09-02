@@ -15,8 +15,8 @@ in
       clock24 = true;
       mouse = true;
       newSession = false;
-      prefix = "<C-Space>";
-      terminal = "xterm-kitty";
+      prefix = "C-Space";
+      terminal = "screen-256color";
       extraConfig = ''
         resurrect_dir="$HOME/.tmux/resurrect"
         set -g @resurrect-dir $resurrect_dir
