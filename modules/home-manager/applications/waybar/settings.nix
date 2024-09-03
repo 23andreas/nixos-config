@@ -30,9 +30,8 @@
       };
       format = "{:%a %B %d, %H:%M}";
       tooltip = "true";
-      # tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       tooltip-format = "{calendar}";
-      format-alt = "{:%d.%m}";
+      format-alt = "{:%H:%M:%S}";
     };
     "hyprland/workspaces" = {
       active-only = false;
