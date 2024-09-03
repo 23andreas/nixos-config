@@ -19,6 +19,7 @@ in {
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
         # Can't get this to work with sops secrets..
+      format-alt = "{:%H:%M:%S}";
         # https://discourse.nixos.org/t/can-how-do-you-manage-ssh-authorized-keys-with-sops-nix/46467
         # hardcoding pub keys for now
         sshAuthorizedKeys = [
@@ -35,12 +36,12 @@ in {
    # prowlarr
 
    # qbittorrent
+   # https://github.com/NixOS/nixpkgs/pull/337109 - looks promising
    # https://github.com/NixOS/nixpkgs/pull/287923 :(
 
    # home assistant
    # zigbee2mqtt
 
-   # stash
    # authelia
    # traefik / nginx
   };
