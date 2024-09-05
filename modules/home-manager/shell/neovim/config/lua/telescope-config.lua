@@ -13,7 +13,13 @@ telescope.setup {
     },
   },
   defaults = {
-    path_display = { "truncate" }
+    path_display = { "truncate" },
+    layout_config = {
+      horizontal = {
+        width = 0.99,
+        height = 0.99
+      }
+    },
   },
   extensions = {
     fzf = {
@@ -27,8 +33,6 @@ telescope.setup {
 
 telescope.load_extension('fzf');
 
-
-
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "List previously opened files" })
@@ -41,11 +45,33 @@ vim.keymap.set("n", "<leader>bb", builtin.buffers, { desc = "Buffers" })
 
 vim.keymap.set("n", "<leader>hf", builtin.git_branches, { desc = "Git branches" })
 
-
 vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Jumplist" })
 vim.keymap.set("n", "<leader>fr", builtin.registers, { desc = "Registers" })
-
 
 vim.keymap.set("n", "<leader>fl", builtin.lsp_references, { desc = "lsp references" })
 vim.keymap.set("n", "<leader>fp", builtin.lsp_document_symbols, { desc = "Document symbols" })
 vim.keymap.set("n", "<leader>fx", builtin.diagnostics, { desc = "diagnostics" })
+
+local colors = require("catppuccin.palettes").get_palette()
+local bgColor = "#151B23";
+local promptColor = "#151B23";
+
+local TelescopeColor = {
+  TelescopeMatching = { fg = colors.blue },
+  TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
+
+  TelescopePromptPrefix = { bg = colors.surface0 },
+  TelescopePromptNormal = { bg = colors.surface0 },
+  TelescopeResultsNormal = { bg = bgColor },
+  TelescopePreviewNormal = { bg = bgColor },
+  TelescopePromptBorder = { bg = promptColor, fg = promptColor },
+  TelescopeResultsBorder = { bg = bgColor, fg = bgColor },
+  TelescopePreviewBorder = { bg = bgColor, fg = bgColor },
+  TelescopePromptTitle = { bg = colors.blue, fg = colors.mantle },
+  TelescopeResultsTitle = { fg = bgColor },
+  -- TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
+}
+
+for hl, col in pairs(TelescopeColor) do
+  vim.api.nvim_set_hl(0, hl, col)
+end

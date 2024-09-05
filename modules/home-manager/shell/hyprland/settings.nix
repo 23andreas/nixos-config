@@ -6,7 +6,7 @@
       border_size = 2;
 
       # "col.active_border" = "rgb(f5e0dc)";
-      "col.active_border" = "$green";
+      "col.active_border" = "$lavender";
       # "col.inactive_border" = "0x00000000";
 
       border_part_of_window = false;
@@ -15,6 +15,9 @@
 
     master = {
       no_gaps_when_only = 1;
+      orientation = "center";
+      always_center_master = true;
+      mfact = 0.48;
     };
 
     dwindle = {
@@ -28,6 +31,8 @@
     decoration = {
       # rounding = 0;
       drop_shadow = true;
+      dim_inactive = true;
+      dim_strength = 0.15;
     };
 
     group = {
@@ -82,12 +87,12 @@
     exec-once = [
       "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
-      "walker --gapplication-service"
+      # "walker --gapplication-service"
       "waybar &"
       "swaync &"
       "hyprpaper &"
-      "[workspace 8 silent] todoist-electron"
-      "[workspace 9 silent] 1password"
+      # "[workspace 8 silent] todoist-electron"
+      # "[workspace 9 silent] 1password"
       "[workspace 10 silent] spotify"
     ];
   };

@@ -6,7 +6,7 @@ in
   options.nixosConfig.app.kitty = {
     enable = lib.mkEnableOption "Kitty";
     isDefaultTerminal = lib.mkOption {
-      default = true;
+      default = false;
       description = "Set Kitty as default terminal";
       type = lib.types.bool;
     };
@@ -19,13 +19,16 @@ in
       enable = true;
       catppuccin = {
         enable = true;
-        flavor = "macchiato";
+        flavor = "mocha";
       };
 
       settings = {
         # window_padding_width = 4;
         confirm_os_window_close = 0;
-        # background_opacity = "0.9";
+        # background = "#1d2129";
+        # background = "#151B23";
+        background = "#1F2733";
+        # background_opacity = "0.95";
         # background_blur = 60;
         font_size = 11;
         # modify_font = "cell_height 110%";

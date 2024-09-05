@@ -29,9 +29,11 @@
   nixConfig = {
     extra-substituters = [
       "https://23andreas.cachix.org"
+      "https://walker.cachix.org"
     ];
     extra-trusted-public-keys = [
       "23andreas.cachix.org-1:P9ng+DdiASGCO+NbxXnfeWPh66pvkb62xsRAN30JyTc="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
     ];
   };
 

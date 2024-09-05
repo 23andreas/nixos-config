@@ -68,7 +68,7 @@ in
         "$mod, Return, exec, kitty"
         # "$mod, backslash, exec, google-chrome-stable"
         # "$mod, E, exec, nautilus"
-        "$mod, M, exit,"
+        "$mod+Alt, M, exit,"
 
         "$mod, V, togglefloating,"
         "$mod, B, pin,"

@@ -1,6 +1,7 @@
 require("catppuccin").setup({
   transparent_background = true,
   no_italic = true,
+  falvour = "mocha",
 })
 
 function SetColorScheme(color)

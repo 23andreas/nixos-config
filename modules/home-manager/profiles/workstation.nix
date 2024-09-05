@@ -29,12 +29,15 @@ in
 
         walker.enable = true;
         kitty.enable = true;
+        foot = {
+          enable = true;
+          isDefaultTerminal = true;
+        };
+        wezterm.enable = true;
 
         spotify = {
           enable = true;
         };
-
-        # spotify-player.enable = true;
 
         slack = {
           enable = true;
@@ -46,7 +49,7 @@ in
         gtk.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain_2.jpg";
+          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain.jpg";
         };
         hyprlock = {
           enable = true;
