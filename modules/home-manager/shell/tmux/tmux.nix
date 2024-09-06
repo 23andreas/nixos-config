@@ -18,9 +18,7 @@ in
       prefix = "C-Space";
       terminal = "screen-256color";
       extraConfig = ''
-        bind -n C-Space set status on \;\
-          switch-client -T prefix \;\
-          run-shell -d 1 -b "while [ $(tmux display-message -p '##{client_prefix}') -eq 1 ]; do sleep 0.5; done; tmux set status off"
+        bind-key b set-option status
 
         resurrect_dir="$HOME/.tmux/resurrect"
         set -g @resurrect-dir $resurrect_dir
