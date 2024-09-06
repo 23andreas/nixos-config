@@ -24,20 +24,20 @@ in
       plugins = with pkgs.vimPlugins; [
         # Themes
         catppuccin-nvim
-        palenightfall-nvim
-        palenight-vim
-        cyberdream-nvim
-        kanagawa-nvim
-        tokyonight-nvim
-        onedark-nvim
-        onedarkpro-nvim
-        sonokai
-        nordic-nvim
-        everforest
-        bamboo-nvim
-        dracula-nvim
-        nightly-nvim
-        vscode-nvim
+        # palenightfall-nvim
+        # palenight-vim
+        # cyberdream-nvim
+        # kanagawa-nvim
+        # tokyonight-nvim
+        # onedark-nvim
+        # onedarkpro-nvim
+        # sonokai
+        # nordic-nvim
+        # everforest
+        # bamboo-nvim
+        # dracula-nvim
+        # nightly-nvim
+        # vscode-nvim
 
         #Lsp
         lazy-lsp-nvim
@@ -57,7 +57,7 @@ in
 
         guard-nvim
 
-        hardtime-nvim
+        # hardtime-nvim
         # precognition-nvim
 
         trouble-nvim
@@ -65,6 +65,7 @@ in
         gitsigns-nvim
         vim-fugitive
         vim-rhubarb
+        diffview-nvim
 
         which-key-nvim
         lualine-nvim
@@ -72,7 +73,9 @@ in
         telescope-fzf-native-nvim
         nvim-notify
 
-        undotree
+        # undotree
+        vim-mundo
+        aerial-nvim
 
         oil-nvim
         nvim-web-devicons

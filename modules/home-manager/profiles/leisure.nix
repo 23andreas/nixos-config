@@ -16,7 +16,7 @@ in
 
     nixosConfig.app = {
       discord.enable = true;
-      discord.enableWaylandFix = true;
+      discord.enableWaylandFix = false;
     };
   };
 }

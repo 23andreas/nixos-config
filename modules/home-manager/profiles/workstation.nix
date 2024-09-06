@@ -28,10 +28,12 @@ in
         swaync.enable = true;
 
         walker.enable = true;
-        kitty.enable = true;
-        foot = {
+        kitty = {
           enable = true;
           isDefaultTerminal = true;
+        };
+        foot = {
+          enable = true;
         };
         wezterm.enable = true;
 

@@ -1,5 +1,5 @@
 require("settings")
-require("keymap-config")
+require("keybindings-config")
 require("lualine-config")
 
 require("lsp-config")
@@ -14,7 +14,8 @@ require('gitsigns-config')
 
 require("which-key-config")
 
-require("undotree-config")
+-- require("undotree-config")
+require("mundo-config")
 require("vim-be-good-config")
 require("guard-config")
 
@@ -28,6 +29,7 @@ require("treesitter-textobjects-config")
 require("treesj-config")
 
 require("luasnip-config")
+require("aerial-config")
 -- require("refactoring-config")
 -- require("hardtime-config")
 -- require("persistence-config")

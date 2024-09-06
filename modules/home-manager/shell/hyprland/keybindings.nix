@@ -66,7 +66,8 @@ in
       bind = [
         "$mod, Space, exec, pgrep walker && pkill walker || walker"
         "$mod, Return, exec, kitty"
-        # "$mod, backslash, exec, google-chrome-stable"
+        "$mod, semicolon, exec, google-chrome-stable --profile-directory='Default'"
+        "$mod+Alt, semicolon, exec, google-chrome-stable --profile-directory='Profile 1'"
         # "$mod, E, exec, nautilus"
         "$mod+Alt, M, exit,"
 

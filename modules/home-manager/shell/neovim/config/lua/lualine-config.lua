@@ -1,8 +1,15 @@
 require("lualine").setup {
-  -- options = {
-  --   theme = "vscode"
-  -- },
+  options = {
+    section_separators = {
+      left = '',
+    },
+    component_separators = {
+      left = '',
+      right = ''
+    }
+  },
   sections = {
+    lualine_a = {},
     lualine_b = { "branch", "diff" },
     lualine_c = {
       {
@@ -13,5 +20,11 @@ require("lualine").setup {
     lualine_x = { "diagnostics", "filetype" },
     lualine_y = {},
     lualine_z = {}
-  }
+  },
+  extensions = {
+    'aerial',
+    'fugitive',
+    'mundo',
+    'oil',
+  },
 }

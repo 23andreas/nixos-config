@@ -115,7 +115,7 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 
 -- vertical line at 80
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 
 -- cursor line
 vim.opt.cursorline = false
@@ -126,3 +126,6 @@ vim.opt.smartcase = true
 
 -- auto indent
 vim.opt.autoindent = true
+
+-- Hide command line
+vim.o.cmdheight = 0

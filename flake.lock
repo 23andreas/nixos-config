@@ -328,6 +328,26 @@
         "type": "github"
       }
     },
+    "minimal-tmux": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1721133318,
+        "narHash": "sha256-lDPT3XRH14Z5WTdtWhgiYa8FjQHeYFCY7Dpy9xU8vyM=",
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "rev": "86de1697b6b0522ebd36b5fe83c5fd9b7e30f15f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "type": "github"
+      }
+    },
     "nixos-anywhere": {
       "inputs": {
         "disko": [
@@ -513,6 +533,7 @@
         "disko": "disko_2",
         "home-manager": "home-manager_2",
         "hyprpaper": "hyprpaper",
+        "minimal-tmux": "minimal-tmux",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "sops-nix": "sops-nix",
