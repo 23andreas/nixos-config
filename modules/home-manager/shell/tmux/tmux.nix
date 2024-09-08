@@ -9,6 +9,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = [ pkgs.tmux-sessionizer ];
     programs.tmux = {
       enable = true;
       keyMode = "vi";
@@ -19,6 +20,13 @@ in
       terminal = "screen-256color";
       extraConfig = ''
         bind-key b set-option status
+        bind o display-popup -E "tms"
+
+        # Vim keys for switching pane
+        bind h select-pane -L
+        bind j select-pane -D
+        bind k select-pane -U
+        bind l select-pane -R
 
         resurrect_dir="$HOME/.tmux/resurrect"
         set -g @resurrect-dir $resurrect_dir
@@ -27,6 +35,24 @@ in
         set-option -g status-interval 5
         # set-option -g automatic-rename on
         # set-option -g automatic-rename-format '#{b:pane_current_command} (#{b:pane_current_path})'
+
+        is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+        bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+        bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+        bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+        bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+        tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+        if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+            "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+        if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+            "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+        bind-key -T copy-mode-vi 'C-h' select-pane -L
+        bind-key -T copy-mode-vi 'C-j' select-pane -D
+        bind-key -T copy-mode-vi 'C-k' select-pane -U
+        bind-key -T copy-mode-vi 'C-l' select-pane -R
+        bind-key -T copy-mode-vi 'C-\' select-pane -l
       '';
       plugins = with pkgs; [
         tmuxPlugins.sensible

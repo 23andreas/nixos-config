@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
 
+-- Quit vim
+vim.keymap.set({ "n", "x", "v" }, "<leader>Q", ":qall<CR>", { desc = "Quit" })
+
 -- Paste without replacing register in visual mode
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without losing register" })
 

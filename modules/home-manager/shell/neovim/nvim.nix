@@ -39,14 +39,28 @@ in
         # nightly-nvim
         # vscode-nvim
 
+        plenary-nvim
+
+        vim-tmux-navigator
+
         #Lsp
         lazy-lsp-nvim
         lsp-zero-nvim
         lsp_signature-nvim
+        lspkind-nvim
         lspsaga-nvim
+
+        nvim-autopairs
 
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
+
+        indent-blankline-nvim
+        nvim-treesitter-context
+        nvim-treesitter-textobjects
+        ssr-nvim
+        treesj
+        nvim-surround
 
         nvim-cmp
         cmp-nvim-lsp
@@ -71,6 +85,9 @@ in
         lualine-nvim
         telescope-nvim
         telescope-fzf-native-nvim
+        telescope-ui-select-nvim
+        smart-open-nvim
+
         nvim-notify
 
         # undotree
@@ -94,11 +111,6 @@ in
         # zen-mode-nvim
         # colorizer
 
-        indent-blankline-nvim
-        nvim-treesitter-context
-        nvim-treesitter-textobjects
-        #ssr.nvim?
-        treesj
       ];
 
       extraPackages = with pkgs; [

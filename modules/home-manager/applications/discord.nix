@@ -10,23 +10,30 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = lib.mkMerge [
-      (lib.mkIf (!cfg.enableWaylandFix) [
-        pkgs.discord
-      ])
-      (lib.mkIf cfg.enableWaylandFix [
-        (pkgs.writeShellApplication {
-          name = "discord";
-          text = "${pkgs.discord}/bin/discord --use-gl=desktop";
-        })
-
-        (pkgs.makeDesktopItem {
-          name = "discord";
-          exec = "discord";
-          desktopName = "Discord";
-          icon = "${pkgs.discord}/share/pixmaps/discord.png";
-        })
-      ])
+    home.packages = with pkgs; [
+      vesktop
+      discord
     ];
+
+    # home.packages = lib.mkMerge [
+    #   pkgs.vesktop
+    #
+    #   (lib.mkIf (!cfg.enableWaylandFix) [
+    #     pkgs.discord
+    #   ])
+    #   (lib.mkIf cfg.enableWaylandFix [
+    #     (pkgs.writeShellApplication {
+    #       name = "discord";
+    #       text = "${pkgs.discord}/bin/discord --use-gl=desktop";
+    #     })
+    #
+    #     (pkgs.makeDesktopItem {
+    #       name = "discord";
+    #       exec = "discord";
+    #       desktopName = "Discord";
+    #       icon = "${pkgs.discord}/share/pixmaps/discord.png";
+    #     })
+    #   ])
+    # ];
   };
 }

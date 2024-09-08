@@ -14,10 +14,10 @@ require("lualine").setup {
     lualine_c = {
       {
         'filename',
-        path = 1,
+        path = 4,
       }
     },
-    lualine_x = { "diagnostics", "filetype" },
+    lualine_x = { "searchcount", "diagnostics" },
     lualine_y = {},
     lualine_z = {}
   },

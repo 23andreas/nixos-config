@@ -35,3 +35,7 @@ require("aerial-config")
 -- require("persistence-config")
 -- require("auto-session-config")
 -- require("zen-mode-config")
+
+require("nvim-surround-config")
+require("nvim-autopairs-config")
+require("ssr-config")

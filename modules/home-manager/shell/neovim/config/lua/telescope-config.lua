@@ -1,6 +1,8 @@
 -- Attempt to require 'telescope.builtin'
 local ok, builtin = pcall(require, "telescope.builtin")
 local ok_telescope, telescope = pcall(require, "telescope")
+local custom_pickers = require 'telescope-custom-pickers'
+
 if not ok or not ok_telescope then
   print("Failed to load telescope.builtin")
   return
@@ -10,14 +12,31 @@ telescope.setup {
   pickers = {
     find_files = {
       hidden = true,
+      find_command = {
+        'rg',
+        '--files',
+        '--color',
+        'never',
+      },
     },
+    oldfiles = {
+      sort_lastused = true,
+    },
+    live_grep = {
+      mappings = {
+        i = {
+          ['<c-f>'] = custom_pickers.actions.set_extension,
+          ['<c-l>'] = custom_pickers.actions.set_folders,
+        },
+      },
+    }
   },
   defaults = {
-    path_display = { "truncate" },
+    path_display = { "smart" },
     layout_config = {
       horizontal = {
-        width = 0.99,
-        height = 0.99
+        width = 0.95,
+        height = 0.95
       }
     },
   },
@@ -32,9 +51,12 @@ telescope.setup {
 }
 
 telescope.load_extension('fzf');
+-- telescope.load_extension('smart_open');
+telescope.load_extension('ui-select');
 
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
+-- vim.keymap.set("n", "<leader>fF", telescope.extensions.smart_open.smart_open, { desc = "Find Files" })
+vim.keymap.set("n", "<leader>fg", custom_pickers.live_grep, { desc = "Live Grep" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "List previously opened files" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help Tags" })
 vim.keymap.set("n", "<leader>ft", builtin.colorscheme, { desc = "Colorschemes" })
@@ -53,8 +75,10 @@ vim.keymap.set("n", "<leader>fp", builtin.lsp_document_symbols, { desc = "Docume
 vim.keymap.set("n", "<leader>fx", builtin.diagnostics, { desc = "diagnostics" })
 
 local colors = require("catppuccin.palettes").get_palette()
-local bgColor = "#151B23";
-local promptColor = "#151B23";
+
+-- background = "#1F2733";
+local bgColor = "#1F2733";
+local promptColor = "#1F2733";
 
 local TelescopeColor = {
   TelescopeMatching = { fg = colors.blue },

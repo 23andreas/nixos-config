@@ -24,16 +24,26 @@ in
 
       settings = {
         # window_padding_width = 4;
-        bonfirm_os_window_close = 0;
+        confirm_os_window_close = 0;
         placement_strategy = "top";
         # background = "#1d2129";
         # background = "#151B23";
         background = "#1F2733";
-        # background_opacity = "0.95";
-        # background_blur = 60;
+        background_opacity = "0.97";
+        background_blur = 60;
         font_size = "10.8";
         # modify_font = "cell_height 110%";
       };
+      shellIntegration.enableFishIntegration = true;
     };
   };
+
+  # # Write the kitten script directly here
+  # home.file.".config/kitty/toggle_background_opacity.py".text = ''
+  #   def handle_result(args, answer, target_window_id, boss):
+  #      import kitty.fast_data_types as f
+  #      os_window_id = f.current_focused_os_window_id()
+  #      current_opacity = f.background_opacity_of(os_window_id)
+  #      boss.set_background_opacity("default" if current_opacity == whatever else whatever)
+  # '';
 }
