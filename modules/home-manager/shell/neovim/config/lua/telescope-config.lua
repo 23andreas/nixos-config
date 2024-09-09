@@ -35,8 +35,8 @@ telescope.setup {
     path_display = { "smart" },
     layout_config = {
       horizontal = {
-        width = 0.95,
-        height = 0.95
+        width = 0.97,
+        height = 0.97
       }
     },
   },
@@ -77,23 +77,27 @@ vim.keymap.set("n", "<leader>fx", builtin.diagnostics, { desc = "diagnostics" })
 local colors = require("catppuccin.palettes").get_palette()
 
 -- background = "#1F2733";
-local bgColor = "#1F2733";
-local promptColor = "#1F2733";
+local bgColor = "#27313F";
+local selectionColor = "#2F3A4C";
+
+-- local promptColor = "#1F2733";
 
 local TelescopeColor = {
   TelescopeMatching = { fg = colors.blue },
-  TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
+  TelescopeSelection = { fg = colors.text, bg = selectionColor, bold = true },
 
-  TelescopePromptPrefix = { bg = colors.surface0 },
-  TelescopePromptNormal = { bg = colors.surface0 },
-  TelescopeResultsNormal = { bg = bgColor },
+  TelescopePromptTitle = { bg = selectionColor, fg = selectionColor },
+  TelescopePromptBorder = { bg = selectionColor, fg = selectionColor },
+  TelescopePromptPrefix = { bg = selectionColor },
+  TelescopePromptNormal = { bg = selectionColor },
+
+  TelescopePreviewTitle = { bg = bgColor, fg = bgColor },
   TelescopePreviewNormal = { bg = bgColor },
-  TelescopePromptBorder = { bg = promptColor, fg = promptColor },
-  TelescopeResultsBorder = { bg = bgColor, fg = bgColor },
   TelescopePreviewBorder = { bg = bgColor, fg = bgColor },
-  TelescopePromptTitle = { bg = colors.blue, fg = colors.mantle },
+
   TelescopeResultsTitle = { fg = bgColor },
-  -- TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
+  TelescopeResultsBorder = { bg = bgColor, fg = bgColor },
+  TelescopeResultsNormal = { bg = bgColor },
 }
 
 for hl, col in pairs(TelescopeColor) do
