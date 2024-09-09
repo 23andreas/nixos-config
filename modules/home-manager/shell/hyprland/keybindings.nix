@@ -43,13 +43,9 @@ in
       bindl = [
         # media controls
         ", XF86AudioPlay, exec, ${playerctl} play-pause"
-        ", XF86AudioPrev, exec, ${playerctl} previous"
-        ", XF86AudioNext, exec, ${playerctl} next"
 
         # holding mod with media controls targets spotify
         "$mod, XF86AudioPlay, exec, ${playerctl} --player=spotify play-pause"
-        "$mod, XF86AudioPrev, exec, ${playerctl} --player=spotify previous"
-        "$mod, XF86AudioNext, exec, ${playerctl} --player=spotify next"
 
         # volume
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -61,6 +57,14 @@ in
         # volume
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
+
+        # Prev, Next
+        ", XF86AudioPrev, exec, ${playerctl} previous"
+        ", XF86AudioNext, exec, ${playerctl} next"
+
+        # holding mod with media controls targets spotify
+        "$mod, XF86AudioPrev, exec, ${playerctl} --player=spotify previous"
+        "$mod, XF86AudioNext, exec, ${playerctl} --player=spotify next"
       ];
 
       bind = [
@@ -68,8 +72,9 @@ in
         "$mod, Return, exec, kitty"
         "$mod, semicolon, exec, google-chrome-stable --profile-directory='Default'"
         "$mod+Alt, semicolon, exec, google-chrome-stable --profile-directory='Profile 1'"
-        # "$mod, E, exec, nautilus"
+
         "$mod+Alt, M, exit,"
+        "$mod, M, exec, ~/.local/share/powermenu.sh"
 
         "$mod, V, togglefloating,"
         "$mod, B, pin,"

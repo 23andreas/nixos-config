@@ -12,8 +12,6 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       vim
-      bat
-
       lazygit
 
       nixpkgs-fmt
@@ -23,6 +21,10 @@ in
       awscli2
       kubectl
     ];
+
+    programs.bat = {
+      enable = true;
+    };
 
     nixosConfig = {
       app = {
