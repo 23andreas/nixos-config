@@ -40,6 +40,9 @@ in {
     power-profiles-daemon
   ];
 
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Github rate limits Cognite office IP without this
   nix.extraOptions = ''
     !include ${config.sops.secrets."work-laptop/github-access-token-file".path}

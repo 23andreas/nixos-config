@@ -26,6 +26,8 @@ in
       # blueberry
 
       # safeeyes
+
+      morgen
     ];
 
     programs.fastfetch.enable = true;
