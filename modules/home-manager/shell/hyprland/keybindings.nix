@@ -48,23 +48,30 @@ in
         "$mod, XF86AudioPlay, exec, ${playerctl} --player=spotify play-pause"
 
         # volume
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioMute, exec, volumectl toggle-mute"
+        ", XF86AudioMicMute, exec, volumectl -m toggle-mute"
+        # ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        # ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
 
       # le = locked, repeat
       bindle = [
         # volume
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
+        ", XF86AudioRaiseVolume, exec, volumectl -u up"
+        ", XF86AudioLowerVolume, exec, volumectl -u down"
+        # ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
+        # ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
 
         # Prev, Next
         ", XF86AudioPrev, exec, ${playerctl} previous"
         ", XF86AudioNext, exec, ${playerctl} next"
-
         # holding mod with media controls targets spotify
         "$mod, XF86AudioPrev, exec, ${playerctl} --player=spotify previous"
         "$mod, XF86AudioNext, exec, ${playerctl} --player=spotify next"
+
+        # Brightness
+        ", XF86MonBrightnessUp, exec, lightctl up"
+        ", XF86MonBrightnessDown, exec, lightctl down"
       ];
 
       bind = [

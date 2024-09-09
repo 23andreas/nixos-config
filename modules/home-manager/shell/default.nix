@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./avizo.nix
     ./git.nix
     ./gtk.nix
     ./hypridle.nix

@@ -46,6 +46,7 @@ in
       shell = {
         hyprland.enable = true;
         gtk.enable = true;
+        avizo.enable = true;
         hyprpaper = {
           enable = true;
           wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain.jpg";
