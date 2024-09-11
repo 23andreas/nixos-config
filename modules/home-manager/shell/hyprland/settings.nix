@@ -87,13 +87,13 @@
     exec-once = [
       "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
-      # "walker --gapplication-service &"
       "waybar &"
+      "walker --gapplication-service &"
       "swaync &"
       "hyprpaper &"
       "avizo-service &"
-      # "[workspace 8 silent] todoist-electron"
-      # "[workspace 9 silent] 1password"
+      "[workspace 8 silent] todoist-electron"
+      "[workspace 9 silent] 1password"
       "[workspace 10 silent] spotify"
     ];
   };
