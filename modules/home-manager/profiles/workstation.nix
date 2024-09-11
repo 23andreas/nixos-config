@@ -22,6 +22,15 @@ in
       todoist-electron
     ];
 
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox.override {
+        nativeMessagingHosts = [
+          pkgs.tridactyl-native
+        ];
+      };
+    };
+
     nixosConfig = {
       app = {
         waybar.enable = true;
