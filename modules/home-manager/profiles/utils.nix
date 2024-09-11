@@ -12,21 +12,12 @@ in
     home.packages = with pkgs; [
       sops
 
-      grimblast
-      wf-recorder
-
-      # used by recorder to convert output
-      ffmpeg
-      gifsicle
-
-      # used by some scripts for notify-send command
-      libnotify
-
+      # Audio control, move to sound.nix?
       pwvucontrol
-      # blueberry
 
       # safeeyes
 
+      # Calendar app
       morgen
     ];
 
@@ -41,7 +32,6 @@ in
 
     nixosConfig = {
       shell = {
-        # zellij.enable = true;
         tmux.enable = true;
       };
     };

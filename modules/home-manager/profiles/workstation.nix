@@ -41,7 +41,7 @@ in
           isDefaultTerminal = true;
         };
 
-        wofi.enable = true;
+        fuzzel.enable = true;
 
         spotify = {
           enable = true;
@@ -64,7 +64,7 @@ in
           enable = true;
           backgroundPath = "${config.home.homeDirectory}/Pictures/Wallpapers/green_leaves_3.jpg";
         };
-        hypridle.enable = false;
+        hypridle.enable = true;
       };
     };
   };

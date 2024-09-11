@@ -52,9 +52,18 @@ area() {
   fi
 }
 
+window() {
+  # Get window geometry from Hyprland
+  GEOMETRY=$(hyprctl clients -j | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp)
+  if [[ ! -z "$GEOMETRY" ]]; then
+    notify "Starting Window Recording" "Your selected window is being recorded"
+    timeout 600 wf-recorder -F format=rgb24 -x rgb24 -p qp=0 -p crf=0 -p preset=slow -c libx264rgb -g "$GEOMETRY" -f "$TMP_MP4_FILE"
+  fi
+}
+
 gif() {
   touch /tmp/recording_gif
-  area
+  window
 }
 
 stop() {
@@ -114,6 +123,9 @@ case "$1" in
   area)
     area
     ;;
+  window)
+    window
+    ;;
   gif)
     gif
     ;;
@@ -121,7 +133,7 @@ case "$1" in
     stop
     ;;
   *)
-    echo "Usage: $0 {screen|area|gif|stop}"
+    echo "Usage: $0 {screen|window|area|gif|stop}"
     exit 1
     ;;
 esac

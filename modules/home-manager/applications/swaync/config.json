@@ -24,6 +24,12 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
+  "scripts": {
+    "sound-script": {
+      "exec": "bash /home/andreas/.config/swaync/sound.sh",
+      "app-name": ".*"
+    }
+  },
   "widgets": [
     "title",
     "menubar#desktop",
@@ -64,11 +70,11 @@
         "actions": [
           {
             "label": "󰹑  Whole screen",
-            "command": "grimblast --notify --cursor --freeze copy output"
+            "command": "grimblast --notify --cursor --freeze save output - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
           },
           {
             "label": "󰩭  Window / Region",
-            "command": "grimblast --notify --cursor --freeze copy area"
+            "command": "grimblast --notify --cursor --freeze save area - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
           }
         ]
       },

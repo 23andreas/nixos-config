@@ -10,6 +10,6 @@
     ./walker.nix
     ./waybar
     ./wezterm.nix
-    ./wofi/wofi.nix
+    ./fuzzel/fuzzel.nix
   ];
 }

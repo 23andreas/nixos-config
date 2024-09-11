@@ -80,8 +80,14 @@ in
         "$mod, semicolon, exec, google-chrome-stable --profile-directory='Default'"
         "$mod+Alt, semicolon, exec, google-chrome-stable --profile-directory='Profile 1'"
 
-        "$mod+Alt, M, exit,"
+        # Powermenu, Exit
         "$mod, M, exec, ~/.local/share/powermenu.sh"
+        "$mod+Alt, M, exit,"
+
+        # Screen capture
+        ", Print, exec, grimblast --freeze save output - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
+        "SHIFT, Print, exec, grimblast --freeze save area - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
+        "$mod, Print, exec, ~/.local/share/recordmenu.sh"
 
         "$mod, V, togglefloating,"
         "$mod, B, pin,"

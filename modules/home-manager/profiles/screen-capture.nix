@@ -11,9 +11,22 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      obs-studio
+
       grim
       slurp
-      obs-studio
+
+      satty
+
+      grimblast
+      wf-recorder
+
+      # used by recorder to convert output
+      ffmpeg
+      gifsicle
+
+      # used by some scripts for notify-send command
+      libnotify
     ];
   };
 }
