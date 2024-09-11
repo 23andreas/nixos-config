@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixos-hardware, ... }:
 
 let
   hostname = "work-laptop";
@@ -9,6 +9,9 @@ in {
     ./hardware-configuration.nix
     # ../../disk-config.nix
     ./disk-config.nix
+
+    # 9530 is not added yet
+    nixos-hardware.nixosModules.dell-xps-15-9520
 
     ../../modules/nix/presets/workstation.nix
   ];
