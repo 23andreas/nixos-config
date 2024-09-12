@@ -22,6 +22,7 @@
 
     dwindle = {
       # no_gaps_when_only = 1;
+      preserve_split = true;
     };
 
     windowrulev2 = [
@@ -29,7 +30,7 @@
     ];
 
     workspace = [
-      "w[t1], gapsout:10 550"
+      "w[t1], gapsout:5 550"
     ];
 
     decoration = {
