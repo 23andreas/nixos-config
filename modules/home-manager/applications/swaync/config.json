@@ -27,7 +27,7 @@
   "scripts": {
     "sound-script": {
       "exec": "bash /home/andreas/.config/swaync/sound.sh",
-      "app-name": ".*"
+      "app-name": "^(?!Spotify|Slack).*"
     }
   },
   "widgets": [
