@@ -3,7 +3,7 @@
     general = {
       gaps_in = 2;
       gaps_out = 4;
-      border_size = 2;
+      border_size = 0;
 
       # "col.active_border" = "rgb(f5e0dc)";
       "col.active_border" = "$lavender";
@@ -14,18 +14,22 @@
     };
 
     master = {
-      no_gaps_when_only = 1;
+      # no_gaps_when_only = 1;
       orientation = "center";
       always_center_master = true;
       mfact = 0.48;
     };
 
     dwindle = {
-      no_gaps_when_only = 1;
+      # no_gaps_when_only = 1;
     };
 
     windowrulev2 = [
       "move 0 0,title:^(is sharing your screen)(.*)$"
+    ];
+
+    workspace = [
+      "w[t1], gapsout:10 550"
     ];
 
     decoration = {
