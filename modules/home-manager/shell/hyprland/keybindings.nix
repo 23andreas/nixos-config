@@ -81,8 +81,12 @@ in
         "$mod+Alt, semicolon, exec, google-chrome-stable --profile-directory='Profile 1'"
 
         # Powermenu, Exit
-        "$mod, M, exec, ~/.local/share/powermenu.sh"
-        "$mod+Alt, M, exit,"
+        "$mod, Q, exec, ~/.local/share/powermenu.sh"
+        "$mod+Alt, Q, exit,"
+
+        # Switch layout
+        "$mod, M, exec, hyprctl keyword general:layout \"master\""
+        "$mod, D, exec, hyprctl keyword general:layout \"dwindle\""
 
         # Screen capture
         ", Print, exec, grimblast --freeze save output - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
