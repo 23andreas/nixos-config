@@ -9,7 +9,11 @@
     };
 
     config = lib.mkIf cfg.enable {
-      home.packages = (with pkgs; [ swaynotificationcenter ]);
+      home.packages = with pkgs; [
+        swaynotificationcenter
+        # playing notification sound
+        sox
+      ];
 
       home.file.".config/swaync/sound.sh" = {
         source = ./sound.sh;
