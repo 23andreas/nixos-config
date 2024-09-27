@@ -2,6 +2,16 @@
 
 let
   cfg = config.nixosConfig.shell.nvim;
+  renderMarkdownPlugin = pkgs.vimUtils.buildVimPlugin {
+    name = "render-markdown-nvim";
+    version = "7.2.0"; # Adjust to the correct version
+    src = pkgs.fetchFromGitHub {
+      owner = "MeanderingProgrammer"; # Adjust to the correct author
+      repo = "render-markdown.nvim"; # Adjust to the correct repository
+      rev = "ffbe9f2395eacdce8a9fa967ac0fae75a6204f09"; # Replace with the correct commit hash
+      sha256 = "sha256-AGQV6X5TgpeyeAiYw6ybrdoGiIiNrGN+DbU0NttGi6w="; # Replace with the correct sha256 hash
+    };
+  };
 in
 {
   options.nixosConfig.shell.nvim = {
@@ -111,6 +121,14 @@ in
         # zen-mode-nvim
         # colorizer
 
+        syntax-tree-surfer
+
+        # Avante & avante dependencies
+        avante-nvim
+        # render-markdown-nvim
+        renderMarkdownPlugin
+
+        img-clip-nvim
       ];
 
       extraPackages = with pkgs; [

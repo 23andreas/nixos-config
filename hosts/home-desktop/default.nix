@@ -18,6 +18,11 @@ in {
 
   sops.secrets = {
     "users/andreas/hashed_password".neededForUsers = true;
+    "users/andreas/anthropic_api_key" = {
+      owner = "andreas";
+    #   group = "andreas";
+    #   mode = "0400";
+    };
     "${hostname}/cachix-credentials-file" = { };
     "${hostname}/ssh-key/public" = { };
   };
@@ -30,11 +35,17 @@ in {
         hashedPasswordFile = config.sops.secrets."users/andreas/hashed_password".path;
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
+        envVarFiles = {
+          ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic_api_key".path;
+        };
       };
     };
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   environment.systemPackages = with pkgs; [
     os-prober
   ];

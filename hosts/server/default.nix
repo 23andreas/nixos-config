@@ -1,10 +1,11 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   hostname = "server";
 in {
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
+    ./nginx.nix
 
     ../../modules/nix/core
     ../../modules/nix/presets/server.nix
@@ -33,20 +34,25 @@ in {
     services.sudo.sshAgentAuth = true;
   };
 
-  # qbittorrent
-  # https://github.com/NixOS/nixpkgs/pull/337109 - looks promising
+  # Ideas
+  # Nginx blocks in monitoring
+  # Create separate users for services
+  # Firejail?
+  # Logging/monitoring
+  # Grafana
+  # eBooks?
+  # Backups/Documents
+
   # https://github.com/NixOS/nixpkgs/pull/287923 :(
-
-  # home assistant
-  # zigbee2mqtt
-
-  # authelia
-  # traefik / nginx
+  environment.systemPackages = [
+    pkgs.qbittorrent-nox
+  ];
 
   services = {
     plex = {
       enable = true;
       openFirewall = true;
+      # TODO pass in cpu for hw
       # accelerationDevices = ["*"];
     };
     sonarr = {

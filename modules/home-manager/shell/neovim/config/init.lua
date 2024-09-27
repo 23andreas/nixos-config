@@ -39,3 +39,6 @@ require("aerial-config")
 require("nvim-surround-config")
 require("nvim-autopairs-config")
 require("ssr-config")
+
+require("avante-config")
+require("syntax-tree-surfer-config")

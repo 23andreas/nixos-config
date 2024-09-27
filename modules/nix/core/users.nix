@@ -49,6 +49,12 @@ let
           default = false;
           description = "Whether the user is allowed to modify Nix settings.";
         };
+
+        envVarFiles = mkOption {
+          type = types.attrsOf types.str;
+          default = { };
+          description = "Mapping of environment variable names to paths containing their values.";
+        };
       };
     }
   );

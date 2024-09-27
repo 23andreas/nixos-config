@@ -18,8 +18,11 @@ in
       direnv
       postman
 
-      awscli2
-      kubectl
+      # awscli2
+      # kubectl
+
+      devenv
+      beekeeper-studio
     ];
 
     programs.bat = {
