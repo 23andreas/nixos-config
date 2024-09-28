@@ -46,38 +46,38 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       cachix-deploy-lib = cachix-deploy.lib pkgs;
+      cachixDeployments = [ "server" "work-laptop" "home-desktop" ];
     in
     {
-      nixosConfigurations =
-        {
-          iso = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ (import ./iso/nixos-installer-iso.nix) ];
-          };
-
-          home-desktop = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ (import ./hosts/home-desktop) ];
-            specialArgs = { inherit self inputs; };
-          };
-
-          work-laptop = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ (import ./hosts/work-laptop) ];
-            specialArgs = { inherit self inputs disko nixos-hardware; };
-          };
-
-          server = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ (import ./hosts/server) ];
-            specialArgs = { inherit self inputs disko; };
-          };
+      nixosConfigurations = {
+        iso = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ (import ./iso/nixos-installer-iso.nix) ];
         };
+
+        home-desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ (import ./hosts/home-desktop) ];
+          specialArgs = { inherit self inputs; };
+        };
+
+        work-laptop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ (import ./hosts/work-laptop) ];
+          specialArgs = { inherit self inputs disko nixos-hardware; };
+        };
+
+        server = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ (import ./hosts/server) ];
+          specialArgs = { inherit self inputs disko; };
+        };
+      };
 
       packages.${system} = {
         cachix-deploy-spec = cachix-deploy-lib.spec {
           agents = inputs.nixpkgs.lib.genAttrs
-            (builtins.attrNames inputs.self.nixosConfigurations)
+            cachixDeployments
             (attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel);
         };
       };
