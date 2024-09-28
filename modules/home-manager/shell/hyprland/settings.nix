@@ -27,11 +27,14 @@
 
     windowrulev2 = [
       "move 0 0,title:^(is sharing your screen)(.*)$"
+      # "pseudo,onworkspace:w[t1]"
+      # "size 70% 100%,onworkspace:w[t1]"
+      # "tile,onworkspace:w[t>1]"
     ];
 
-    workspace = [
-      "w[t1], gapsout:5 550"
-    ];
+    # workspace = [
+    #   "w[t1], gapsout:5 550"
+    # ];
 
     decoration = {
       # rounding = 0;
@@ -43,7 +46,7 @@
     group = {
       "col.border_active" = "$red";
       groupbar = {
-        enabled = false;
+        enabled = true;
         font_family = [ "SFProText Nerd Font" ];
         font_size = 10;
         text_color = "$text";

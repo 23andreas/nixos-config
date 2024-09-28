@@ -19,6 +19,8 @@ in
 
       # Calendar app
       morgen
+      wget
+      curl
     ];
 
     programs.fastfetch.enable = true;
