@@ -21,7 +21,7 @@ in {
     users = {
       andreas = {
         homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
-        hashedPasswordFile = config.sops.secrets."users/andreas/hashed_password".path;
+        hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
       };
@@ -30,7 +30,7 @@ in {
 
   sops = {
     secrets = {
-      "users/andreas/hashed_password".neededForUsers = true;
+      "users/andreas/hashed-password".neededForUsers = true;
       "${hostname}/cachix-credentials-file" = { };
       "${hostname}/github-access-token-file" = { };
       "${hostname}/ssh-key/public" = { };

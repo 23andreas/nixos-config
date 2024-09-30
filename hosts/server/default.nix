@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   hostname = "server";
 in {
@@ -18,12 +18,13 @@ in {
     hostname = hostname;
     users = {
       andreas = {
-        hashedPasswordFile = config.sops.secrets."users/andreas/hashed_password".path;
+        hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
         # Can't get this to work with sops secrets..
         # https://discourse.nixos.org/t/can-how-do-you-manage-ssh-authorized-keys-with-sops-nix/46467
         # hardcoding pub keys for now
+
         sshAuthorizedKeys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
         ];
@@ -45,20 +46,37 @@ in {
     services.sudo.sshAgentAuth = true;
   };
 
-  services.netdata = {
-    enable = true;
-  };
-
   sops = {
     secrets = {
-      "users/andreas/hashed_password".neededForUsers = true;
+      "users/andreas/hashed-password".neededForUsers = true;
       "${hostname}/cachix-credentials-file" = { };
+      "${hostname}/nginx-andreas-basic-auth-file" = { owner = "nginx"; };
+      "${hostname}/acme-cloudflare-environment-file" = {};
+      "${hostname}/mqtt_secrets" = { owner = "zigbee2mqtt"; };
     };
   };
 
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vpl-gpu-rt
+    ];
+  };
+
+  fileSystems."/media" = {
+    device = "media";
+    fsType = "zfs";
+  };
+  services.zfs.autoScrub.enable = true;
+
   # Boot loader
+  networking.hostId = "85d5eb1e";
   boot = {
+    supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
+
     loader = {
+      timeout = 2;
       efi.canTouchEfiVariables = true;
       grub = {
         enable = true;

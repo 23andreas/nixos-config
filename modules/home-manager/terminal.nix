@@ -6,9 +6,6 @@ let
 in {
   programs.fish = {
     enable = true;
-    # shellInit = ''
-    #   set -x ANTHROPIC_API_KEY (cat ${config.sops.secrets."${hostname}/anthropic_api_key".path})
-    # '';
     shellInit = ''
       ${lib.concatStringsSep "\n" (lib.mapAttrsToList (name: path: ''
         set -x ${name} (cat ${path})

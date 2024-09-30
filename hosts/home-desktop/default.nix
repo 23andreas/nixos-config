@@ -17,8 +17,8 @@ in {
   ];
 
   sops.secrets = {
-    "users/andreas/hashed_password".neededForUsers = true;
-    "users/andreas/anthropic_api_key" = {
+    "users/andreas/hashed-password".neededForUsers = true;
+    "users/andreas/anthropic-api-key" = {
       owner = "andreas";
     #   group = "andreas";
     #   mode = "0400";
@@ -32,11 +32,11 @@ in {
     users = {
       andreas = {
         homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
-        hashedPasswordFile = config.sops.secrets."users/andreas/hashed_password".path;
+        hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
         envVarFiles = {
-          ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic_api_key".path;
+          ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
         };
       };
     };
@@ -48,6 +48,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     os-prober
+    recyclarr
   ];
 
   # Boot loader
