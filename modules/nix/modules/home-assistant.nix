@@ -278,8 +278,9 @@
 
         homeassistant = {
           name = "Hjem";
+          temperature_unit = "C";
           unit_system = "metric";
-          time_zone = "UTC";
+          time_zone = "Europe/Oslo";
         };
 
         # Includes dependencies for a basic setup
