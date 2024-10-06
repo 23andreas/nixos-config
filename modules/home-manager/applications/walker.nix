@@ -20,6 +20,7 @@ in
       config = {
         disabled = [ "runner" ];
         ui.anchors = [];
+        ignoreMouse = true;
       };
     };
   };
