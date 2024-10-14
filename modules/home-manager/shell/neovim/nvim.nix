@@ -60,6 +60,8 @@ in
         lspkind-nvim
         lspsaga-nvim
 
+        copilot-lua
+
         nvim-autopairs
 
         nvim-treesitter.withAllGrammars
@@ -79,7 +81,7 @@ in
         cmp_luasnip
         luasnip
 
-        guard-nvim
+        # guard-nvim
 
         # hardtime-nvim
         # precognition-nvim
