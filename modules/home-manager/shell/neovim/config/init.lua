@@ -17,7 +17,7 @@ require("which-key-config")
 -- require("undotree-config")
 require("mundo-config")
 require("vim-be-good-config")
-require("guard-config")
+-- require("guard-config")
 
 require("precognition-config")
 -- require("typescript-tools-config")
@@ -42,3 +42,4 @@ require("ssr-config")
 
 require("avante-config")
 require("syntax-tree-surfer-config")
+require("copilot-lua-config")
