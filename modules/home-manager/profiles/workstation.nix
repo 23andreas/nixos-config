@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   cfg = config.nixosConfig.profiles.workstation;
@@ -20,6 +20,7 @@ in
       czkawka # find duplicate files
 
       todoist-electron
+      inputs.zen-browser.packages."${system}".default
     ];
 
     programs.firefox = {
