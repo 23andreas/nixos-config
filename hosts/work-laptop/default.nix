@@ -24,6 +24,9 @@ in {
         hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
         groups = [ "networkmanager" "wheel" ];
         nixSettingsAllowed = true;
+        envVarFiles = {
+          ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
+        };
       };
     };
   };
@@ -31,6 +34,9 @@ in {
   sops = {
     secrets = {
       "users/andreas/hashed-password".neededForUsers = true;
+      "users/andreas/anthropic-api-key" = {
+        owner = "andreas";
+      };
       "${hostname}/cachix-credentials-file" = { };
       "${hostname}/github-access-token-file" = { };
       "${hostname}/ssh-key/public" = { };
