@@ -34,103 +34,72 @@ in
       plugins = with pkgs.vimPlugins; [
         # Themes
         catppuccin-nvim
-        # palenightfall-nvim
-        # palenight-vim
-        # cyberdream-nvim
-        # kanagawa-nvim
-        # tokyonight-nvim
-        # onedark-nvim
-        # onedarkpro-nvim
-        # sonokai
-        # nordic-nvim
-        # everforest
-        # bamboo-nvim
-        # dracula-nvim
-        # nightly-nvim
-        # vscode-nvim
-
-        plenary-nvim
-
-        vim-tmux-navigator
 
         #Lsp
         lazy-lsp-nvim
         lsp-zero-nvim
         lsp_signature-nvim
-        lspkind-nvim
+        lspkind-nvim # vscode symbols code completion
+
+        #IDE features
         lspsaga-nvim
-
-        copilot-lua
-
+        trouble-nvim
         nvim-autopairs
+        which-key-nvim
+        lualine-nvim
+        vim-mundo # undotree
+        vim-illuminate
 
-        nvim-treesitter.withAllGrammars
-        nvim-treesitter-textobjects
 
-        indent-blankline-nvim
-        nvim-treesitter-context
-        nvim-treesitter-textobjects
-        ssr-nvim
-        treesj
-        nvim-surround
+        nvim-tree-lua
+        oil-nvim
+        nvim-web-devicons
 
+        telescope-nvim
+        telescope-fzf-native-nvim
+        # smart-open-nvim
+        # telescope-ui-select-nvim
+
+        # Code completion
         nvim-cmp
         cmp-nvim-lsp
         cmp-path
         cmp-buffer
         cmp_luasnip
+
         luasnip
 
-        # guard-nvim
+        # Tree sitter
+        nvim-treesitter.withAllGrammars
+        nvim-treesitter-context
+        indent-blankline-nvim
+        nvim-treesitter-textobjects
+        nvim-surround
+        # ssr-nvim
+        # treesj #split join blocks
+        syntax-tree-surfer
 
-        # hardtime-nvim
-        # precognition-nvim
+        # AI
+        copilot-lua
+        avante-nvim
+        render-markdown-nvim
+        img-clip-nvim
+        # renderMarkdownPlugin # avante dep
 
-        trouble-nvim
-
+        # Git
         gitsigns-nvim
         vim-fugitive
         vim-rhubarb
         diffview-nvim
 
-        which-key-nvim
-        lualine-nvim
-        telescope-nvim
-        telescope-fzf-native-nvim
-        telescope-ui-select-nvim
-        smart-open-nvim
+        # others
+        plenary-nvim # all the lua functions I don't want to write twice
+        vim-tmux-navigator # ctrl between pane
 
-        nvim-notify
-
-        # undotree
-        vim-mundo
-        aerial-nvim
-
-        oil-nvim
-        nvim-web-devicons
-
-        # refactoring-nvim
-        vim-be-good
-
-        vim-illuminate
-        # nvim-autopairs
-
-        # auto-session
-        # persistence-nvim
-        vim-obsession
-        # typescript-tools-nvim
-
-        # zen-mode-nvim
-        # colorizer
-
-        syntax-tree-surfer
-
-        # Avante & avante dependencies
-        avante-nvim
-        # render-markdown-nvim
-        renderMarkdownPlugin
-
-        img-clip-nvim
+        # Improve vim skills
+        hardtime-nvim
+        # precognition-nvim
+        # vim-be-good
       ];
 
       extraPackages = with pkgs; [
@@ -146,8 +115,8 @@ in
         # Telescope
         ripgrep
         fd
+        # sqlite # smart open dependency
       ];
-
 
       # :luafile ~/.config/nvim/init.lua
       # :luafile ~/nixos/home/shell/neovim/config/init.lua

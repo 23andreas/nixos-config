@@ -1,7 +1,8 @@
 vim.g.mapleader = " "
 
 -- Quit vim
-vim.keymap.set({ "n", "x", "v" }, "<leader>Q", ":qall<CR>", { desc = "Quit" })
+vim.keymap.set({ "n", "x", "v" }, "<leader>q", ":qall<CR>", { desc = "Quit" })
+vim.keymap.set({ "n", "x", "v" }, "<leader>Q", ":qall!<CR>", { desc = "Quit without saving" })
 
 -- Paste without replacing register in visual mode
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without losing register" })
@@ -76,24 +77,3 @@ end
 vim.keymap.set("n", '<leader>bo', ':call DeleteUnchangedBuffers()<CR>',
   { desc = "Delete unchanged buffers", noremap = true, silent = true })
 -- vim.keymap.set("n", '<leader>bo', ':1,1000bd<CR>', { desc = "Delete unchanged buffers", noremap = true, silent = true})
-
-vim.keymap.set("n", '<leader>bk', ':bd<CR>', { desc = "Kill", noremap = true, silent = true })
-
--- TABS
--- Open a new tab
-vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })
-
--- Close the current tab
-vim.api.nvim_set_keymap('n', '<leader>tc', ':tabclose<CR>', { noremap = true, silent = true })
-
--- Navigate to the next tab
-vim.api.nvim_set_keymap('n', '<leader>tl', ':tabnext<CR>', { noremap = true, silent = true })
-
--- Navigate to the previous tab
-vim.api.nvim_set_keymap('n', '<leader>th', ':tabprevious<CR>', { noremap = true, silent = true })
-
--- Navigate to the first tab
-vim.api.nvim_set_keymap('n', '<leader>tf', ':tabfirst<CR>', { noremap = true, silent = true })
-
--- Navigate to the last tab
-vim.api.nvim_set_keymap('n', '<leader>te', ':tablast<CR>', { noremap = true, silent = true })

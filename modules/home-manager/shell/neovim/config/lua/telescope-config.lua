@@ -52,16 +52,18 @@ telescope.setup {
 
 telescope.load_extension('fzf');
 -- telescope.load_extension('smart_open');
-telescope.load_extension('ui-select');
+-- telescope.load_extension('ui-select');
 
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
--- vim.keymap.set("n", "<leader>fF", telescope.extensions.smart_open.smart_open, { desc = "Find Files" })
+-- vim.keymap.set("n", "<leader><leader>", function()
+-- require('telescope').extensions.smart_open.smart_open()
+-- end, { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader><leader>", telescope.extensions.smart_open.smart_open, { desc = "Find Files" })
+
+vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", custom_pickers.live_grep, { desc = "Live Grep" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "List previously opened files" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help Tags" })
 vim.keymap.set("n", "<leader>ft", builtin.colorscheme, { desc = "Colorschemes" })
-
--- vim.keymap.set("n", "<leader>rf", builtin.quickfix, { desc = "Quickfixes" })
 
 vim.keymap.set("n", "<leader>bb", builtin.buffers, { desc = "Buffers" })
 

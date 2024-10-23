@@ -1,0 +1,1 @@
+require("precognition.nvim").setup()
