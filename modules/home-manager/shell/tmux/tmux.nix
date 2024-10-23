@@ -53,6 +53,12 @@ in
         bind-key -T copy-mode-vi 'C-k' select-pane -U
         bind-key -T copy-mode-vi 'C-l' select-pane -R
         bind-key -T copy-mode-vi 'C-\' select-pane -l
+
+        # Pane resizing
+        bind-key -n 'C-M-h' resize-pane -L 2
+        bind-key -n 'C-M-j' resize-pane -D 2
+        bind-key -n 'C-M-k' resize-pane -U 2
+        bind-key -n 'C-M-l' resize-pane -R 2
       '';
       plugins = with pkgs; [
         tmuxPlugins.sensible
