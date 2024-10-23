@@ -54,7 +54,7 @@ in {
 
   # Github rate limits Cognite office IP without this
   nix.extraOptions = ''
-    !include ${config.sops.secrets."work-laptop/github-access-token-file".path}
+    !include ${config.sops.secrets."${hostname}/github-access-token-file".path}
   '';
 
   # Boot loader

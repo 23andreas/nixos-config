@@ -38,7 +38,4 @@ local function create_trouble_toggle(mode)
 end
 
 vim.keymap.set("n", "<leader>xx", create_trouble_toggle("diagnostics"), { desc = "Toggle trouble" })
-vim.keymap.set("n", "gR", create_trouble_toggle("lsp_references"), { desc = "lsp references" })
-
--- test
-vim.keymap.set("n", "<leader>xs", create_trouble_toggle("lsp_document_symbols"), { desc = "Toggle trouble" })
+-- vim.keymap.set("n", "gR", create_trouble_toggle("lsp_references"), { desc = "lsp references" })
