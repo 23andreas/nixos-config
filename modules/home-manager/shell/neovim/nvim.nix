@@ -91,6 +91,7 @@ in
         vim-fugitive
         vim-rhubarb
         diffview-nvim
+        neogit
 
         # others
         plenary-nvim # all the lua functions I don't want to write twice

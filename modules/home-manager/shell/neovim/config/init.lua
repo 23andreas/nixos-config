@@ -40,4 +40,5 @@ require("avante-config")
 require("copilot-lua-config")
 
 -- Git
+require('neogit-config')
 require('gitsigns-config')
