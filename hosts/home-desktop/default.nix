@@ -55,6 +55,8 @@ in {
   environment.systemPackages = with pkgs; [
     os-prober
     recyclarr
+
+    tdl
   ];
 
   # Boot loader
