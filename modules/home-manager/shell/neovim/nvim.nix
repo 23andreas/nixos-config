@@ -53,6 +53,7 @@ in
 
         nvim-tree-lua
         oil-nvim
+        mini-files
         nvim-web-devicons
 
         telescope-nvim

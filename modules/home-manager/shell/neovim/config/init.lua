@@ -7,6 +7,7 @@ require("lsp-saga-config")
 require("which-key-config")
 
 require("oil-config")
+require("mini-files-config")
 require("nvim-tree-config")
 require("telescope-config")
 require("trouble-config")

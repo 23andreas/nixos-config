@@ -21,6 +21,7 @@ in
 
       todoist-electron
       inputs.zen-browser.packages."${system}".default
+      koodo-reader
     ];
 
     programs.firefox = {
