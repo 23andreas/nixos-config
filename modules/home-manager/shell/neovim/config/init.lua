@@ -32,7 +32,7 @@ require("nvim-surround-config")
 -- require("ssr-config")
 
 -- Improve vim skills
-require("hardtime-config")
+-- require("hardtime-config")
 -- require("precognition-config")
 -- require("vim-be-good-config")
 

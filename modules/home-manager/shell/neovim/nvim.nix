@@ -99,7 +99,7 @@ in
         vim-tmux-navigator # ctrl between pane
 
         # Improve vim skills
-        hardtime-nvim
+        # hardtime-nvim
         # precognition-nvim
         # vim-be-good
       ];
