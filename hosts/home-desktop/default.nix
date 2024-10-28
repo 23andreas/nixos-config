@@ -20,9 +20,8 @@ in {
     "users/andreas/hashed-password".neededForUsers = true;
     "users/andreas/anthropic-api-key" = {
       owner = "andreas";
-    #   group = "andreas";
-    #   mode = "0400";
     };
+    "${hostname}/github-access-token-file" = { };
     "${hostname}/cachix-credentials-file" = { };
     "${hostname}/ssh-key/public" = { };
   };
@@ -42,13 +41,22 @@ in {
     };
   };
 
+  # Windows :(
+  time.hardwareClockInLocalTime = true;
+
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
 
+  nix.extraOptions = ''
+    !include ${config.sops.secrets."${hostname}/github-access-token-file".path}
+  '';
+
   environment.systemPackages = with pkgs; [
     os-prober
     recyclarr
+
+    tdl
   ];
 
   # Boot loader
