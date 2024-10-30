@@ -4,7 +4,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_hardened;
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     initrd = {
