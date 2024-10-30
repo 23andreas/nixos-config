@@ -33,6 +33,9 @@ telescope.setup {
   },
   defaults = {
     path_display = { "smart" },
+    file_ignore_patterns = {
+      "node_modules"
+    },
     layout_config = {
       horizontal = {
         width = 0.97,
