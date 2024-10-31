@@ -56,7 +56,7 @@ vim.api.nvim_set_keymap('n', '<ESC>', ':noh<CR>', { noremap = true, silent = tru
 vim.keymap.set({ 'n', 'v' }, '<leader>ho', vim.cmd.GBrowse, { desc = "Open in github" })
 vim.keymap.set({ 'n', 'v' }, '<leader>hO', ":GBrowse origin/master:%<CR>", { desc = "Open in github master" })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>hh', vim.cmd.Git, { desc = "Git" })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>hh', vim.cmd.Git, { desc = "Git" })
 
 -- Buffer
 -- Function to delete all unchanged buffers
