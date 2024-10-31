@@ -130,6 +130,7 @@ in
     home.packages = [
       pkgs.wl-clipboard
       pkgs.cliphist
+      pkgs.ripgrep
     ];
 
     # home.file.".config/nvim/init.lua".source = "/home/andreas/nixos/home/shell/neovim/config/init.lua";
