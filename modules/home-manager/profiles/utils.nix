@@ -17,8 +17,6 @@ in
 
       # safeeyes
 
-      # Calendar app
-      morgen
       wget
       curl
     ];
