@@ -13,6 +13,28 @@ return {
       strategies = {
         chat = {
           adapter = "anthropic",
+          slash_commands = {
+            ["buffer"] = {
+              opts = {
+                provider = "telescope",
+              }
+            },
+            ["file"] = {
+              opts = {
+                provider = "telescope",
+              }
+            },
+            -- ["help"] = {
+            --   opts = {
+            --     provider = "telescope",
+            --   }
+            -- },
+            ["symbols"] = {
+              opts = {
+                provider = "telescope",
+              }
+            },
+          }
         },
         inline = {
           adapter = "anthropic",
@@ -23,15 +45,9 @@ return {
           provider = "telescope"
         },
         chat = {
+          start_in_insert_mode = true,
           render_headers = false,
           show_settings = true,
-          slash_commands = {
-            ["buffer"] = {
-              opts = {
-                provider = "telescope",
-              }
-            }
-          }
         },
       }
     })
