@@ -1,13 +1,29 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   boot.blacklistedKernelModules = [ "nouveau" ];
+  boot.kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
+  boot.kernelParams = [ "nvidia_drm.fbdev=1" "nvidia-drm.modeset=1" "module_blacklist=i915" ];
 
   hardware.graphics = {
     enable = true;
-    # driSupport = true;
-    # driSupport32Bit = true;
   };
+
+  environment.systemPackages = with pkgs; [ 
+    libva-utils
+    libva-utils
+    vdpauinfo
+    vulkan-tools
+    vulkan-validation-layers
+    libvdpau-va-gl
+    egl-wayland
+    wgpu-utils
+    mesa
+    libglvnd
+    nvtopPackages.full
+    nvitop
+    libGL
+  ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -22,6 +38,7 @@
   };
 
   hardware.nvidia = {
+    # forceFullCompositionPipeline = true;
     modesetting.enable = true;
 
     powerManagement.enable = true;
