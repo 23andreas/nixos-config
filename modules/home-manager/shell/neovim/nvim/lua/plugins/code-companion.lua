@@ -45,7 +45,7 @@ return {
           provider = "telescope"
         },
         chat = {
-          start_in_insert_mode = true,
+          -- start_in_insert_mode = true,
           render_headers = false,
           show_settings = true,
         },
