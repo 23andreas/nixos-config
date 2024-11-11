@@ -60,6 +60,7 @@ in
 
       lua-language-server
       typescript-language-server
+      vscode-langservers-extracted 
       nixd
     ];
 
@@ -83,9 +84,10 @@ in
     };
 
     home.file."./.config/nvim/lua/config/init.lua".text = ''
-      require("config.keymap")
-      require("config.options")
       require("config.autocmds")
+      require("config.keymap")
+      require("config.open-in-gh")
+      require("config.options")
     '';
 
     # home.file."./.local/share/nvim/nix/nvim-treesitter/" = {

@@ -14,6 +14,9 @@ return {
       },
       {
         "debugloop/telescope-undo.nvim",
+        keys = {
+          { "<leader>u", "<cmd>Telescope undo<cr>", desc = "Undo history" }
+        },
         config = function()
           require("telescope").load_extension("undo");
         end

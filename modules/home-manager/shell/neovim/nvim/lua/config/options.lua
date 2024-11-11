@@ -51,6 +51,19 @@ vim.o.cmdheight = 0
 -- Always display sign column, prevent window from "jumping"
 vim.o.signcolumn = "yes";
 
+vim.diagnostic.config({
+  underline = false,
+  update_in_insert = false,
+  -- virtual_text = false,
+  virtual_text = {
+    spacing = 4,
+    source = "if_many",
+    prefix = "●",
+  },
+  signs = false,
+  severity_sort = true,
+})
+
 -- Diagnositc gutter icons instead of letters
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })

@@ -24,7 +24,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Buffer
 vim.keymap.set("n", "<leader>bw", ":w<CR>", { desc = "Buffer write" })
-vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Buffer format" })
+vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Buffer format" })
 
 -- Navigate windows
 vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })

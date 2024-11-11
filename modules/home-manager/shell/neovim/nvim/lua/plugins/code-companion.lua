@@ -3,10 +3,9 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "hrsh7th/nvim-cmp",                                                                    -- Optional: For using slash commands and variables in the chat buffer
-    "nvim-telescope/telescope.nvim",                                                       -- Optional: For using slash commands
-    { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
-    -- { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves `vim.ui.select`
+    "hrsh7th/nvim-cmp",
+    "nvim-telescope/telescope.nvim",
+    { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }
   },
   config = function()
     require("codecompanion").setup({
@@ -41,13 +40,12 @@ return {
         }
       },
       display = {
-        action_palette = {
-          provider = "telescope"
-        },
         chat = {
-          -- start_in_insert_mode = true,
           render_headers = false,
           show_settings = true,
+        },
+        action_palette = {
+          provider = "telescope"
         },
       }
     })

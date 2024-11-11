@@ -1,9 +1,9 @@
 return {
   'nvim-focus/focus.nvim',
-  version = '*',
-  cmd = "FocusToggle",
-  lazy = true,
-  event = "VeryLazy",
+  version = false,
+  -- cmd = "FocusToggle",
+  -- lazy = true,
+  -- event = "VeryLazy",
   opts = {
     autoresize = {
       minwidth = 25,
@@ -34,7 +34,9 @@ return {
       desc = "Toggle Focus"
     },
   },
-  config = function()
+  config = function(_, opts)
+    require("focus").setup(opts)
+    -- Disable by default
     vim.cmd('FocusToggle')
   end,
 }

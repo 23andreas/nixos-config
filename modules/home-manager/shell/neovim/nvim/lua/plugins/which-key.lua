@@ -9,6 +9,7 @@ return {
         { "<leader>f", group = "Find" },
         { "<leader>l", group = "Lsp" },
         { "<leader>p", group = "Project" },
+        { "<leader>t", group = "Toggle" },
         -- { "<leader>r", group = "Refactor" },
         { "<leader>x", group = "Diagnostics" },
       })

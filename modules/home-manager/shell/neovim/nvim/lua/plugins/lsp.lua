@@ -2,118 +2,58 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
-    opts = {
-      diagnostics = {
-        underline = false,
-        update_in_insert = false,
-        -- virtual_text = false,
-        virtual_text = {
-          spacing = 4,
-          source = "if_many",
-          prefix = "●",
-        },
-        signs = false,
-        severity_sort = true,
-      },
-      inlay_hints = {
-        enabled = true,
-      },
-      servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              codeLens = {
-                enable = false,
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-              doc = {
-                privateName = { "^_" },
-              },
-              hint = {
-                enable = true,
-                setType = false,
-                paramType = true,
-                paramName = "Disable",
-                semicolon = "Disable",
-                arrayIndex = "Disable",
-              },
-            },
-          },
-        },
-        ts_ls = {
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayVariableTypeHints = true,
+    config = function()
+      -- TODO Move these to keybinds?
+      vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>",
+        { noremap = true, silent = true, desc = "Diagnostic go to prev" })
+      vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>",
+        { noremap = true, silent = true, desc = "Diagnostic go to next" })
 
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            }
-          }
-        },
-        nixd = {},
-      },
-    },
-    config = function(_, opts)
-      vim.diagnostic.config(opts.diagnostics)
+      local format_on_save = true
+      local function toggle_format_on_save()
+        format_on_save = not format_on_save
+      end
 
-      -- Loop through each server in opts.servers and set it up
-      local lspconfig = require("lspconfig")
-      for server, server_opts in pairs(opts.servers) do
-        local options = vim.tbl_deep_extend("force", {
-          capabilities = opts.capabilities,
-          on_attach = function(client, buffer)
-            local keymap_opts = { noremap = true, silent = true, buffer = buffer }
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, keymap_opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
+      vim.keymap.set("n", "<leader>tf", toggle_format_on_save,
+        { noremap = true, silent = true, desc = "Format on save" })
 
-            -- Enable codelens if available
-            -- if opts.codelens.enabled and vim.lsp.codelens then
-            --   vim.lsp.codelens.refresh()
-            --   vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
-            --     buffer = buffer,
-            --     callback = vim.lsp.codelens.refresh,
-            --   })
-            -- end
+      -- Keybindings for LSP actions
+      local setup_keybindings = function(client, bufnr)
+        local buf_map = function(mode, lhs, rhs, opts)
+          opts = opts or { noremap = true, silent = true }
+          vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+        end
 
-            -- if opts.inlay_hints.enabled and client.server_capabilities.inlayHintProvider then
-            --   local exclude = opts.inlay_hints.exclude or {}
-            --   if
-            --       vim.api.nvim_buf_is_valid(buffer)
-            --       and vim.bo[buffer].buftype == ""
-            --       and not vim.tbl_contains(opts.inlay_hints.exclude, vim.bo[buffer].filetype)
-            --   then
-            --     vim.lsp.inlay_hint(buffer, true)
-            --   end
-            -- end
-          end,
-        }, server_opts)
+        -- LSP keybindings
+        buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+        buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+        buf_map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+        buf_map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
-        lspconfig[server].setup(options)
+        -- Toggle inlay_hint
+        if vim.lsp.inlay_hint then
+          vim.keymap.set("n", "<Leader>th", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          end, { desc = "Inlay hints" })
+        end
+
+        -- Auto-format on save if format_on_save is true
+        if client.server_capabilities.documentFormattingProvider then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+              if format_on_save then
+                vim.lsp.buf.format({ async = true })
+              end
+            end,
+          })
+        end
+      end
+
+      local servers = require("language-servers")
+      for _, setup in pairs(servers) do
+        setup(setup_keybindings)
       end
     end,
-  }
+  },
 }

@@ -2,9 +2,9 @@ return {
   "folke/twilight.nvim",
   opts = {
     treesitter = true,
-    context = 10,
+    -- context = 10,
     dimming = {
-      alpha = 0.25,
+      alpha = 0.35,
       -- color = {
       --   "Normal", "#ffffff"
       -- }
