@@ -17,7 +17,7 @@ in
       mouse = true;
       newSession = false;
       prefix = "C-Space";
-      terminal = "screen-256color";
+      terminal = "tmux-256color";
       extraConfig = ''
         bind-key b set-option status
         bind o display-popup -E "tms"
@@ -53,6 +53,8 @@ in
         bind-key -T copy-mode-vi 'C-k' select-pane -U
         bind-key -T copy-mode-vi 'C-l' select-pane -R
         bind-key -T copy-mode-vi 'C-\' select-pane -l
+
+        set-option -ga terminal-overrides ",xterm-256color:Tc"
       '';
       plugins = with pkgs; [
         tmuxPlugins.sensible
