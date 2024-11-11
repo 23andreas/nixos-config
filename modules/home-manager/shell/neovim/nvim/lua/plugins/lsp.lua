@@ -4,13 +4,15 @@ return {
     event = "BufReadPre",
     opts = {
       diagnostics = {
-        -- underline = true,
-        -- update_in_insert = false,
+        underline = false,
+        update_in_insert = false,
+        -- virtual_text = false,
         virtual_text = {
           spacing = 4,
           source = "if_many",
           prefix = "●",
         },
+        signs = false,
         severity_sort = true,
       },
       inlay_hints = {
