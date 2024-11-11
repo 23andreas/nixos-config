@@ -1,0 +1,40 @@
+return {
+  'nvim-focus/focus.nvim',
+  version = '*',
+  cmd = "FocusToggle",
+  lazy = true,
+  event = "VeryLazy",
+  opts = {
+    autoresize = {
+      minwidth = 25,
+      minheight = 10,
+    },
+    ui = {
+      signcolumn = false,
+      cursorline = false
+    }
+  },
+  keys = {
+    {
+      "<leader>tt",
+      mode = "n",
+      "<cmd>FocusToggle<CR>",
+      desc = "Toggle Focus"
+    },
+    {
+      "<leader>om",
+      mode = "n",
+      "<cmd>FocusMaximise<CR>",
+      desc = "Toggle Focus"
+    },
+    {
+      "<leader>oe",
+      mode = "n",
+      "<cmd>FocusEqualise<CR>",
+      desc = "Toggle Focus"
+    },
+  },
+  config = function()
+    vim.cmd('FocusToggle')
+  end,
+}

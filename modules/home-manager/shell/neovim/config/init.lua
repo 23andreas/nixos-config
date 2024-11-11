@@ -3,15 +3,16 @@ require("settings")
 -- IDE
 require("keybindings-config")
 require("lualine-config")
-require("lsp-saga-config")
+-- require("lsp-saga-config")
 require("which-key-config")
 
 require("oil-config")
 require("mini-files-config")
-require("nvim-tree-config")
+-- require("nvim-tree-config")
 require("telescope-config")
 require("trouble-config")
-require("mundo-config")
+-- require("mundo-config")
+require('diffview-config')
 
 require("indent-blankline-config")
 
@@ -20,7 +21,7 @@ require("lsp-config")
 require("cmp-config")
 require("luasnip-config")
 
-require("nvim-autopairs-config")
+-- require("nvim-autopairs-config")
 
 -- Tree sitter
 require("tree-sitter-config")
@@ -37,9 +38,17 @@ require("nvim-surround-config")
 -- require("vim-be-good-config")
 
 -- AI
-require("avante-config")
 require("copilot-lua-config")
+require('code-companion-config')
+-- require("avante-config")
 
 -- Git
 require('neogit-config')
 require('gitsigns-config')
+
+-- Testing out
+require('focus-config')
+require('telescope-undo-config')
+require('mini-pairs-config')
+require('twilight-config')
+require('ts-autotag-config')

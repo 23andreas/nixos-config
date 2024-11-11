@@ -19,4 +19,4 @@ miniFiles.setup({
 vim.keymap.set("n", "<leader>e", function()
   miniFiles.open(vim.api.nvim_buf_get_name(0), false)
   miniFiles.reveal_cwd()
-end)
+end, { desc = 'Open file explorer' })

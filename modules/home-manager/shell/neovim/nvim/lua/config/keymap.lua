@@ -5,7 +5,7 @@ vim.keymap.set({ "n", "x", "v" }, "<leader>q", ":qall<CR>", { desc = "Quit" })
 vim.keymap.set({ "n", "x", "v" }, "<leader>Q", ":qall!<CR>", { desc = "Quit without saving" })
 
 -- Paste without replacing register in visual mode
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without losing register" })
+-- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without losing register" })
 
 -- Delete without storing in register
 -- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without register" })
@@ -32,6 +32,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
+-- Resize windows
+vim.keymap.set("n", "<C-M-h>", ":vertical resize -10<CR>", { silent = true })
+vim.keymap.set("n", "<C-M-l>", ":vertical resize +10<CR>", { silent = true })
+vim.keymap.set("n", "<C-M-j>", ":resize +10<CR>", { silent = true })
+vim.keymap.set("n", "<C-M-k>", ":resize -10<CR>", { silent = true })
+
 -- Create an autocommand to set keymaps for oil.nvim
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'oil',
@@ -44,36 +50,9 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
--- Resize windows
-vim.keymap.set("n", "<C-M-h>", ":vertical resize -10<CR>", { silent = true })
-vim.keymap.set("n", "<C-M-l>", ":vertical resize +10<CR>", { silent = true })
-vim.keymap.set("n", "<C-M-j>", ":resize +10<CR>", { silent = true })
-vim.keymap.set("n", "<C-M-k>", ":resize -10<CR>", { silent = true })
-
 -- Clear search highlight ESC
 vim.keymap.set("n", "<ESC>", ":noh<CR>", { silent = true })
 
 -- Git browse
-vim.keymap.set({ 'n', 'v' }, '<leader>ho', vim.cmd.GBrowse, { desc = "Open in github" })
-vim.keymap.set({ 'n', 'v' }, '<leader>hO', ":GBrowse origin/master:%<CR>", { desc = "Open in github master" })
-
--- Buffer
--- -- Function to delete all unchanged buffers
--- local function delete_unchanged_buffers()
---   -- Get a list of all buffers
---   local buffers = vim.api.nvim_list_bufs()
---
---   -- Iterate over each buffer
---   for _, buf in ipairs(buffers) do
---     -- Check if the buffer is listed and not modified
---     if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].modifiable and not vim.bo[buf].modified then
---       -- If true, delete the buffer using the 'bd' command
---       vim.api.nvim_buf_delete(buf, { force = true })
---     end
---   end
--- end
-
--- vim.keymap.set("n", '<leader>bo', ':call DeleteUnchangedBuffers()<CR>',
--- { desc = "Delete unchanged buffers", noremap = true, silent = true })
--- vim.keymap.set("n", '<leader>bo', ':1,1000bd<CR>', { desc = "Delete unchanged buffers", noremap = true, silent = true})
-
+-- vim.keymap.set({ 'n', 'v' }, '<leader>ho', vim.cmd.GBrowse, { desc = "Open in github" })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>hO', ":GBrowse origin/master:%<CR>", { desc = "Open in github master" })

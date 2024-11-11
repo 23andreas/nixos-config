@@ -1,6 +1,6 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+-- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 cmp.setup({
   sources = {
@@ -36,8 +36,8 @@ cmp.setup({
     end,
   },
 })
-
-cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
-)
+--
+-- cmp.event:on(
+--   'confirm_done',
+--   cmp_autopairs.on_confirm_done()
+-- )

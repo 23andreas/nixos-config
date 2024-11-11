@@ -11,7 +11,7 @@ local mappings = {
   { "<leader>f", group = "Find" },
   { "<leader>l", group = "Lsp" },
   { "<leader>p", group = "Project" },
-  { "<leader>r", group = "Refactor" },
+  -- { "<leader>r", group = "Refactor" },
   { "<leader>x", group = "Diagnostics" },
 }
 

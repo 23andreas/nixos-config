@@ -32,10 +32,10 @@ telescope.setup {
     }
   },
   defaults = {
-    path_display = { "smart" },
+    path_display = { "filename_first" },
     file_ignore_patterns = {
-      "node_modules",
-      ".git"
+      "node_modules/",
+      ".git/"
     },
     layout_config = {
       horizontal = {

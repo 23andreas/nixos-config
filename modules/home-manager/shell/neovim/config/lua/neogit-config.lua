@@ -5,4 +5,6 @@ neogit.setup {
   end,
 }
 
-vim.keymap.set({ 'n', 'v' }, '<leader>hh', neogit.open({ kind = "auto" }), { desc = "Neogit" })
+vim.keymap.set({ 'n', 'v' }, '<leader>hh', function()
+  neogit.open({ kind = "auto" })
+end, { desc = "Neogit" })

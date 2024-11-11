@@ -1,17 +1,49 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   cfg = config.nixosConfig.shell.nvim;
-  renderMarkdownPlugin = pkgs.vimUtils.buildVimPlugin {
-    name = "render-markdown-nvim";
-    version = "7.2.0"; # Adjust to the correct version
-    src = pkgs.fetchFromGitHub {
-      owner = "MeanderingProgrammer"; # Adjust to the correct author
-      repo = "render-markdown.nvim"; # Adjust to the correct repository
-      rev = "ffbe9f2395eacdce8a9fa967ac0fae75a6204f09"; # Replace with the correct commit hash
-      sha256 = "sha256-AGQV6X5TgpeyeAiYw6ybrdoGiIiNrGN+DbU0NttGi6w="; # Replace with the correct sha256 hash
-    };
+
+   treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+    p.bash
+    p.comment
+    p.css
+    # p.csv
+    p.dockerfile
+    p.fish
+    p.gitattributes
+    p.gitignore
+    p.go
+    p.gomod
+    p.gowork
+    # p.graphql
+    p.html
+    # p.http
+    p.javascript
+    p.jq
+    # p.jsdoc
+    p.json
+    p.json5
+    # p.jsonc
+    # p.kotlin
+    p.lua
+    p.make
+    p.markdown
+    p.nginx
+    p.nix
+    p.python
+    # p.rust
+    # p.scss
+    # p.sql
+    p.toml
+    p.typescript
+    p.yaml
+  ]));
+
+  treesitter-parsers = pkgs.symlinkJoin {
+    name = "treesitter-parsers";
+    paths = treesitterWithGrammars.dependencies;
   };
+
 in
 {
   options.nixosConfig.shell.nvim = {
@@ -20,124 +52,45 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.sessionVariables = lib.mkIf cfg.isDefaultEditor {
-      EDITOR = "vim";
-    };
+    home.packages = with pkgs; [
+      ripgrep
+      nodejs
+      wl-clipboard
+      cliphist
+
+      lua-language-server
+      typescript-language-server
+      nixd
+    ];
 
     programs.neovim = {
       enable = true;
-      package = pkgs.neovim-unwrapped;
+      defaultEditor = cfg.isDefaultEditor;
+
       viAlias = true;
       vimAlias = true;
-      vimdiffAlias = true;
 
-      plugins = with pkgs.vimPlugins; [
-        # Themes
-        catppuccin-nvim
+      withNodeJs = true;
 
-        #Lsp
-        lazy-lsp-nvim
-        lsp-zero-nvim
-        lsp_signature-nvim
-        lspkind-nvim # vscode symbols code completion
-
-        #IDE features
-        lspsaga-nvim
-        trouble-nvim
-        nvim-autopairs
-        which-key-nvim
-        lualine-nvim
-        vim-mundo # undotree
-        vim-illuminate
-
-
-        nvim-tree-lua
-        oil-nvim
-        mini-files
-        nvim-web-devicons
-
-        telescope-nvim
-        telescope-fzf-native-nvim
-        # smart-open-nvim
-        # telescope-ui-select-nvim
-
-        # Code completion
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-path
-        cmp-buffer
-        cmp_luasnip
-
-        luasnip
-
-        # Tree sitter
-        nvim-treesitter.withAllGrammars
-        nvim-treesitter-context
-        indent-blankline-nvim
-        nvim-treesitter-textobjects
-        nvim-surround
-        # ssr-nvim
-        # treesj #split join blocks
-        syntax-tree-surfer
-
-        # AI
-        copilot-lua
-        avante-nvim
-        render-markdown-nvim
-        img-clip-nvim
-        # renderMarkdownPlugin # avante dep
-
-        # Git
-        gitsigns-nvim
-        vim-fugitive
-        vim-rhubarb
-        diffview-nvim
-        neogit
-
-        # others
-        plenary-nvim # all the lua functions I don't want to write twice
-        vim-tmux-navigator # ctrl between pane
-
-        # Improve vim skills
-        # hardtime-nvim
-        # precognition-nvim
-        # vim-be-good
-      ];
-
-      extraPackages = with pkgs; [
-        tree-sitter
-
-        # Lua
-        lua-language-server
-
-        # Nix
-        nixpkgs-fmt
-        statix
-
-        # Telescope
-        ripgrep
-        fd
-        # sqlite # smart open dependency
-      ];
-
-      # :luafile ~/.config/nvim/init.lua
-      # :luafile ~/nixos/home/shell/neovim/config/init.lua
-      extraConfig = ''
-        :luafile ~/.config/nvim/init.lua
-      '';
+      # plugins = [
+      #   treesitterWithGrammars
+      # ];
     };
 
-    home.packages = [
-      pkgs.wl-clipboard
-      pkgs.cliphist
-      pkgs.ripgrep
-    ];
-
-    # home.file.".config/nvim/init.lua".source = "/home/andreas/nixos/home/shell/neovim/config/init.lua";
-    # xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "/home/andreas/nixos/home/shell/neovim/config/init.lua";
-    xdg.configFile.nvim = {
-      source = ./config;
+    home.file."./.config/nvim/" = {
+      source = ./nvim;
       recursive = true;
     };
+
+    home.file."./.config/nvim/lua/config/init.lua".text = ''
+      require("config.keymap")
+      require("config.options")
+      require("config.autocmds")
+    '';
+
+    # home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
+    #   recursive = true;
+    #   source = treesitterWithGrammars;
+    # };
   };
 }
