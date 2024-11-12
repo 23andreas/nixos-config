@@ -28,6 +28,7 @@ return {
         buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
         buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
         buf_map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+        buf_map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
         buf_map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
         -- Toggle inlay_hint

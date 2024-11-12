@@ -54,6 +54,10 @@ in
         bind-key -T copy-mode-vi 'C-l' select-pane -R
         bind-key -T copy-mode-vi 'C-\' select-pane -l
 
+        # Start windows and panes at 1, not 0
+        set -g base-index 1
+        setw -g pane-base-index 1
+
         set-option -ga terminal-overrides ",xterm-256color:Tc"
       '';
       plugins = with pkgs; [
