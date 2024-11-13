@@ -47,7 +47,7 @@ return {
             buffer = bufnr,
             callback = function()
               if format_on_save then
-                vim.lsp.buf.format({ async = true })
+                vim.lsp.buf.format({ async = false })
               end
             end,
           })
