@@ -32,5 +32,18 @@ return {
         },
       }
     end,
+    config = function(_, opts)
+      local bgColor = "#27313f"
+      local matchColor = "#2F3B4C"
+      local borderColor = "#171D26"
+
+      vim.api.nvim_set_hl(0, "GlanceBorderTop", { bg = borderColor })
+      vim.api.nvim_set_hl(0, "GlancePreviewNormal", { bg = bgColor })
+      vim.api.nvim_set_hl(0, "GlancePreviewMatch", { bg = matchColor })
+
+      vim.api.nvim_set_hl(0, "GlanceListNormal", { bg = bgColor })
+
+      require("glance").setup(opts)
+    end
   }
 }

@@ -36,13 +36,13 @@ return {
           }
         },
         inline = {
-          adapter = "anthropic",
+          -- adapter = "anthropic",
+          adapter = "copilot",
         }
       },
       display = {
         chat = {
           render_headers = false,
-          show_settings = true,
         },
         action_palette = {
           provider = "telescope"

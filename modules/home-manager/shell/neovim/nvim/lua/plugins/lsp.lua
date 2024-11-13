@@ -26,10 +26,13 @@ return {
 
         -- LSP keybindings
         buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+        buf_map("n", "gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
         buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
         buf_map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
         buf_map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-        buf_map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+        buf_map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+        buf_map("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+        buf_map("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Show diagnostics" })
 
         -- Toggle inlay_hint
         if vim.lsp.inlay_hint then

@@ -1,43 +1,50 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.nixosConfig.shell.nvim;
 
-   treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-    p.bash
-    p.comment
-    p.css
-    # p.csv
-    p.dockerfile
-    p.fish
-    p.gitattributes
-    p.gitignore
-    p.go
-    p.gomod
-    p.gowork
-    # p.graphql
-    p.html
-    # p.http
-    p.javascript
-    p.jq
-    # p.jsdoc
-    p.json
-    p.json5
-    # p.jsonc
-    # p.kotlin
-    p.lua
-    p.make
-    p.markdown
-    p.nginx
-    p.nix
-    p.python
-    # p.rust
-    # p.scss
-    # p.sql
-    p.toml
-    p.typescript
-    p.yaml
-  ]));
+  treesitterWithGrammars = (
+    pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+      p.bash
+      p.comment
+      p.css
+      # p.csv
+      p.dockerfile
+      p.fish
+      p.gitattributes
+      p.gitignore
+      p.go
+      p.gomod
+      p.gowork
+      # p.graphql
+      p.html
+      # p.http
+      p.javascript
+      p.jq
+      # p.jsdoc
+      p.json
+      p.json5
+      # p.jsonc
+      # p.kotlin
+      p.lua
+      p.make
+      p.markdown
+      p.nginx
+      p.nix
+      p.python
+      # p.rust
+      # p.scss
+      # p.sql
+      p.toml
+      p.typescript
+      p.yaml
+    ])
+  );
 
   treesitter-parsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
@@ -60,8 +67,12 @@ in
 
       lua-language-server
       typescript-language-server
-      vscode-langservers-extracted 
+      vscode-langservers-extracted
       nixd
+      nixfmt-rfc-style
+
+      gcc
+      gnumake
     ];
 
     programs.neovim = {
