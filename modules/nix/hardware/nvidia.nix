@@ -10,31 +10,33 @@
   };
 
   environment.systemPackages = with pkgs; [ 
-    libva-utils
-    libva-utils
-    vdpauinfo
-    vulkan-tools
-    vulkan-validation-layers
-    libvdpau-va-gl
     egl-wayland
-    wgpu-utils
     mesa
     libglvnd
+    libGL
+
+    libva-utils
+    # vdpauinfo
+
+    # vulkan-tools
+    # vulkan-validation-layers
+
+    libvdpau-va-gl
+    wgpu-utils
     nvtopPackages.full
-    nvitop
     libGL
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
+    # LIBVA_DRIVER_NAME = "nvidia";
 
     # VDPAU_DRIVER = "nvidia";
-    GBM_BACKEND = "nvidia";
+    # GBM_BACKEND = "nvidia";
 
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NVD_BACKEND = "direct"; #NVIDIA video acceleration
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # NVD_BACKEND = "direct"; #NVIDIA video acceleration
   };
 
   hardware.nvidia = {
