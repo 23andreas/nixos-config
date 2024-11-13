@@ -70,6 +70,8 @@ in
       vscode-langservers-extracted
       nixd
       nixfmt-rfc-style
+      
+      fzf
 
       gcc
       gnumake
