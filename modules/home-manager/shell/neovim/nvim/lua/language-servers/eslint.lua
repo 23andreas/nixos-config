@@ -13,6 +13,9 @@ return function(on_attach)
     settings = {
       -- packageManager = "npm",
       format = { enable = true },
+      workingDirectory = {
+        mode = 'auto',
+      }
     },
     -- root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.js", "package.json"),
   }
