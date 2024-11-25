@@ -70,11 +70,14 @@ in
       vscode-langservers-extracted
       nixd
       nixfmt-rfc-style
-      
+
       fzf
 
       gcc
       gnumake
+
+      # for diagram.nvim
+      mermaid-cli
     ];
 
     programs.neovim = {
@@ -85,6 +88,9 @@ in
       vimAlias = true;
 
       withNodeJs = true;
+
+      extraLuaPackages = ps: [ ps.magick ];
+      extraPackages = [ pkgs.imagemagick ];
 
       # plugins = [
       #   treesitterWithGrammars

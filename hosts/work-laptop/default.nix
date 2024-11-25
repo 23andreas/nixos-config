@@ -1,8 +1,14 @@
-{ config, pkgs, nixos-hardware, ... }:
+{
+  config,
+  pkgs,
+  nixos-hardware,
+  ...
+}:
 
 let
   hostname = "work-laptop";
-in {
+in
+{
   imports = [
     ../../modules/nix/core
 
@@ -22,7 +28,10 @@ in {
       andreas = {
         homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
         hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
-        groups = [ "networkmanager" "wheel" ];
+        groups = [
+          "networkmanager"
+          "wheel"
+        ];
         nixSettingsAllowed = true;
         envVarFiles = {
           ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
@@ -49,7 +58,6 @@ in {
     power-profiles-daemon
   ];
 
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Github rate limits Cognite office IP without this
@@ -73,4 +81,3 @@ in {
 
   system.stateVersion = "24.11";
 }
-

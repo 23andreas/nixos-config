@@ -1,5 +1,15 @@
 return {
   {
+    "nvim-telescope/telescope-ui-select.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {},
+    config = function()
+      require("telescope").load_extension("ui-select");
+    end
+  },
+  {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     version = false, -- telescope did only one release, so use HEAD for now
@@ -19,12 +29,6 @@ return {
         },
         config = function()
           require("telescope").load_extension("undo");
-        end
-      },
-      {
-        "nvim-telescope/telescope-ui-select.nvim",
-        config = function()
-          require("telescope").load_extension("ui-select");
         end
       },
       -- smart open?

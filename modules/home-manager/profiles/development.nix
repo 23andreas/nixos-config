@@ -1,13 +1,17 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.nixosConfig.profiles.development;
 in
 {
-  options.nixosConfig.profiles.development =
-    {
-      enable = lib.mkEnableOption "Enable development profile";
-    };
+  options.nixosConfig.profiles.development = {
+    enable = lib.mkEnableOption "Enable development profile";
+  };
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
@@ -23,6 +27,11 @@ in
 
       devenv
       beekeeper-studio
+
+      turso-cli
+      # atlas
+      # mongodb-compass
+      mermerd
     ];
 
     programs.bat = {

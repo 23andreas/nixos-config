@@ -1,4 +1,10 @@
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.nixosConfig.shell.tmux;
@@ -58,6 +64,10 @@ in
         set -g base-index 1
         setw -g pane-base-index 1
 
+        # image.nvim 
+        set -gq allow-passthrough on
+        set -g visual-activity off
+
         set-option -ga terminal-overrides ",xterm-256color:Tc"
       '';
       plugins = with pkgs; [
@@ -85,10 +95,10 @@ in
           '';
         }
         # {
-          # plugin = tmuxPlugins.catppuccin;
-          # extraConfig = ''
-          #   set -g @catppuccin_window_default_text '#{b:pane_current_command} (#{b:pane_current_path})'
-          # '';
+        # plugin = tmuxPlugins.catppuccin;
+        # extraConfig = ''
+        #   set -g @catppuccin_window_default_text '#{b:pane_current_command} (#{b:pane_current_path})'
+        # '';
         # }
         {
           plugin = tmuxPlugins.continuum;
@@ -100,4 +110,3 @@ in
     };
   };
 }
-

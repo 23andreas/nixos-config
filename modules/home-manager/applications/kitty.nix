@@ -29,8 +29,8 @@ in
         # background = "#1d2129";
         # background = "#151B23";
         background = "#1F2733";
-        background_opacity = "0.97";
-        background_blur = 60;
+        # background_opacity = "0.97";
+        # background_blur = 60;
         font_size = "10.8";
         # modify_font = "cell_height 110%";
       };

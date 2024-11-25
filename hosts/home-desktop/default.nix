@@ -2,7 +2,8 @@
 
 let
   hostname = "home-desktop";
-in {
+in
+{
   imports = [
     ../../modules/nix/core
 
@@ -32,7 +33,10 @@ in {
       andreas = {
         homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
         hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
-        groups = [ "networkmanager" "wheel" ];
+        groups = [
+          "networkmanager"
+          "wheel"
+        ];
         nixSettingsAllowed = true;
         envVarFiles = {
           ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
@@ -45,7 +49,7 @@ in {
   time.hardwareClockInLocalTime = true;
 
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    # NIXOS_OZONE_WL = "1";
   };
 
   nix.extraOptions = ''
@@ -82,4 +86,3 @@ in {
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-

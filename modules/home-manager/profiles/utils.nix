@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.nixosConfig.profiles.utils;
@@ -33,6 +38,7 @@ in
     nixosConfig = {
       shell = {
         tmux.enable = true;
+        zellij.enable = true;
       };
     };
   };

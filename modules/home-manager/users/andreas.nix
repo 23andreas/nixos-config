@@ -1,4 +1,9 @@
-{ config, inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 let
   record = pkgs.writeScriptBin "record" (builtins.readFile ../../../resources/scripts/record.sh);
@@ -29,7 +34,7 @@ in
     size = 24;
   };
 
-  home.packages =  [
+  home.packages = [
     record
   ];
 
@@ -64,8 +69,8 @@ in
     };
     sessionVariables = {
       #Electron
-      NIXOS_OZONE_WL = "1";
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      # NIXOS_OZONE_WL = "1";
+      # ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";

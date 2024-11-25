@@ -38,7 +38,9 @@
 
     decoration = {
       # rounding = 0;
-      drop_shadow = true;
+      shadow = {
+        enabled = true;
+      };
       dim_inactive = true;
       dim_strength = 0.15;
     };
@@ -96,7 +98,6 @@
       "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
       "waybar &"
-      "walker --gapplication-service &"
       "swaync &"
       "hyprpaper &"
       "avizo-service &"

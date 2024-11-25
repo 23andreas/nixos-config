@@ -2,14 +2,22 @@
 
 {
   boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
-  boot.kernelParams = [ "nvidia_drm.fbdev=1" "nvidia-drm.modeset=1" "module_blacklist=i915" ];
+  boot.kernelModules = [
+    "nvidia"
+    "nvidia_drm"
+    "nvidia_modeset"
+  ];
+  boot.kernelParams = [
+    "nvidia_drm.fbdev=1"
+    "nvidia-drm.modeset=1"
+    "module_blacklist=i915"
+  ];
 
   hardware.graphics = {
     enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     egl-wayland
     mesa
     libglvnd
