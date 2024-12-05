@@ -1,11 +1,11 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 {
   # Home assistant, 1400 sonos integration, zigbee2mqtt frontend
   networking.firewall.allowedTCPPorts = [
     2164 # Home assistant
     21064 # Homekit bridge
     1400 # Sonos?
-    2916  # zigbee2mqtt
+    2916 # zigbee2mqtt
     10200 # wyoming piper
     10300 # wyoming whisper
     10700 # wyoming satellite
@@ -46,15 +46,15 @@
       #     "--wake-uri=tcp://127.0.0.1:10400"
       #   ];
       # };      # openwakeword = {
-      # openwakeword = {
-      #   enable = true;
-      #   uri = "tcp://0.0.0:10400";
-      #   # preloadModels = [
-      #   #   "alexa"
-      #   #   # "ok_nabu"
-      #   # ];
-      #   # extraArgs = [ "--debug" ];
-      # };
+      openwakeword = {
+        enable = true;
+        uri = "tcp://0.0.0:10400";
+        preloadModels = [
+          "alexa"
+          # "ok_nabu"
+        ];
+        # extraArgs = [ "--debug" ];
+      };
       faster-whisper = {
         servers.yas = {
           enable = true;
@@ -142,34 +142,34 @@
             ];
           }
         ];
-        "automation manual" = [
-          {
-            alias = "Kjokken lys paa";
-            trigger = {
-              platform = "state";
-              entity_id = "binary_sensor.bevegelsessensor_kjokken_occupancy";
-              from = "off";
-              to = "on";
-            };
-            action = {
-              service = "light.turn_on";
-              entity_id = "light.lys_kjokken";
-            };
-          }
-          {
-            alias = "Kjokken lys av";
-            trigger = {
-              platform = "state";
-              entity_id = "binary_sensor.bevegelsessensor_kjokken_occupancy";
-              from = "on";
-              to = "off";
-            };
-            action = {
-              service = "light.turn_off";
-              entity_id = "light.lys_kjokken";
-            };
-          }
-        ];
+        # "automation manual" = [
+        #   {
+        #     alias = "Kjokken lys paa";
+        #     trigger = {
+        #       platform = "state";
+        #       entity_id = "binary_sensor.bevegelsessensor_kjokken_occupancy";
+        #       from = "off";
+        #       to = "on";
+        #     };
+        #     action = {
+        #       service = "light.turn_on";
+        #       entity_id = "light.lys_kjokken";
+        #     };
+        #   }
+        #   {
+        #     alias = "Kjokken lys av";
+        #     trigger = {
+        #       platform = "state";
+        #       entity_id = "binary_sensor.bevegelsessensor_kjokken_occupancy";
+        #       from = "on";
+        #       to = "off";
+        #     };
+        #     action = {
+        #       service = "light.turn_off";
+        #       entity_id = "light.lys_kjokken";
+        #     };
+        #   }
+        # ];
         "automation ui" = "!include automations.yaml";
         "script ui" = "!include scripts.yaml";
         "scene ui" = "!include scenes.yaml";
@@ -238,7 +238,10 @@
               {
                 data = {
                   command = "app_segment_clean";
-                  params = [ 19 18 ];
+                  params = [
+                    19
+                    18
+                  ];
                 };
                 entity_id = "vacuum.roborock_s8";
                 service = "vacuum.send_command";
@@ -252,7 +255,10 @@
               {
                 data = {
                   command = "app_segment_clean";
-                  params = [ 16 17 ];
+                  params = [
+                    16
+                    17
+                  ];
                 };
                 entity_id = "vacuum.roborock_s8";
                 service = "vacuum.send_command";
@@ -266,7 +272,11 @@
               {
                 data = {
                   command = "app_segment_clean";
-                  params = [ 19 18 16 ];
+                  params = [
+                    19
+                    18
+                    16
+                  ];
                 };
                 entity_id = "vacuum.roborock_s8";
                 service = "vacuum.send_command";
@@ -285,7 +295,7 @@
 
         # Includes dependencies for a basic setup
         # https://www.home-assistant.io/integrations/default_config/
-        default_config = {};
+        default_config = { };
 
         http = {
           server_port = 2164;
