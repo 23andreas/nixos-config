@@ -11,12 +11,11 @@ in
   config = lib.mkIf cfg.enable {
     programs.zellij = {
       enable = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
     };
-    xdg.configFile.zellj = {
-      source = ./config.kdl;
-      target = "zellij/config.kdl";
-    };
+    # xdg.configFile.zellj = {
+    #   source = ./config.kdl;
+    #   target = "zellij/config.kdl";
+    # };
   };
 }
-

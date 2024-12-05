@@ -67,6 +67,7 @@ in
 
       lua-language-server
       typescript-language-server
+      typescript
       vscode-langservers-extracted
       nixd
       nixfmt-rfc-style
