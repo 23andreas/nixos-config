@@ -47,10 +47,10 @@ let
     ])
   );
 
-  treesitter-parsers = pkgs.symlinkJoin {
-    name = "treesitter-parsers";
-    paths = treesitterWithGrammars.dependencies;
-  };
+  # treesitter-parsers = pkgs.symlinkJoin {
+  #   name = "treesitter-parsers";
+  #   paths = treesitterWithGrammars.dependencies;
+  # };
 
 in
 {
@@ -99,9 +99,9 @@ in
       extraLuaPackages = ps: [ ps.magick ];
       extraPackages = [ pkgs.imagemagick ];
 
-      # plugins = [
-      #   treesitterWithGrammars
-      # ];
+      plugins = [
+        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+      ];
     };
 
     home.file."./.config/nvim/" = {
