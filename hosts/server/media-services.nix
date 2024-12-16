@@ -64,10 +64,10 @@
       let
         plexLatest = pkgs.plex.override {
           plexRaw = pkgs.plexRaw.overrideAttrs (old: rec {
-            version = "1.41.2.9200-c6bbc1b53";
+            version = "1.41.3.9292-bc7397402";
             src = pkgs.fetchurl {
               url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb";
-              sha256 = "sha256-HmgtnUsDzRIUThYdlZIzhiU02n9jSU7wtwnEA0+r1iQ=";
+              sha256 = "sha256-qDiW6FnaoR1SLthx7seE3OBXVyTbDjw4TGn6ZJjrKKg=";
             };
           });
         };
