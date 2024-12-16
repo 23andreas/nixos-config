@@ -14,10 +14,10 @@ require('img-clip').setup({
 -- require('copilot').setup({
 --   -- use recommended settings from above
 -- })
-require('render-markdown').setup({
-  -- use recommended settings from above
-  file_types = { "markdown", "Avante" },
-})
+-- require('render-markdown').setup({
+--   -- use recommended settings from above
+--   file_types = { "markdown", "Avante" },
+-- })
 require('avante_lib').load()
 require('avante').setup({
   {
