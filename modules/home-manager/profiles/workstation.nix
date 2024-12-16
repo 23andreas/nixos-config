@@ -1,13 +1,18 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   cfg = config.nixosConfig.profiles.workstation;
 in
 {
-  options.nixosConfig.profiles.workstation =
-    {
-      enable = lib.mkEnableOption "Enable workstation profile";
-    };
+  options.nixosConfig.profiles.workstation = {
+    enable = lib.mkEnableOption "Enable workstation profile";
+  };
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
@@ -60,7 +65,7 @@ in
         avizo.enable = true;
         hyprpaper = {
           enable = true;
-          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain.jpg";
+          wallpaperPath = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain-upscaled.jpeg";
         };
         hyprlock = {
           enable = true;
