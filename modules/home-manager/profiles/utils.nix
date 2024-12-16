@@ -38,7 +38,7 @@ in
     nixosConfig = {
       shell = {
         tmux.enable = true;
-        zellij.enable = true;
+        zellij.enable = false;
       };
     };
   };

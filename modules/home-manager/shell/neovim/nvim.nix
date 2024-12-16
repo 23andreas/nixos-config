@@ -34,6 +34,7 @@ let
       p.lua
       p.make
       p.markdown
+      p.markdown_inline
       p.nginx
       p.nix
       p.python
@@ -67,17 +68,23 @@ in
 
       lua-language-server
       typescript-language-server
+      typescript
       vscode-langservers-extracted
       nixd
       nixfmt-rfc-style
 
+      # telescope
       fzf
+      fd
 
       gcc
       gnumake
 
+      # for copilot chat
+      lynx
+
       # for diagram.nvim
-      mermaid-cli
+      # mermaid-cli
     ];
 
     programs.neovim = {

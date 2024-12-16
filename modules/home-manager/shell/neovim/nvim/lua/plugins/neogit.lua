@@ -8,7 +8,7 @@ return {
     },
     event = "VeryLazy",
     opts = {
-      graph_style = "kitty",
+      -- graph_style = "kitty",
       integrations = {
         telescope = true,
         diffview = true

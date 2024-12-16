@@ -25,13 +25,13 @@ return {
       "<leader>om",
       mode = "n",
       "<cmd>FocusMaximise<CR>",
-      desc = "Toggle Focus"
+      desc = "Focus maximise"
     },
     {
       "<leader>oe",
       mode = "n",
       "<cmd>FocusEqualise<CR>",
-      desc = "Toggle Focus"
+      desc = "Focus equalise"
     },
   },
   config = function(_, opts)
