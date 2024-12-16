@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 let
   hostname = "server";
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
@@ -19,7 +20,11 @@ in {
     users = {
       andreas = {
         hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
-        groups = [ "networkmanager" "wheel" ];
+        groups = [
+          "networkmanager"
+          "wheel"
+          # "docker"
+        ];
         nixSettingsAllowed = true;
         # Can't get this to work with sops secrets..
         # https://discourse.nixos.org/t/can-how-do-you-manage-ssh-authorized-keys-with-sops-nix/46467
@@ -50,9 +55,13 @@ in {
     secrets = {
       "users/andreas/hashed-password".neededForUsers = true;
       "${hostname}/cachix-credentials-file" = { };
-      "${hostname}/nginx-andreas-basic-auth-file" = { owner = "nginx"; };
-      "${hostname}/acme-cloudflare-environment-file" = {};
-      "${hostname}/mqtt_secrets" = { owner = "zigbee2mqtt"; };
+      "${hostname}/nginx-andreas-basic-auth-file" = {
+        owner = "nginx";
+      };
+      "${hostname}/acme-cloudflare-environment-file" = { };
+      "${hostname}/mqtt_secrets" = {
+        owner = "zigbee2mqtt";
+      };
     };
   };
 
@@ -88,4 +97,3 @@ in {
 
   system.stateVersion = "24.11";
 }
-
