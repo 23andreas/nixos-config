@@ -11,9 +11,15 @@ return {
       answer_header = "##   Copilot ",
       error_header = "##   Error ",
       separator = "―――――――",
-      show_folds = false,
-      context = "buffer",
-      -- highlight_headers = false,
+      -- show_folds = false,
+      -- context = "buffer",
+      highlight_headers = false,
+      mappings = {
+        reset = {
+          normal = '<C-x>',
+          insert = '<C-x>',
+        }
+      },
       {
         window = {
           layout = 'float',

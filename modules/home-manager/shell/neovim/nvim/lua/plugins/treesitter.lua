@@ -4,53 +4,26 @@ return {
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        auto_install = true,
-        -- ensure_installed = "all",
-        ensure_installed = {
-          "bash",
-          "css",
-          "dockerfile",
-          "fish",
-          "git_config",
-          "git_rebase",
-          "gitignore",
-          "graphql",
-          "jsdoc",
-          "javascript",
-          "json",
-          "kotlin",
-          "lua",
-          "markdown",
-          "markdown_inline",
-          "nginx",
-          "nix",
-          "regex",
-          "scss",
-          "sql",
-          "terraform",
-          "toml",
-          "tsx",
-          "typescript",
-          "yaml",
+    opts = {
+      sync_install = false,
+      parser_install_dir = vim.fn.stdpath("data") .. "/treesitter-parsers",
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
         },
-        -- parser_install_dir = vim.fn.stdpath("data") .. "/treesitter-parsers",
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = { enable = true },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = false,
-            node_decremental = "<bs>",
-          },
-        },
-      })
+      },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
     end,
   },
   {
@@ -70,9 +43,37 @@ return {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    config = true
-    -- use opts = {} for passing setup options
-    -- this is equivalent to setup({}) function
+    opts = {
+      check_ts = true,
+      ts_config = {
+        lua = { 'string' }, -- it will not add pair on that treesitter node
+        javascript = { 'template_string' },
+        java = false,       -- don't check treesitter on java
+      }
+    },
+    config = function(_, opts)
+      require('nvim-autopairs').setup(opts)
+
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
+      cmp.event:on(
+        "confirm_done",
+        cmp_autopairs.on_confirm_done()
+      )
+    end
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    event = "InsertEnter",
+    opts = {
+      enable = true,
+      enable_close = true,
+      enable_rename = true,
+      enable_close_on_slash = true,
+      filetypes = {
+        "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "vue", "xml", "tsx", "jsx"
+      }
+    },
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -85,7 +86,6 @@ return {
             enable = true,
             lookahead = true,
             keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
               ["aa"] = "@parameter.outer",
