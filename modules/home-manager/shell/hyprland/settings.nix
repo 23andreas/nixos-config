@@ -85,6 +85,7 @@
     };
 
     input = {
+      repeat_delay = 400;
       numlock_by_default = true;
     };
 
