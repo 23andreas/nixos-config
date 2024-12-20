@@ -35,16 +35,16 @@ return {
     -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
-      completion = {
-        enabled_providers = { "codecompanion" },
-      },
-      providers = {
-        codecompanion = {
-          name = "CodeCompanion",
-          module = "codecompanion.providers.completion.blink",
-          enabled = true,
-        },
-      },
+      -- completion = {
+      --   enabled_providers = { "lsp", "path", "snippets", "luasnip", "buffer", "codecompanion" },
+      -- },
+      -- providers = {
+      --   codecompanion = {
+      --     name = "CodeCompanion",
+      --     module = "codecompanion.providers.completion.blink",
+      --     enabled = true,
+      --   },
+      -- },
       -- optionally disable cmdline completions
       -- cmdline = {},
     },
