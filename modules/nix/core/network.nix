@@ -19,9 +19,11 @@ in
     ];
     networking = {
       hostName = hostname;
-      networkmanager.enable = true;
-      # Fixes issues with wifi dropping out
-      wifi.powersave = false;
+      networkmanager = {
+        enable = true;
+        # Fixes issues with wifi dropping out
+        wifi.powersave = false;
+      };
       nameservers = [
         "1.1.1.1"
         "8.8.8.8"
