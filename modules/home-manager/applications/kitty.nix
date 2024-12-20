@@ -15,12 +15,13 @@ in
   config = lib.mkIf cfg.enable {
     home.sessionVariables.TERMINAL = lib.mkIf cfg.isDefaultTerminal "kitty";
 
+    catppuccin.kitty = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     programs.kitty = {
       enable = true;
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
 
       settings = {
         # window_padding_width = 4;

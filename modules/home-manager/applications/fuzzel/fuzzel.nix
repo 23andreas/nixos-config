@@ -9,9 +9,10 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    catppuccin.fuzzel.enable = true;
+
     programs.fuzzel = {
       enable = true;
-      catppuccin.enable = false;
       settings = {
         main = {
           inner-pad = 2;
@@ -21,12 +22,12 @@ in
           # background = "1f2733cc";
           # 0.9 opacity
           background = "1f2733e6";
-          text="cdd6f4ff";
-          match="89b4faff";
-          selection="585b70ff";
-          selection-match="89b4faff";
-          selection-text="cdd6f4ff";
-          border="b4befeff";
+          text = "cdd6f4ff";
+          match = "89b4faff";
+          selection = "585b70ff";
+          selection-match = "89b4faff";
+          selection-text = "cdd6f4ff";
+          border = "b4befeff";
         };
         border = {
           width = 0;
