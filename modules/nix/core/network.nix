@@ -2,7 +2,8 @@
 
 let
   hostname = config._23andreas.hostname;
-in {
+in
+{
   options._23andreas.hostname = lib.mkOption {
     type = lib.types.str;
     description = "Hostname for the system.";
@@ -19,10 +20,14 @@ in {
     networking = {
       hostName = hostname;
       networkmanager.enable = true;
-      nameservers = [ "1.1.1.1" ];
+      # Fixes issues with wifi dropping out
+      wifi.powersave = false;
+      nameservers = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
 
       # firewall??
     };
   };
 }
-
