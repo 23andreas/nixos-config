@@ -22,7 +22,7 @@ in
       networkmanager = {
         enable = true;
         # Fixes issues with wifi dropping out
-        wifi.powersave = false;
+        # wifi.powersave = false;
       };
       nameservers = [
         "1.1.1.1"
