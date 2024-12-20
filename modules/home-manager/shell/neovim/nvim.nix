@@ -77,6 +77,9 @@ in
       fzf
       fd
 
+      # Octo.nvim
+      gh
+
       gcc
       gnumake
 
