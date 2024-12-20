@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  nixos-hardware,
+  # nixos-hardware,
   ...
 }:
 
@@ -17,7 +17,8 @@ in
     ./disk-config.nix
 
     # 9530 is not added yet
-    nixos-hardware.nixosModules.dell-xps-15-9520
+    # nixos-hardware.nixosModules.dell-xps-15-9520
+    ./hardware-copy.nix
 
     ../../modules/nix/presets/workstation.nix
   ];
