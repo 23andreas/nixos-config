@@ -5,7 +5,10 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
-      file_types = { 'markdown', 'copilot-chat', "codecompanion" }
+      file_types = { 'markdown', 'copilot-chat', 'octo', 'codecompanion' },
+      latex = {
+        enabled = false,
+      }
     },
   }
 }
