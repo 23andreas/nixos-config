@@ -4,7 +4,8 @@
 let
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
-in {
+in
+{
   programs.hyprland.enable = true;
 
   services.greetd = {
@@ -28,9 +29,9 @@ in {
     TTYVTDisallocate = true;
   };
 
-  # environment.systemPackages = [
-  #   pkgs.kdePackages.qtwayland
-  # ];
+  environment.systemPackages = [
+    pkgs.hyprland-qtutils
+  ];
 
   xdg.portal = {
     enable = true;
@@ -42,4 +43,3 @@ in {
     ];
   };
 }
-
