@@ -41,14 +41,16 @@ notify() {
 
 screen() {
   notify "Starting Recording" "Your screen is being recorded"
-  timeout 600 wf-recorder -F format=rgb24 -x rgb24 -p qp=0 -p crf=0 -p preset=slow -c libx264rgb -f "$TMP_MP4_FILE"
+  # timeout 600 wf-recorder -F format=rgb24 -x rgb24 -p qp=0 -p crf=0 -p preset=slow -c libx264rgb -f "$TMP_MP4_FILE"
+  timeout 600 wf-recorder -f "$TMP_MP4_FILE" -c libx264 -p preset=medium -p crf=18
 }
 
 area() {
   GEOMETRY=$(slurp)
   if [[ ! -z "$GEOMETRY" ]]; then
     notify "Starting Recording" "Your screen is being recorded"
-    timeout 600 wf-recorder -F format=rgb24 -x rgb24 -p qp=0 -p crf=0 -p preset=slow -c libx264rgb -g "$GEOMETRY" -f "$TMP_MP4_FILE"
+    # timeout 600 wf-recorder -F format=rgb24 -x rgb24 -p qp=0 -p crf=0 -p preset=slow -c libx264rgb -g "$GEOMETRY" -f "$TMP_MP4_FILE"
+    timeout 600 wf-recorder -f "$TMP_MP4_FILE" -c libx264 -p preset=medium -p crf=18 -g "$GEOMETRY"
   fi
 }
 
@@ -57,7 +59,8 @@ window() {
   GEOMETRY=$(hyprctl clients -j | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp)
   if [[ ! -z "$GEOMETRY" ]]; then
     notify "Starting Window Recording" "Your selected window is being recorded"
-    timeout 600 wf-recorder -F format=rgb24 -x rgb24 -p qp=0 -p crf=0 -p preset=slow -c libx264rgb -g "$GEOMETRY" -f "$TMP_MP4_FILE"
+    # timeout 600 wf-recorder -F format=rgb24 -x rgb24 -p qp=0 -p crf=0 -p preset=slow -c libx264rgb -g "$GEOMETRY" -f "$TMP_MP4_FILE"
+    timeout 600 wf-recorder -f "$TMP_MP4_FILE" -c libx264 -p preset=medium -p crf=18 -g "$GEOMETRY"
   fi
 }
 
