@@ -3,16 +3,20 @@
 
 let
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
 in
 {
-  programs.hyprland.enable = true;
+  programs.uwsm.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
 
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+        command = "${tuigreet} --time --remember uwsm start hyprland-uwsm.desktop";
         user = "greeter";
       };
     };

@@ -96,15 +96,15 @@
     # ];
 
     exec-once = [
-      "hash dbus-update-activation-environment 2>/dev/null &"
+      # "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
-      "waybar &"
-      "swaync &"
-      "hyprpaper &"
-      "avizo-service &"
-      "[workspace 8 silent] todoist-electron"
-      "[workspace 9 silent] 1password"
-      "[workspace 10 silent] spotify"
+      "uwsm app -- waybar &"
+      "uwsm app -- swaync &"
+      "uwsm app -- hyprpaper &"
+      "uwsm app -- avizo-service &"
+      "[workspace 8 silent] uwsm app -- todoist-electron"
+      "[workspace 9 silent] uwsm app -- 1password"
+      "[workspace 10 silent] uwsm app -- spotify"
     ];
   };
 }

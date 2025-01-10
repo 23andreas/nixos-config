@@ -75,10 +75,10 @@ in
       ];
 
       bind = [
-        "$mod, Space, exec, pgrep walker && pkill walker || walker"
-        "$mod, Return, exec, kitty"
-        "$mod, semicolon, exec, google-chrome-stable --profile-directory='Default'"
-        "$mod+Alt, semicolon, exec, google-chrome-stable --profile-directory='Profile 1'"
+        "$mod, Space, exec, pgrep walker && pkill walker || uwsm app -- walker"
+        "$mod, Return, exec, uwsm app -- kitty"
+        "$mod, semicolon, exec, uwsm app -- google-chrome-stable --profile-directory='Default'"
+        "$mod+Alt, semicolon, exec, uwsm app -- google-chrome-stable --profile-directory='Profile 1'"
 
         # Powermenu, Exit
         "$mod, Q, exec, ~/.local/share/powermenu.sh"
@@ -89,9 +89,9 @@ in
         "$mod, D, exec, hyprctl keyword general:layout \"dwindle\""
 
         # Screen capture
-        ", Print, exec, grimblast --freeze save output - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
-        "SHIFT, Print, exec, grimblast --freeze save area - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
-        "$mod, Print, exec, ~/.local/share/recordmenu.sh"
+        ", Print, exec, uwsm app -- grimblast --freeze save output - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
+        "SHIFT, Print, exec, uwsm app -- grimblast --freeze save area - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
+        "$mod, Print, exec, uwsm app -- ~/.local/share/recordmenu.sh"
 
         "$mod, V, togglefloating,"
         "$mod, B, pin,"
