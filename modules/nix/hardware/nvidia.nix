@@ -7,11 +7,18 @@
     "nvidia_drm"
     "nvidia_modeset"
   ];
+
   boot.kernelParams = [
     "nvidia_drm.fbdev=1"
     "nvidia-drm.modeset=1"
     "module_blacklist=i915"
   ];
+
+  boot.extraModprobeConfig = ''
+    options nvidia-drm fbdev=1
+    options nvidia NVreg_PreserveVideoMemoryAllocations=1
+    options nvidia NVreg_TemporaryFilePath=/var/tmp
+  '';
 
   hardware.graphics = {
     enable = true;
