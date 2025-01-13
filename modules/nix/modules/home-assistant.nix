@@ -127,6 +127,7 @@
         "todoist"
         "entur_public_transport"
         "homekit"
+        "home_connect"
       ];
 
       customComponents = with pkgs.home-assistant-custom-components; [
