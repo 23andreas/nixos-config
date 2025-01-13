@@ -1,13 +1,13 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "BufReadPre",
+    event = "bufreadpre",
     config = function()
-      -- TODO Move these to keybinds?
-      vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>",
-        { noremap = true, silent = true, desc = "Diagnostic go to prev" })
-      vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>",
-        { noremap = true, silent = true, desc = "Diagnostic go to next" })
+      -- todo move these to keybinds?
+      vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>",
+        { noremap = true, silent = true, desc = "diagnostic go to prev" })
+      vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>",
+        { noremap = true, silent = true, desc = "diagnostic go to next" })
 
       local format_on_save = true
       local function toggle_format_on_save()
@@ -15,35 +15,35 @@ return {
       end
 
       vim.keymap.set("n", "<leader>tf", toggle_format_on_save,
-        { noremap = true, silent = true, desc = "Format on save" })
+        { noremap = true, silent = true, desc = "format on save" })
 
-      -- Keybindings for LSP actions
+      -- keybindings for lsp actions
       local setup_keybindings = function(client, bufnr)
         local buf_map = function(mode, lhs, rhs, opts)
           opts = opts or { noremap = true, silent = true }
           vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
         end
 
-        -- LSP keybindings
-        buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-        buf_map("n", "gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-        buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-        buf_map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-        buf_map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-        buf_map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>")
-        buf_map("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-        buf_map("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Show diagnostics" })
+        -- lsp keybindings
+        buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
+        buf_map("n", "gD", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
+        buf_map("n", "k", "<cmd>lua vim.lsp.buf.hover()<cr>")
+        buf_map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
+        buf_map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+        buf_map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>")
+        buf_map("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+        buf_map("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "show diagnostics" })
 
-        -- Toggle inlay_hint
+        -- toggle inlay_hint
         if vim.lsp.inlay_hint then
-          vim.keymap.set("n", "<Leader>th", function()
+          vim.keymap.set("n", "<leader>th", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, { desc = "Inlay hints" })
+          end, { desc = "inlay hints" })
         end
 
-        -- Auto-format on save if format_on_save is true
-        if client.server_capabilities.documentFormattingProvider then
-          vim.api.nvim_create_autocmd("BufWritePre", {
+        -- auto-format on save if format_on_save is true
+        if client.server_capabilities.documentformattingprovider then
+          vim.api.nvim_create_autocmd("bufwritepre", {
             buffer = bufnr,
             callback = function()
               if format_on_save then

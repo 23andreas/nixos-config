@@ -66,19 +66,6 @@ return {
     end
   },
   {
-    'windwp/nvim-ts-autotag',
-    event = "InsertEnter",
-    opts = {
-      enable = true,
-      enable_close = true,
-      enable_rename = true,
-      enable_close_on_slash = true,
-      filetypes = {
-        "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "vue", "xml", "tsx", "jsx"
-      }
-    },
-  },
-  {
     'nvim-treesitter/nvim-treesitter-textobjects',
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },

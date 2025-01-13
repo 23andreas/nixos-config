@@ -20,18 +20,6 @@ local setup_keybindings = function(client, bufnr)
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end, { desc = "Inlay hints" })
   end
-
-  -- Auto-format on save if format_on_save is true
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        if format_on_save then
-          vim.lsp.buf.format({ async = false })
-        end
-      end,
-    })
-  end
 end
 
 return {
@@ -46,6 +34,11 @@ return {
 
         setup_keybindings(client, bufnr)
       end,
+      settings = {
+        expose_as_code_action = "all",
+        complete_function_calls = true,
+        detailed_hover = true,
+      }
     },
   }
 }
