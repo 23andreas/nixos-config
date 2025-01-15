@@ -23,6 +23,7 @@ in
       runAsService = true;
 
       config = {
+        app_launch_prefix = "uwsm app -- ";
         builtins = {
           ai = {
             weight = 5;
