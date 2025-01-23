@@ -31,6 +31,7 @@ in
         hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
         groups = [
           "networkmanager"
+          "docker"
           "wheel"
         ];
         nixSettingsAllowed = true;
@@ -58,6 +59,8 @@ in
   environment.systemPackages = with pkgs; [
     power-profiles-daemon
   ];
+  
+  virtualisation.docker.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
