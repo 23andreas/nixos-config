@@ -2,10 +2,10 @@
 
 let
   hostname = config._23andreas.hostname;
-in {
+in
+{
   services.cachix-agent = {
-    enable = true;
+    enable = false;
     credentialsFile = config.sops.secrets."${hostname}/cachix-credentials-file".path;
   };
 }
-
