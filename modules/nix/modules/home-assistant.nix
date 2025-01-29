@@ -123,7 +123,7 @@
         "whisper"
         "wyoming"
         "workday"
-        "elevenlabs"
+        # "elevenlabs"
         "todoist"
         "entur_public_transport"
         "homekit"
