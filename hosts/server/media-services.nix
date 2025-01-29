@@ -96,5 +96,13 @@
     prowlarr = {
       enable = true;
     };
+    audiobookshelf = {
+      enable = true;
+      port = 8000;
+      host = "0.0.0.0";
+      openFirewall = true;
+      user = "andreas";
+      group = "media";
+    };
   };
 }

@@ -1,4 +1,4 @@
-{ config, lib, ...}:
+{ config, lib, ... }:
 
 {
   services.fail2ban = {
@@ -50,51 +50,62 @@
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
 
-    virtualHosts = let
-      base = locations: {
-        inherit locations;
-        forceSSL = true;
-        enableACME = true;
-        basicAuthFile = config.sops.secrets."${config._23andreas.hostname}/nginx-andreas-basic-auth-file".path;
-      };
+    virtualHosts =
+      let
+        base = locations: {
+          inherit locations;
+          forceSSL = true;
+          enableACME = true;
+          basicAuthFile =
+            config.sops.secrets."${config._23andreas.hostname}/nginx-andreas-basic-auth-file".path;
+        };
 
-      proxy = port: extraOptions: base (lib.recursiveUpdate {
-        "/".proxyPass = "http://127.0.0.1:" + toString port + "/";
-      } extraOptions);
-    in {
-      "default_server" = {
-        default = true;
-        serverName = "_";  # Matches any requests not handled by other server blocks
-        extraConfig = ''
-          return 444;
-        '';
-      };
+        proxy =
+          port: extraOptions:
+          base (
+            lib.recursiveUpdate {
+              "/".proxyPass = "http://127.0.0.1:" + toString port + "/";
+            } extraOptions
+          );
+      in
+      {
+        "default_server" = {
+          default = true;
+          serverName = "_"; # Matches any requests not handled by other server blocks
+          extraConfig = ''
+            return 444;
+          '';
+        };
 
-      "sonarr.gafro.net" = proxy 8989 {};
-      "radarr.gafro.net" = proxy 7878 {};
-      "bazarr.gafro.net" = proxy 6767 {};
-      "prowlarr.gafro.net" = proxy 9696 {};
-      "qbittorrent.gafro.net" = proxy 7219 {};
+        "sonarr.gafro.net" = proxy 8989 { };
+        "audiobookshelf.gafro.net" = proxy 8000 { };
+        "radarr.gafro.net" = proxy 7878 { };
+        "bazarr.gafro.net" = proxy 6767 { };
+        "prowlarr.gafro.net" = proxy 9696 { };
+        "qbittorrent.gafro.net" = proxy 7219 { };
 
-      "glances.gafro.net" = proxy 61208 {};
+        "glances.gafro.net" = proxy 61208 { };
 
-      "ha.gafro.net" = {
-        forceSSL = true;
-        enableACME = true;
-        extraConfig = ''
-          proxy_buffering off;
-        '';
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:2164/";
-          proxyWebsockets = true;
+        "ha.gafro.net" = {
+          forceSSL = true;
+          enableACME = true;
+          extraConfig = ''
+            proxy_buffering off;
+          '';
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:2164/";
+            proxyWebsockets = true;
+          };
         };
       };
-    };
   };
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 443 ];
+    allowedTCPPorts = [
+      80
+      443
+    ];
   };
 
   security.acme = {
@@ -103,7 +114,8 @@
     certs."gafro.net" = {
       dnsProvider = "cloudflare";
       domain = "*.gafro.net";
-      environmentFile = config.sops.secrets."${config._23andreas.hostname}/acme-cloudflare-environment-file".path;
+      environmentFile =
+        config.sops.secrets."${config._23andreas.hostname}/acme-cloudflare-environment-file".path;
     };
   };
 }
