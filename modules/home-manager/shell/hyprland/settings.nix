@@ -16,7 +16,7 @@
     master = {
       # no_gaps_when_only = 1;
       orientation = "center";
-      always_center_master = true;
+      slave_count_for_center_master = 0;
       mfact = 0.48;
     };
 
@@ -38,12 +38,16 @@
 
     decoration = {
       # rounding = 0;
-      shadow = {
-        enabled = true;
-      };
+      # shadow = {
+      #   enabled = true;
+      # };
       dim_inactive = true;
-      dim_strength = 0.15;
+      dim_strength = 0.17;
     };
+
+    # opengl = {
+    # force_introspection = 0;
+    # };
 
     group = {
       "col.border_active" = "$red";
