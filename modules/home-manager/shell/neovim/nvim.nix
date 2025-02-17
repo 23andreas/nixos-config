@@ -85,6 +85,7 @@ in
 
       # for copilot chat
       lynx
+      python313Packages.jedi-language-server
 
       # for diagram.nvim
       # mermaid-cli
