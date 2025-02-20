@@ -64,10 +64,10 @@
       let
         plexLatest = pkgs.plex.override {
           plexRaw = pkgs.plexRaw.overrideAttrs (old: rec {
-            version = "1.41.3.9292-bc7397402";
+            version = "1.41.3.9314-a0bfb8370";
             src = pkgs.fetchurl {
               url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb";
-              sha256 = "sha256-qDiW6FnaoR1SLthx7seE3OBXVyTbDjw4TGn6ZJjrKKg=";
+              sha256 = "sha256-ku16UwIAAdtMO1ju07DwuWzfDLg/BjqauWhVDl68/DI=";
             };
           });
         };
@@ -97,7 +97,7 @@
       enable = true;
     };
     audiobookshelf = {
-      enable = true;
+      enable = false;
       port = 8000;
       host = "0.0.0.0";
       openFirewall = true;
