@@ -16,6 +16,7 @@ in
     ../fonts.nix
     ../terminal.nix
     ../dark-mode.nix
+    ../forge.nix
 
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
@@ -72,9 +73,9 @@ in
       # NIXOS_OZONE_WL = "1";
       # ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-      XDG_SESSION_TYPE = "wayland";
+      # XDG_CURRENT_DESKTOP = "Hyprland";
+      # XDG_SESSION_DESKTOP = "Hyprland";
+      # XDG_SESSION_TYPE = "wayland";
 
       # OpenGL variable refresh rate
       __GL_VRR_ALLOWED = "1";
