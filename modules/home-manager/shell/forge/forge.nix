@@ -12,7 +12,7 @@
       };
 
       "org/gnome/shell/keybindings" = {
-        toggle-overview = [ "<Super>space" ];
+        toggle-overview = [ ];
 
         "switch-to-application-1" = [ ];
         "switch-to-application-2" = [ ];
@@ -37,15 +37,14 @@
         "switch-to-workspace-7" = [ "<Super>7" ];
         "switch-to-workspace-8" = [ "<Super>8" ];
         "switch-to-workspace-9" = [ "<Super>9" ];
+
+        toggle-fullscreen = [ "<Super>f" ];
       };
 
       "org/gnome/desktop/wm/preferences" = {
         num-workspaces = 10;
+        resize-with-right-button = true;
       };
-
-      # "org/gnome/mutter" = {
-      #   overlay-key = "<Super>space";
-      # };
 
       "org/gnome/shell/exntensions/forge" = {
         window-gap-size = 2;
@@ -60,6 +59,7 @@
         window-move-right = [ "<Alt><Super>l" ];
 
         window-toggle-float = [ "<Super>v" ];
+        window-swap-last-active = [ ];
       };
     };
   };

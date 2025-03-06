@@ -16,7 +16,7 @@ in
     ../fonts.nix
     ../terminal.nix
     ../dark-mode.nix
-    ../forge.nix
+    ../gnome-extra.nix
 
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
