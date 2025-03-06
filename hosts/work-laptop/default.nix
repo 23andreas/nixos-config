@@ -37,6 +37,9 @@ in
         nixSettingsAllowed = true;
         envVarFiles = {
           ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
+          OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
+          GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
+          TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
         };
       };
     };
@@ -46,6 +49,15 @@ in
     secrets = {
       "users/andreas/hashed-password".neededForUsers = true;
       "users/andreas/anthropic-api-key" = {
+        owner = "andreas";
+      };
+      "users/andreas/openai-api-key" = {
+        owner = "andreas";
+      };
+      "users/andreas/groq-api-key" = {
+        owner = "andreas";
+      };
+      "users/andreas/tavily-api-key" = {
         owner = "andreas";
       };
       "${hostname}/cachix-credentials-file" = { };
@@ -59,7 +71,7 @@ in
   environment.systemPackages = with pkgs; [
     power-profiles-daemon
   ];
-  
+
   virtualisation.docker.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
