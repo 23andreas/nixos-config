@@ -18,5 +18,11 @@ in
     wayland.windowManager.hyprland.enable = true;
     # used for processing hyprctl json output in keybindings
     programs.jq.enable = true;
+
+    home.sessionVariables = {
+      XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+      XDG_CURRENT_DESKTOP = "Hyprland";
+    };
   };
 }
