@@ -28,7 +28,7 @@
     walker.url = "github:abenz1267/walker";
     catppuccin.url = "github:catppuccin/nix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    # zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   nixConfig = {
@@ -42,12 +42,24 @@
     ];
   };
 
-  outputs = { self, nixpkgs, disko, nixos-hardware, cachix-deploy, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      disko,
+      nixos-hardware,
+      cachix-deploy,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       cachix-deploy-lib = cachix-deploy.lib pkgs;
-      cachixDeployments = [ "server" "work-laptop" "home-desktop" ];
+      cachixDeployments = [
+        "server"
+        "work-laptop"
+        "home-desktop"
+      ];
     in
     {
       nixosConfigurations = {
@@ -65,7 +77,14 @@
         work-laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ (import ./hosts/work-laptop) ];
-          specialArgs = { inherit self inputs disko nixos-hardware; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              disko
+              nixos-hardware
+              ;
+          };
         };
 
         server = nixpkgs.lib.nixosSystem {
@@ -77,19 +96,18 @@
 
       packages.${system} = {
         cachix-deploy-spec = cachix-deploy-lib.spec {
-          agents = inputs.nixpkgs.lib.genAttrs
-            cachixDeployments
-            (attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel);
+          agents = inputs.nixpkgs.lib.genAttrs cachixDeployments (
+            attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel
+          );
         };
       };
 
       top =
         let
-          nixtop = inputs.nixpkgs.lib.genAttrs
-            (builtins.attrNames inputs.self.nixosConfigurations)
-            (attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel);
+          nixtop = inputs.nixpkgs.lib.genAttrs (builtins.attrNames inputs.self.nixosConfigurations) (
+            attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel
+          );
         in
         nixtop;
     };
 }
-
