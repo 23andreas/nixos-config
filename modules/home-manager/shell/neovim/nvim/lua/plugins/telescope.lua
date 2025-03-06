@@ -40,12 +40,12 @@ return {
           "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
           desc = "Switch Buffer",
         },
-        -- {
-        --   "<leader><leader>",
-        --   mode = "n",
-        --   function() require("telescope.builtin").find_files() end,
-        --   desc = "find files"
-        -- },
+        {
+          "<leader><leader>",
+          mode = "n",
+          function() require("telescope.builtin").find_files() end,
+          desc = "find files"
+        },
         {
           "<leader>fg",
           mode = "n",
