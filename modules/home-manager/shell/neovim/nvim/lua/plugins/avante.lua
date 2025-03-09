@@ -4,30 +4,20 @@ return {
   lazy = false,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
-    -- add any opts here
-    -- for example
     provider = "openai",
-    -- auto_suggestions_provider = "openai",
     cursor_applying_provider = 'groq',
     openai = {
       endpoint = "https://api.openai.com/v1",
-      model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
-      timeout = 30000,       -- timeout in milliseconds
-      temperature = 0,       -- adjust if needed
-      max_tokens = 4096,
-      -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
-    },
-    claude = {
-      endpoint = "https://api.anthropic.com",
-      model = "claude-3-7-sonnet-latest",
+      model = "gpt-4o",
+      timeout = 30000,
       temperature = 0,
       max_tokens = 4096,
     },
     rag_service = {
       enabled = true
     },
-    behavior = {
-      enable_cursor_planning_mode = true,
+    behaviour = {
+      enable_cursor_planning_mode = true
     },
     hints = {
       enabled = false,
@@ -36,12 +26,12 @@ return {
       provider = "tavily",
     },
     vendors = {
-      groq = { -- define groq provider
+      groq = {
         __inherited_from = 'openai',
-        api_key_name = 'nvim',
+        api_key_name = 'GROQ_API_KEY',
         endpoint = 'https://api.groq.com/openai/v1/',
         model = 'llama-3.3-70b-versatile',
-        max_tokens = 52768, -- remember to increase this value, otherwise it will stop generating halfway
+        max_tokens = 32768,
       },
     }
   },
