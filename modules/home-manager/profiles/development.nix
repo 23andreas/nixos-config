@@ -32,6 +32,7 @@ in
       # atlas
       # mongodb-compass
       mermerd
+      aider-chat
     ];
 
     programs.bat = {
