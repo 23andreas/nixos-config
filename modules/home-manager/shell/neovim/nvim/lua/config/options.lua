@@ -44,7 +44,6 @@ vim.opt.smartcase = true
 -- vim.opt.autoindent = true
 vim.opt.smartindent = false
 
-
 -- Hide command line
 vim.o.cmdheight = 0
 
@@ -78,3 +77,7 @@ vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSig
 --   end,
 --   { nargs = 1 }
 -- )
+--
+
+-- Set the diff options
+vim.opt.diffopt:append("internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram")
