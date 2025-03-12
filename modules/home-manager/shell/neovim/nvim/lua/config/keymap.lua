@@ -56,3 +56,6 @@ vim.keymap.set("n", "<ESC>", ":noh<CR>", { silent = true })
 -- Git browse
 -- vim.keymap.set({ 'n', 'v' }, '<leader>ho', vim.cmd.GBrowse, { desc = "Open in github" })
 -- vim.keymap.set({ 'n', 'v' }, '<leader>hO', ":GBrowse origin/master:%<CR>", { desc = "Open in github master" })
+
+-- ESC in terminal
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
