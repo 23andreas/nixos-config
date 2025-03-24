@@ -29,6 +29,11 @@ in
       koodo-reader
     ];
 
+    programs.chromium = {
+      enable = true;
+      package = pkgs.brave;
+    };
+
     programs.firefox = {
       enable = true;
       package = pkgs.firefox.override {
