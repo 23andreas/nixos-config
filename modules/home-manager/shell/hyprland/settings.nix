@@ -9,7 +9,6 @@
       "col.active_border" = "$lavender";
       # "col.inactive_border" = "0x00000000";
 
-      border_part_of_window = false;
       no_border_on_floating = false;
     };
 
@@ -43,6 +42,7 @@
       # };
       dim_inactive = true;
       dim_strength = 0.17;
+      # border_part_of_window = false;
     };
 
     # opengl = {
