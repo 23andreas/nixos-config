@@ -1,25 +1,3 @@
-local prompts = require('CopilotChat.config.prompts')
-
-local COPILOT_PLAN = [[
-You are a software architect and technical planner focused on clear, actionable development plans.
-]] .. prompts.COPILOT_BASE.system_prompt .. [[
-
-When creating development plans:
-
-- Start with a high-level overview
-- Break down into concrete implementation steps
-- Identify potential challenges and their solutions
-- Consider architectural impacts
-- Note required dependencies or prerequisites
-- Estimate complexity and effort levels
-- Track confidence percentage (0-100%)
-- Format in markdown with clear sections
-
-Always end with:
-"Current Confidence Level: X%"
-"Would you like to proceed with implementation?" (only if confidence >= 90%)
-]]
-
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -27,53 +5,63 @@ return {
       { "github/copilot.vim" },
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
-    -- build = "make tiktoken",
-    opts = {
-      question_header = "##   User ",
-      answer_header = "##   Copilot ",
-      error_header = "##   Error ",
-      separator = "―――――――",
-      -- show_folds = false,
-      -- context = "buffer",
-      highlight_headers = false,
-      mappings = {
-        reset = {
-          normal = '<C-x>',
-          insert = '<C-x>',
-        }
-      },
-      {
-        window = {
-          layout = 'float',
-          relative = 'cursor',
-          width = 1,
-          height = 0.4,
-          row = 1
-        }
-      },
-      prompts = {
-        Plan = {
-          prompt =
-          'Create or update the development plan for the selected code. Focus on architecture, implementation steps, and potential challenges.',
-          system_prompt = COPILOT_PLAN,
-          context = 'file:.copilot/plan.md',
-          progress = function()
-            return false
-          end,
-          callback = function(response, source)
-            chat.chat:append('Plan updated successfully!', source.winnr)
-            local plan_file = source.cwd() .. '/.copilot/plan.md'
-            local dir = vim.fn.fnamemodify(plan_file, ':h')
-            vim.fn.mkdir(dir, 'p')
-            local file = io.open(plan_file, 'w')
-            if file then
-              file:write(response)
-              file:close()
-            end
-          end,
+    opts = function()
+      local chat = require('CopilotChat')
+      local prompts = require('CopilotChat.config.prompts')
+
+      local COPILOT_PLAN = [[
+      You are a software architect and technical planner focused on clear, actionable development plans.
+      ]] .. prompts.COPILOT_BASE.system_prompt .. [[
+
+      When creating development plans:
+
+      - Start with a high-level overview
+      - Break down into concrete implementation steps
+      - Identify potential challenges and their solutions
+      - Consider architectural impacts
+      - Note required dependencies or prerequisites
+      - Estimate complexity and effort levels
+      - Track confidence percentage (0-100%)
+      - Format in markdown with clear sections
+
+      Always end with:
+      "Current Confidence Level: X%"
+      "Would you like to proceed with implementation?" (only if confidence >= 90%)
+      ]]
+      return {
+        mappings = {
+          show_diff = {
+            full_diff = true
+          },
+          reset = {
+            normal = '<C-x>',
+            insert = '<C-x>',
+          }
         },
-      },
-    },
+        prompts = {
+          Plan = {
+            prompt =
+            'Create or update the development plan for the selected code. Focus on architecture, implementation steps, and potential challenges.',
+            system_prompt = COPILOT_PLAN,
+            context = 'file:.copilot/plan.md',
+            progress = function()
+              return false
+            end,
+            callback = function(response, source)
+              chat.chat:append('Plan updated successfully!', source.winnr)
+              local plan_file = source.cwd() .. '/.copilot/plan.md'
+              local dir = vim.fn.fnamemodify(plan_file, ':h')
+              vim.fn.mkdir(dir, 'p')
+              local file = io.open(plan_file, 'w')
+              if file then
+                file:write(response)
+                file:close()
+              end
+            end,
+          },
+        },
+      }
+    end,
     keys = {
       {
         "<leader>ii",
