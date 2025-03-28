@@ -1,3 +1,25 @@
+local prompts = require('CopilotChat.config.prompts')
+
+local COPILOT_PLAN = [[
+You are a software architect and technical planner focused on clear, actionable development plans.
+]] .. prompts.COPILOT_BASE.system_prompt .. [[
+
+When creating development plans:
+
+- Start with a high-level overview
+- Break down into concrete implementation steps
+- Identify potential challenges and their solutions
+- Consider architectural impacts
+- Note required dependencies or prerequisites
+- Estimate complexity and effort levels
+- Track confidence percentage (0-100%)
+- Format in markdown with clear sections
+
+Always end with:
+"Current Confidence Level: X%"
+"Would you like to proceed with implementation?" (only if confidence >= 90%)
+]]
+
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -30,19 +52,25 @@ return {
         }
       },
       prompts = {
-        CommitStaged = {
-          prompt = [[
-            Write commit message for the change with commitizen convention.
-            MAKE SURE the title has MAXIMUM 50 characters (INCLUDING the conventional commits prefix) and message is WRAPPED at 72 characters.
-            The message should only contain SUCCINT, terse bullet points starting with '-'.
-            You should strive to avoid being redundant across bulletpoints.
-            One feature should most times have only one bullet point.
-            When writing a bullet point about neovim plugins, make sure to mention the name of the plugin.
-            Wrap the whole message in code block with language gitcommit.
-            Once you're done with the bullet points, DO NOT write anything else.
-            Very important points to remember: be SUCCINT, make sure the title is under 50 characters, and that the bullet points are wrapped at 72 characters.
-        ]],
-          selection = function() return require("CopilotChat.select").gitdiff() end,
+        Plan = {
+          prompt =
+          'Create or update the development plan for the selected code. Focus on architecture, implementation steps, and potential challenges.',
+          system_prompt = COPILOT_PLAN,
+          context = 'file:.copilot/plan.md',
+          progress = function()
+            return false
+          end,
+          callback = function(response, source)
+            chat.chat:append('Plan updated successfully!', source.winnr)
+            local plan_file = source.cwd() .. '/.copilot/plan.md'
+            local dir = vim.fn.fnamemodify(plan_file, ':h')
+            vim.fn.mkdir(dir, 'p')
+            local file = io.open(plan_file, 'w')
+            if file then
+              file:write(response)
+              file:close()
+            end
+          end,
         },
       },
     },
