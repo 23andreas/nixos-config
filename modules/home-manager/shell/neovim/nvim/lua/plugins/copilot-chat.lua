@@ -29,6 +29,7 @@ return {
       "Would you like to proceed with implementation?" (only if confidence >= 90%)
       ]]
       return {
+        highlight_headers = false,
         mappings = {
           show_diff = {
             full_diff = true
@@ -88,6 +89,16 @@ return {
         end,
         desc = "Quick chat",
       }
-    }
+    },
+    config = function(_, opts)
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "copilot-*",
+        callback = function()
+          vim.opt_local.number = false
+          vim.opt_local.relativenumber = false
+        end,
+      })
+      require("CopilotChat").setup(opts)
+    end,
   },
 }
