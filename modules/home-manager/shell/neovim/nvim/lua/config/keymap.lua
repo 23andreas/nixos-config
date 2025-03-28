@@ -26,6 +26,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<leader>bw", ":w<CR>", { desc = "Buffer write" })
 vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format({ async = false }) end, { desc = "Buffer format" })
 
+-- Toggle line wrap
+vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrap" })
+
 -- Navigate windows
 vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
