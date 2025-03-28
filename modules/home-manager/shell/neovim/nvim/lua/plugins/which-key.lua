@@ -16,6 +16,7 @@ return {
         -- { "<leader>r", group = "Refactor" },
         { "<leader>x", group = "Diagnostics" },
         { "<leader>i", group = "Copilot" },
+        { "<leader>a", group = "AI" },
       })
     end,
   }
