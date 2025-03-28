@@ -50,6 +50,9 @@ vim.o.cmdheight = 0
 -- Always display sign column, prevent window from "jumping"
 vim.o.signcolumn = "yes";
 
+-- Split right
+vim.opt.splitright = true
+
 vim.diagnostic.config({
   underline = false,
   update_in_insert = false,
