@@ -17,22 +17,19 @@ in
     home.packages = with pkgs; [
       vim
       lazygit
+      aider-chat
 
-      nixpkgs-fmt
       direnv
-      postman
-
-      # awscli2
-      # kubectl
-
       devenv
+      nixpkgs-fmt
+
+      postman
       beekeeper-studio
 
       turso-cli
-      # atlas
-      # mongodb-compass
-      mermerd
-      aider-chat
+
+      kubectl
+      kubeseal
     ];
 
     programs.bat = {
