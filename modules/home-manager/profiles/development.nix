@@ -24,7 +24,8 @@ in
       nixpkgs-fmt
 
       postman
-      beekeeper-studio
+      # Using EOL electron
+      # beekeeper-studio
 
       turso-cli
 
