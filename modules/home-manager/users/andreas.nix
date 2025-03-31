@@ -18,7 +18,7 @@ in
     ../dark-mode.nix
     ../gnome-extra.nix
 
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   catppuccin = {
