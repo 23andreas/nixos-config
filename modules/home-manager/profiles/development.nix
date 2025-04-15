@@ -31,6 +31,8 @@ in
 
       kubectl
       kubeseal
+
+      goose-cli
     ];
 
     programs.bat = {
