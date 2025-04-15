@@ -2,7 +2,8 @@
 return {
   {
     "aweis89/ai-terminals.nvim",
---  AI? What does this do?
+--  Plugin that integrates AI tools (Claude, Goose, Aider) directly into Neovim
+--  Provides terminal toggles, code/diagnostics sharing, and theme synchronization
     dependencies = { "folke/snacks.nvim" },
     opts = {
       terminals = {
