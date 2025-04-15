@@ -57,7 +57,7 @@ in
       ];
 
       bind = [
-        "$mod, Space, exec, pgrep walker && pkill walker || walker"
+        "$mod, Space, exec, ${uwsm} walker"
         "$mod, Return, exec, ${uwsm} kitty"
         "$mod, semicolon, exec, ${uwsm} google-chrome-stable --profile-directory='Default'"
         "$mod+Alt, semicolon, exec, ${uwsm} google-chrome-stable --profile-directory='Profile 1'"
