@@ -28,6 +28,8 @@
     walker.url = "github:abenz1267/walker";
     catppuccin.url = "github:catppuccin/nix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    mcp-hub.url = "github:ravitemer/mcp-hub";
+    mcp-servers-nix.url = "github:natsukium/mcp-servers-nix";
     # zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
