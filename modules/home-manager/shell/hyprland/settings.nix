@@ -40,8 +40,8 @@
       # shadow = {
       #   enabled = true;
       # };
-      dim_inactive = true;
-      dim_strength = 0.17;
+      # dim_inactive = true;
+      # dim_strength = 0.17;
       # border_part_of_window = false;
     };
 
@@ -102,7 +102,7 @@
     exec-once = [
       # "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
-      "waybar &"
+      # "waybar &"
       "swaync &"
       "hyprpaper &"
       "avizo-service &"

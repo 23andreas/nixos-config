@@ -11,10 +11,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.waybar = {
       enable = true;
+      systemd.enable = true;
     };
-
-    # programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
-    #   mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
-    # });
   };
 }
