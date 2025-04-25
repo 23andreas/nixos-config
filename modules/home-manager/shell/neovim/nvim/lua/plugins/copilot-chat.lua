@@ -29,6 +29,7 @@ return {
       "Would you like to proceed with implementation?" (only if confidence >= 90%)
       ]]
       return {
+        model = "claude-3.7-sonnet",
         highlight_headers = false,
         mappings = {
           show_diff = {
@@ -72,11 +73,20 @@ return {
         desc = "Toggle"
       },
       {
+        "<leader>ii",
+        function()
+          require("CopilotChat").toggle()
+        end,
+        mode = "v",
+        desc = "Toggle"
+      },
+      {
         "<leader>iu",
         function()
           local actions = require("CopilotChat.actions")
           require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
         end,
+        mode = { "v", "n" },
         desc = "Prompt actions",
       },
       {
@@ -87,6 +97,7 @@ return {
             require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
           end
         end,
+        mode = { "v", "n" },
         desc = "Quick chat",
       }
     },
