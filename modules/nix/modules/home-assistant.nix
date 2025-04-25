@@ -29,7 +29,7 @@
       };
       # satellite = {
       #   enable = true;
-      #   name = "nixos satellite";
+      #   # name = "nixos satellite";
       #   user = "wyoming";
       #   uri = "tcp://0.0.0.0:10700";
       #   sounds.awake = builtins.fetchurl {
@@ -40,12 +40,12 @@
       #     url = "https://github.com/rhasspy/wyoming-satellite/raw/master/sounds/done.wav";
       #     sha256 = "0ld9264nidcqxhvnc56gg3jyvpqsc2b2vb48kpx7f2l6z95r2p5w";
       #   };
-      #   extraArgs = [
-      #     "--debug"
-      #     "--wake-word-name=ok_nabu"
-      #     "--wake-uri=tcp://127.0.0.1:10400"
-      #   ];
-      # };      # openwakeword = {
+      #   # extraArgs = [
+      #   #   "--debug"
+      #   #   "--wake-word-name=ok_nabu"
+      #   #   "--wake-uri=tcp://127.0.0.1:10400"
+      #   # ];
+      # };
       openwakeword = {
         enable = true;
         uri = "tcp://0.0.0:10400";
@@ -60,7 +60,7 @@
           enable = true;
           device = "cpu";
           language = "no";
-          model = "NbAiLab/nb-whisper-small";
+          model = "small-int8";
           uri = "tcp://0.0.0.0:10300";
         };
       };
@@ -132,6 +132,12 @@
 
       customComponents = with pkgs.home-assistant-custom-components; [
         adaptive_lighting
+      ];
+
+      customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+        bubble-card
+        vacuum-card
+        clock-weather-card
       ];
 
       config = {

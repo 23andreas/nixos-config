@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -17,7 +18,6 @@ in
     home.packages = with pkgs; [
       vim
       lazygit
-      aider-chat
 
       direnv
       devenv
@@ -27,13 +27,19 @@ in
       # Using EOL electron
       # beekeeper-studio
 
-      turso-cli
-
       kubectl
       kubeseal
 
       goose-cli
+      aider-chat
+      codex
+      inputs.mcp-hub.packages."${system}".default
     ];
+
+    xdg.configFile."mcp-hub" = {
+      source = ./servers.json;
+      target = "mcp-hub/servers.json";
+    };
 
     programs.bat = {
       enable = true;

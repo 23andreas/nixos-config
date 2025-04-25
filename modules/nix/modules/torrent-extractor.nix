@@ -1,4 +1,5 @@
-{ pkgs, ...}:
+# TODO fix this
+{ pkgs, ... }:
 
 let
   torrentExtractor = pkgs.writeScriptBin "torrent-extractor" ''
@@ -28,7 +29,6 @@ let
         extract "$i"
       fi
     done
-
   '';
 in
 {
@@ -39,4 +39,3 @@ in
     torrentExtractor
   ];
 }
-
