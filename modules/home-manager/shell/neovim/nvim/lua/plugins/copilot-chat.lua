@@ -29,7 +29,7 @@ return {
       "Would you like to proceed with implementation?" (only if confidence >= 90%)
       ]]
       return {
-        model = "claude-3.7-sonnet",
+        model = "gpt-4.1",
         highlight_headers = false,
         mappings = {
           show_diff = {
@@ -70,14 +70,7 @@ return {
         function()
           require("CopilotChat").toggle()
         end,
-        desc = "Toggle"
-      },
-      {
-        "<leader>ii",
-        function()
-          require("CopilotChat").toggle()
-        end,
-        mode = "v",
+        mode = { "n", "v" },
         desc = "Toggle"
       },
       {
