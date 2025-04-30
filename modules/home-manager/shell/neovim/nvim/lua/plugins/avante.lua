@@ -26,7 +26,7 @@ return {
       max_tokens = 4096,
     },
     rag_service = {
-      enabled = true
+      enabled = false
     },
     behaviour = {
       enable_cursor_planning_mode = true
