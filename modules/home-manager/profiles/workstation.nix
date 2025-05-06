@@ -42,6 +42,10 @@ in
         ];
       };
     };
+    
+    # Workaround for
+    # https://github.com/catppuccin/nix/issues/552
+    catppuccin.mako.enable = false;
 
     nixosConfig = {
       app = {
