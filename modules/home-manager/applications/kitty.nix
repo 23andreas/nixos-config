@@ -34,6 +34,9 @@ in
         # background_blur = 60;
         font_size = "10.8";
         # modify_font = "cell_height 110%";
+
+        cursor_trail = 1;
+        cursor_trail_decay = "0.1 0.3";
       };
       shellIntegration.enableFishIntegration = true;
     };

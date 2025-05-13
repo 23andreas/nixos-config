@@ -25,7 +25,7 @@
     };
 
     windowrulev2 = [
-      "move 0 0,title:^(is sharing your screen)(.*)$"
+      # "move 0 0,title:^(is sharing your screen)(.*)$"
       # "pseudo,onworkspace:w[t1]"
       # "size 70% 100%,onworkspace:w[t1]"
       # "tile,onworkspace:w[t>1]"
