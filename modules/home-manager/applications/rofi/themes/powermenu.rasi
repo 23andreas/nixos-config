@@ -31,7 +31,7 @@ window {
 }
 
 mainbox {
-  padding: 20px;
+  padding: 10px;
   spacing: 10px;
 }
 
@@ -41,7 +41,7 @@ inputbar {
 
 listview {
   columns: 1;
-  spacing: 8px;
+  spacing: 4px;
   lines: 5;
   fixed-height: true;
   fixed-columns: true;
