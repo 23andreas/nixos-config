@@ -150,6 +150,7 @@ return {
           },
           oldfiles = {
             sort_lastused = true,
+            cwd_only = true,
           },
         },
         extensions = {
