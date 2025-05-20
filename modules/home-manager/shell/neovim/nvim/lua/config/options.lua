@@ -84,3 +84,7 @@ vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSig
 
 -- Set the diff options
 vim.opt.diffopt:append("internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram")
+vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
+
+-- Copilot chat autocompletionv
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup" }
