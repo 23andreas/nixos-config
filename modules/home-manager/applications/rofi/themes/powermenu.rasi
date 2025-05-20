@@ -1,0 +1,67 @@
+* {
+  font: "SFProText Nerd Font 12";
+  bg0: #1f1f1f80;
+  bg1: #202020bf;
+  bg2: #2c2c2c;
+  bg3: #393939bf;
+  fg0: #ffffff;
+  fg1: #cecece;
+  accent: #60cdff;
+  urgent: @accent;
+
+  background-color: transparent;
+  text-color: @fg0;
+
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+element-text {
+  cursor: pointer;
+  vertical-align: 0.5;
+  text-color: inherit;
+}
+
+window {
+  location: center;
+  width: 200px;
+  // height: 300px;
+  background-color: @bg1;
+}
+
+mainbox {
+  padding: 20px;
+  spacing: 10px;
+}
+
+inputbar {
+  enabled: false;
+}
+
+listview {
+  columns: 1;
+  spacing: 8px;
+  lines: 5;
+  fixed-height: true;
+  fixed-columns: true;
+}
+
+element {
+  spacing: 1em;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+element normal active {
+  text-color: @accent;
+}
+
+element selected active {
+  text-color: @accent;
+}
+
+element selected {
+  background-color: @bg3;
+}
+

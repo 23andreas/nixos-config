@@ -27,6 +27,8 @@ in
       todoist-electron
       # inputs.zen-browser.packages."${system}".default
       koodo-reader
+
+      wl-clipboard
     ];
 
     programs.chromium = {
@@ -34,30 +36,40 @@ in
       package = pkgs.brave;
     };
 
-    programs.firefox = {
-      enable = true;
-      package = pkgs.firefox.override {
-        nativeMessagingHosts = [
-          pkgs.tridactyl-native
-        ];
-      };
-    };
-    
+    # programs.firefox = {
+    #   enable = true;
+    #   package = pkgs.firefox.override {
+    #     nativeMessagingHosts = [
+    #       pkgs.tridactyl-native
+    #     ];
+    #   };
+    # };
+
     # Workaround for
     # https://github.com/catppuccin/nix/issues/552
     catppuccin.mako.enable = false;
+
+    services.clipse = {
+      enable = true;
+      imageDisplay = {
+        type = "sixel";
+      };
+    };
 
     nixosConfig = {
       app = {
         waybar.enable = true;
         swaync.enable = true;
-        walker.enable = true;
+        # walker.enable = true;
+        rofi.enable = true;
+        rbw.enable = true;
         kitty = {
           enable = true;
           isDefaultTerminal = true;
         };
 
-        fuzzel.enable = true;
+        # TODO Disable this in favor of ROFI
+        # fuzzel.enable = true;
 
         spotify = {
           enable = true;

@@ -63,8 +63,6 @@ in
     home.packages = with pkgs; [
       ripgrep
       nodejs
-      wl-clipboard
-      cliphist
 
       lua-language-server
       typescript-language-server

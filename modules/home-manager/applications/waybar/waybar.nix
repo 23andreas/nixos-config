@@ -9,6 +9,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # catppuccin.waybar.enable = false;
+
     programs.waybar = {
       enable = true;
       systemd.enable = true;

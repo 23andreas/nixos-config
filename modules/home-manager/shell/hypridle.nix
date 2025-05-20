@@ -14,8 +14,8 @@ in
 
       settings = {
         general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
-          before_sleep_cmd = "loginctl lock-session";
+          lock_cmd = "gnome-screensaver-command -l";
+          before_sleep_cmd = "gnome-screensaver-command -l";
           # after_sleep_cmd = "hyprctl dispatch dpms on";
         };
 

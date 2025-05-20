@@ -1,5 +1,10 @@
 {
   wayland.windowManager.hyprland.settings = {
+    ecosystem = {
+      no_update_news = true;
+      no_donation_nag = true;
+    };
+
     general = {
       gaps_in = 2;
       gaps_out = 4;
@@ -25,10 +30,14 @@
     };
 
     windowrulev2 = [
-      # "move 0 0,title:^(is sharing your screen)(.*)$"
-      # "pseudo,onworkspace:w[t1]"
-      # "size 70% 100%,onworkspace:w[t1]"
-      # "tile,onworkspace:w[t>1]"
+      "float, class:(clipse)"
+      "size 622 652, class:(clipse)"
+      "stayfocused, class:(clipse)"
+
+      "float, class:(com.gabm.satty)"
+      "size 1300 800, class:(com.gabm.satty)"
+
+      "move 0 0,title:^(meet.google.com is sharing)(.*)$"
     ];
 
     # workspace = [
@@ -40,8 +49,8 @@
       # shadow = {
       #   enabled = true;
       # };
-      # dim_inactive = true;
-      # dim_strength = 0.17;
+      dim_inactive = true;
+      dim_strength = 0.17;
       # border_part_of_window = false;
     };
 
@@ -82,6 +91,7 @@
     misc = {
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
+      middle_click_paste = false;
     };
 
     render = {
@@ -100,14 +110,13 @@
     # ];
 
     exec-once = [
-      # "hash dbus-update-activation-environment 2>/dev/null &"
       "dbus-update-activation-environment --systemd &"
-      # "waybar &"
-      "swaync &"
       "hyprpaper &"
+      "swaync &"
       "avizo-service &"
-      "[workspace 8 silent] uwsm app -- todoist-electron"
-      "[workspace 9 silent] uwsm app -- 1password"
+      "clipse -listen"
+      # "[workspace 8 silent] uwsm app -- todoist-electron"
+      # "[workspace 9 silent] uwsm app -- 1password"
       "[workspace 10 silent] uwsm app -- spotify"
     ];
   };
