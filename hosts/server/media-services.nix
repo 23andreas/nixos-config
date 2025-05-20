@@ -57,6 +57,7 @@
             "WebUI\\Address" = "0.0.0.0";
           };
         };
+        maxMemory = "8G";
         user = "qbittorrent";
         group = "media";
       };

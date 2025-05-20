@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.services.qbittorrent;
@@ -30,7 +35,7 @@ in
           Preferences = {
             "Connection\\PortRangeMin" = 20082;
             "Downloads\\SavePath" = "/mnt";
-            "WebUI\\UseUPnP"= false;
+            "WebUI\\UseUPnP" = false;
           };
         };
         description = ''
@@ -64,6 +69,15 @@ in
           The directory where qBittorrent will create files.
         '';
       };
+
+      maxMemory = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = ''
+          Maximum memory limit for the qBittorrent service (e.g., "512M", "1G").
+          Sets the MemoryMax directive in systemd.
+        '';
+      };
     };
   };
   config = mkIf cfg.enable {
@@ -85,8 +99,8 @@ in
           set -o pipefail
 
           mkdir -p $HOME/.config/qBittorrent/config
-          echo ${escapeShellArg (
-            generators.toINI { } cfg.settings)
+          echo ${
+            escapeShellArg (generators.toINI { } cfg.settings)
           } | crudini --merge $HOME/.config/qBittorrent/config/qBittorrent.conf
         '';
         ExecStart = pkgs.writeShellScript "qbittorrent-start" ''
@@ -102,7 +116,7 @@ in
         IOSchedulingClass = "idle";
         IOSchedulingPriority = "7";
         LimitNOFILE = "infinity";
-      };
+      } // (if cfg.maxMemory != null then { MemoryMax = cfg.maxMemory; } else { });
     };
     environment.systemPackages = with pkgs; [ cfg.package ];
 
@@ -117,4 +131,3 @@ in
     };
   };
 }
-
