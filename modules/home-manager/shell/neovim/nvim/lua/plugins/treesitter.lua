@@ -59,7 +59,6 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-
       vim.treesitter.language.register('markdown', 'octo')
     end,
   },
@@ -100,63 +99,63 @@ return {
       -- )
     end
   },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-              ["al"] = "@loop.outer",
-              ["il"] = "@loop.inner",
-              ["ai"] = "@conditional.outer",
-              ["ii"] = "@conditional.inner",
-              ["a/"] = "@comment.outer",
-            },
-          },
-          move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-              ["]f"] = "@function.outer",
-              ["]a"] = "@parameter.inner",
-              ["]i"] = "@conditional.outer",
-              ["]l"] = "@loop.outer",
-            },
-            goto_next_end = {
-              ["]F"] = "@function.outer",
-            },
-            goto_previous_start = {
-              ["[f"] = "@function.outer",
-              ["[a"] = "@parameter.inner",
-              ["[i"] = "@conditional.outer",
-              ["[l"] = "@loop.outer",
-            },
-            goto_previous_end = {
-              ["[F"] = "@function.outer",
-            },
-          },
-          swap = {
-            enable = true,
-            swap_next = {
-              ["<leader>sa"] = "@parameter.inner",
-              ["<leader>sf"] = "@function.outer",
-            },
-            swap_previous = {
-              ["<leader>sA"] = "@parameter.inner",
-              ["<leader>sF"] = "@function.outer",
-            },
-          },
-        },
-      })
-    end
-  }
+  -- {
+  --   'nvim-treesitter/nvim-treesitter-textobjects',
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  --   config = function()
+  --     require('nvim-treesitter.configs').setup({
+  --       textobjects = {
+  --         select = {
+  --           enable = true,
+  --           lookahead = true,
+  --           keymaps = {
+  --             ["af"] = "@function.outer",
+  --             ["if"] = "@function.inner",
+  --             ["aa"] = "@parameter.outer",
+  --             ["ia"] = "@parameter.inner",
+  --             ["al"] = "@loop.outer",
+  --             ["il"] = "@loop.inner",
+  --             ["ai"] = "@conditional.outer",
+  --             ["ii"] = "@conditional.inner",
+  --             ["a/"] = "@comment.outer",
+  --           },
+  --         },
+  --         move = {
+  --           enable = true,
+  --           set_jumps = true,
+  --           goto_next_start = {
+  --             ["]f"] = "@function.outer",
+  --             ["]a"] = "@parameter.inner",
+  --             ["]i"] = "@conditional.outer",
+  --             ["]l"] = "@loop.outer",
+  --           },
+  --           goto_next_end = {
+  --             ["]F"] = "@function.outer",
+  --           },
+  --           goto_previous_start = {
+  --             ["[f"] = "@function.outer",
+  --             ["[a"] = "@parameter.inner",
+  --             ["[i"] = "@conditional.outer",
+  --             ["[l"] = "@loop.outer",
+  --           },
+  --           goto_previous_end = {
+  --             ["[F"] = "@function.outer",
+  --           },
+  --         },
+  --         swap = {
+  --           enable = true,
+  --           swap_next = {
+  --             ["<leader>sa"] = "@parameter.inner",
+  --             ["<leader>sf"] = "@function.outer",
+  --           },
+  --           swap_previous = {
+  --             ["<leader>sA"] = "@parameter.inner",
+  --             ["<leader>sF"] = "@function.outer",
+  --           },
+  --         },
+  --       },
+  --     })
+  --   end
+  -- }
 }
