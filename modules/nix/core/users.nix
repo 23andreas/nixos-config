@@ -1,4 +1,10 @@
-{ pkgs, config, inputs, lib, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  lib,
+  ...
+}:
 
 with lib;
 let
@@ -28,7 +34,7 @@ let
 
         sshAuthorizedKeys = mkOption {
           type = types.listOf types.str;
-          default = [];
+          default = [ ];
           description = "SSH Public keys to authorize for this user";
         };
 
@@ -59,10 +65,13 @@ let
     }
   );
 
-  usersWithHomeManager = filter (username: users.${username}.homeManagerFile != null) (builtins.attrNames users);
+  usersWithHomeManager = filter (username: users.${username}.homeManagerFile != null) (
+    builtins.attrNames users
+  );
   hasUsersWithHomeManager = length usersWithHomeManager > 0;
 
-in {
+in
+{
   options._23andreas.users = mkOption {
     type = userType;
     default = { };
@@ -82,11 +91,11 @@ in {
         map (username: {
           name = username;
           value = {
-              imports = [ users.${username}.homeManagerFile ];
-              home.username = username;
-              home.homeDirectory = "/home/${username}";
-              home.stateVersion = "23.11";
-              programs.home-manager.enable = true;
+            imports = [ users.${username}.homeManagerFile ];
+            home.username = username;
+            home.homeDirectory = "/home/${username}";
+            home.stateVersion = "23.11";
+            programs.home-manager.enable = true;
           };
         }) usersWithHomeManager
       );
@@ -108,9 +117,7 @@ in {
     );
 
     nix.settings.allowed-users = builtins.filter (
-      username:
-        users.${username} ? nixSettingsAllowed && users.${username}.nixSettingsAllowed
+      username: users.${username} ? nixSettingsAllowed && users.${username}.nixSettingsAllowed
     ) (builtins.attrNames users);
   };
 }
-

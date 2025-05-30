@@ -6,10 +6,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprpaper = {
+    #   url = "github:hyprwm/hyprpaper";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     disko = {
       url = "github:nix-community/disko";
@@ -25,22 +25,16 @@
     };
     cachix-deploy.url = "github:cachix/cachix-deploy-flake";
 
-    walker.url = "github:abenz1267/walker";
     catppuccin.url = "github:catppuccin/nix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    mcp-hub.url = "github:ravitemer/mcp-hub";
-    mcp-servers-nix.url = "github:natsukium/mcp-servers-nix";
-    # zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   nixConfig = {
     extra-substituters = [
       "https://23andreas.cachix.org"
-      "https://walker.cachix.org"
     ];
     extra-trusted-public-keys = [
       "23andreas.cachix.org-1:P9ng+DdiASGCO+NbxXnfeWPh66pvkb62xsRAN30JyTc="
-      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
     ];
   };
 
@@ -65,6 +59,7 @@
     in
     {
       nixosConfigurations = {
+
         iso = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ (import ./iso/nixos-installer-iso.nix) ];

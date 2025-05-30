@@ -1,13 +1,17 @@
 { ... }:
 
 {
+  # TODO Separate nix settings and system locale settings
   nix = {
     extraOptions = ''
       trusted-users = root andreas
     '';
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [
         "https://cache.nixos.org"
         "https://23andreas.cachix.org"
@@ -44,4 +48,3 @@
     LC_TIME = "nb_NO.UTF-8";
   };
 }
-

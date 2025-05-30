@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 
 let
   hostname = "home-desktop";
@@ -8,13 +13,15 @@ in
     ../../modules/nix/core
 
     ./hardware-configuration.nix
-    ./logitech-receiver-wake-on-suspend-fix.nix
+    # ./logitech-receiver-wake-on-suspend-fix.nix
 
     ../../modules/nix/presets/workstation.nix
 
     ../../modules/nix/hardware/nvidia.nix
     ../../modules/nix/hardware/intel.nix
     ../../modules/nix/hardware/ssd.nix
+
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   sops.secrets = {
@@ -36,27 +43,72 @@ in
     "${hostname}/ssh-key/public" = { };
   };
 
-  _23andreas = {
-    hostname = hostname;
-    users = {
-      andreas = {
-        homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
-        hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
-        groups = [
-          "networkmanager"
-          "docker"
-          "wheel"
-        ];
-        nixSettingsAllowed = true;
-        envVarFiles = {
-          ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
-          OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
-          GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
-          TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
-        };
+  users.users.andreas = {
+    isNormalUser = true;
+    createHome = true;
+    extraGroups = [
+      "networkmanager"
+      "docker"
+      "wheel"
+    ];
+    group = "users";
+    home = "/home/andreas";
+    shell = pkgs.fish;
+    hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
+  };
+
+  home-manager = {
+    users.andreas = {
+      home = {
+        username = "andreas";
+        homeDirectory = "/home/andreas";
+        stateVersion = "23.11";
+      };
+      imports = [
+        ../../modules/home-manager/users/andreas.nix
+        inputs.catppuccin.homeModules.catppuccin
+      ];
+    };
+    extraSpecialArgs = {
+      inputs = inputs;
+      envVarFiles = {
+        ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
+        OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
+        GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
+        TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
       };
     };
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
+
+  nix.settings.allowed-users = [
+    "andreas"
+  ];
+
+  networking.hostName = hostname;
+
+  # _23andreas = {
+  #   hostname = hostname;
+  #   users = {
+  #     andreas = {
+  #       # homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
+  #       hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
+  #       groups = [
+  #         "networkmanager"
+  #         "docker"
+  #         "wheel"
+  #       ];
+  #       nixSettingsAllowed = true;
+  #       envVarFiles = {
+  #         ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
+  #         OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
+  #         GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
+  #         TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
+  #       };
+  #     };
+  #   };
+  # };
 
   virtualisation.docker.enable = true;
 
@@ -71,11 +123,11 @@ in
     !include ${config.sops.secrets."${hostname}/github-access-token-file".path}
   '';
 
+  # TODO move this?
   environment.systemPackages = with pkgs; [
     os-prober
-    recyclarr
-
-    tdl
+    # recyclarr
+    # tdl
     veracrypt
   ];
 

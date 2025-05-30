@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  hostname = config._23andreas.hostname;
+  hostname = config.networking.hostName;
 in
 {
   services.cachix-agent = {
