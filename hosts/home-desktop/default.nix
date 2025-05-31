@@ -43,6 +43,13 @@ in
     veracrypt
   ];
 
+  programs.shell.envVarFiles = {
+    ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
+    OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
+    GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
+    TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
+  };
+
   home-manager = {
     users.andreas = {
       home = {
@@ -57,12 +64,6 @@ in
     };
     extraSpecialArgs = {
       inputs = inputs;
-      envVarFiles = {
-        ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
-        OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
-        GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
-        TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
-      };
     };
     useGlobalPkgs = true;
     useUserPackages = true;
