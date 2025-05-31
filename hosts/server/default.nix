@@ -7,34 +7,29 @@ in
     ./hardware-configuration.nix
     ./disk-config.nix
     ./media-services.nix
+
     ./nginx.nix
 
-    ../../modules/nix/core
+    ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/server.nix
+
     ../../modules/nix/modules/home-assistant.nix
-    ../../modules/nix/modules/glances.nix
   ];
 
-  _23andreas = {
-    hostname = hostname;
-    users = {
-      andreas = {
-        hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
-        groups = [
-          "networkmanager"
-          "wheel"
-          # "docker"
-        ];
-        nixSettingsAllowed = true;
-        # Can't get this to work with sops secrets..
-        # https://discourse.nixos.org/t/can-how-do-you-manage-ssh-authorized-keys-with-sops-nix/46467
-        # hardcoding pub keys for now
-
-        sshAuthorizedKeys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
-        ];
-      };
-    };
+  users.users.andreas = {
+    isNormalUser = true;
+    createHome = true;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    group = "users";
+    home = "/home/andreas";
+    shell = pkgs.fish;
+    hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
+    ];
   };
 
   # IDEAS
@@ -43,7 +38,6 @@ in
   # - fail2ban
   # - syslog
   # Firejail?
-  # eBooks?
   # Backups/Documents
 
   security.pam = {
@@ -52,10 +46,10 @@ in
   };
 
   # Move to sonarr?
-  nixpkgs.config.permittedInsecurePackages = [
-    "dotnet-sdk-6.0.428"
-    "aspnetcore-runtime-6.0.36"
-  ];
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "dotnet-sdk-6.0.428"
+  #   "aspnetcore-runtime-6.0.36"
+  # ];
 
   sops = {
     secrets = {
@@ -70,6 +64,8 @@ in
       };
     };
   };
+
+  networking.hostName = hostname;
 
   hardware.graphics = {
     enable = true;

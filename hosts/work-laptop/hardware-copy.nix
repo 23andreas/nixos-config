@@ -4,14 +4,8 @@
   ...
 }:
 
-let
-in
-# hostname = "work-laptop";
 {
-
   services.thermald.enable = true;
-
-  # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.graphics = {
     enable = true;

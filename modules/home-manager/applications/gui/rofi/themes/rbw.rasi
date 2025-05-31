@@ -1,0 +1,114 @@
+* {
+  font: "SFProText Nerd Font 12";
+  bg0: #1f1f1f80;
+  bg1: #202020bf;
+  bg2: #2c2c2c;
+  bg3: #393939bf;
+  fg0: #ffffff;
+  fg1: #cecece;
+  accent: #60cdff;
+  urgent: @accent;
+
+  background-color: transparent;
+  text-color: @fg0;
+
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+configuration {
+  show-icons: true;
+}
+
+element-icon {
+  cursor: pointer;
+  vertical-align: 0.5;
+  size: 1.5em;
+}
+
+element-text {
+  cursor: pointer;
+  vertical-align: 0.5;
+  text-color: inherit;
+}
+
+scrollbar {
+  cursor: pointer;
+}
+
+window {
+  location: center;
+  width: 1000px;
+  height: 800px;
+  background-color: @bg1;
+}
+
+mainbox {
+  padding: 24px;
+  spacing: 24px;
+}
+
+inputbar {
+  enabled: false;
+  padding: 8px;
+  spacing: 4px;
+  children: [ "entry" ];
+  background-color: @bg0;
+}
+
+icon-search {
+  vertical-align: 0.5;
+  expand: false;
+  filename: "search-symbolic";
+  size: 24px;
+}
+
+entry {
+  vertical-align: 0.5;
+  font: "SFProText Nerd Font 12";
+  placeholder-color: @fg1;
+}
+
+textbox {
+  padding: 4px 8px;
+  background-color: @bg2;
+}
+
+listview {
+  columns: 2;
+  spacing: 8px;
+  fixed-height: true;
+  fixed-columns: true;
+}
+
+element {
+  spacing: 1em;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+element normal urgent {
+  text-color: @urgent;
+}
+
+element normal active {
+  text-color: @accent;
+}
+
+element alternate active {
+  text-color: @accent;
+}
+
+element selected active {
+  text-color: @accent;
+}
+
+element selected {
+  background-color: @bg3;
+}
+
+element selected urgent {
+  background-color: @urgent;
+}
+

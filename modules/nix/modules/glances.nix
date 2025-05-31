@@ -5,7 +5,7 @@
     glances
   ];
 
-  users.groups.glances = {};
+  users.groups.glances = { };
   users.users.glances = {
     isSystemUser = true;
     description = "User for Glances service";
@@ -28,4 +28,3 @@
     };
   };
 }
-

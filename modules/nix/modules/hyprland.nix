@@ -1,9 +1,9 @@
 # https://github.com/sjcobb2022/nixos-config/blob/main/hosts/common/optional/greetd.nix
 { pkgs, ... }:
 
-let
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-in
+# let
+#   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+# in
 {
   programs.uwsm.enable = true;
 
@@ -12,26 +12,27 @@ in
     withUWSM = true;
   };
 
-  services.greetd = {
-    enable = false;
-    settings = {
-      default_session = {
-        command = "${tuigreet} --time --remember uwsm start hyprland-uwsm.desktop";
-        user = "greeter";
-      };
-    };
-  };
-
-  systemd.services.greetd.serviceConfig = {
-    Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "journal"; # Without this errors will spam on screen
-    # Without these bootlogs will spam on screen
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
-  };
+  # TODO move this
+  # services.greetd = {
+  #   enable = false;
+  #   settings = {
+  #     default_session = {
+  #       command = "${tuigreet} --time --remember uwsm start hyprland-uwsm.desktop";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
+  #
+  # systemd.services.greetd.serviceConfig = {
+  #   Type = "idle";
+  #   StandardInput = "tty";
+  #   StandardOutput = "tty";
+  #   StandardError = "journal"; # Without this errors will spam on screen
+  #   # Without these bootlogs will spam on screen
+  #   TTYReset = true;
+  #   TTYVHangup = true;
+  #   TTYVTDisallocate = true;
+  # };
 
   environment.systemPackages = [
     pkgs.hyprland-qtutils

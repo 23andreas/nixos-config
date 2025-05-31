@@ -3,10 +3,12 @@
 {
   imports = [
     ../modules/1password.nix
-    ../modules/hyprland.nix
-    ../modules/pipewire.nix
-    ../modules/polkit.nix
-    ../hardware/bluetooth.nix
     ../modules/gnome.nix
+    ../modules/hyprland.nix
+
+    ../system/audio.nix
+    ../system/fonts.nix
+    ../system/polkit.nix
+    ../system/shell.nix
   ];
 }

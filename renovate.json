@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+
+  // Enable the nix manager (currently beta)
+  "nix": {
+    "enabled": true
+  },
+
+  // (Optional) Keep flake.lock up to date on a schedule:
+  "lockFileMaintenance": {
+    "enabled": true,
+    "extends": ["schedule:weekly"]
+  }
+}
+

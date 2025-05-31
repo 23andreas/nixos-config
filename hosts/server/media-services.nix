@@ -5,6 +5,8 @@
     ../../modules/nix/modules/torrent-extractor.nix
   ];
 
+  # TODO fix this config
+
   users.groups.media = { };
 
   networking.firewall.allowedTCPPorts = [
