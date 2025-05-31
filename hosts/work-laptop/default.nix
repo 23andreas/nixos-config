@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  # nixos-hardware,
+  inputs,
   ...
 }:
 
@@ -10,39 +10,55 @@ let
 in
 {
   imports = [
-    ../../modules/nix/core
-
     ./hardware-configuration.nix
-    # ../../disk-config.nix
     ./disk-config.nix
+
+    ../../modules/nix/presets/core.nix
+    ../../modules/nix/presets/workstation.nix
 
     # 9530 is not added yet
     # nixos-hardware.nixosModules.dell-xps-15-9520
     ./hardware-copy.nix
-
-    ../../modules/nix/presets/workstation.nix
+    ../../modules/nix/hardware/bluetooth.nix
   ];
 
-  _23andreas = {
-    hostname = hostname;
-    users = {
-      andreas = {
-        homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
-        hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
-        groups = [
-          "networkmanager"
-          "docker"
-          "wheel"
-        ];
-        nixSettingsAllowed = true;
-        envVarFiles = {
-          ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
-          OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
-          GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
-          TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
-        };
+  users.users.andreas = {
+    isNormalUser = true;
+    createHome = true;
+    extraGroups = [
+      "networkmanager"
+      "docker"
+      "wheel"
+    ];
+    group = "users";
+    home = "/home/andreas";
+    shell = pkgs.fish;
+    hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
+  };
+
+  home-manager = {
+    users.andreas = {
+      home = {
+        username = "andreas";
+        homeDirectory = "/home/andreas";
+        stateVersion = "23.11";
+      };
+      imports = [
+        ../../modules/home-manager/users/andreas.nix
+        inputs.catppuccin.homeModules.catppuccin
+      ];
+    };
+    extraSpecialArgs = {
+      inputs = inputs;
+      envVarFiles = {
+        ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
+        OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
+        GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
+        TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
       };
     };
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   sops = {
@@ -66,22 +82,25 @@ in
     };
   };
 
-  services.hardware.bolt.enable = true;
+  nix = {
+    settings.allowed-users = [ "andreas" ];
+    extraOptions = ''
+      !include ${config.sops.secrets."${hostname}/github-access-token-file".path}
+    '';
+  };
 
+  # TODO Move these?
+  services.hardware.bolt.enable = true;
   services.thermald.enable = true;
   powerManagement.powertop.enable = true;
   environment.systemPackages = with pkgs; [
     power-profiles-daemon
   ];
 
+  networking.hostName = hostname;
   virtualisation.docker.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # Github rate limits Cognite office IP without this
-  nix.extraOptions = ''
-    !include ${config.sops.secrets."${hostname}/github-access-token-file".path}
-  '';
+  hardware.keyboard.zsa.enable = true;
 
   # Boot loader
   boot = {
@@ -94,8 +113,6 @@ in
       };
     };
   };
-
-  hardware.keyboard.zsa.enable = true;
 
   system.stateVersion = "24.11";
 }

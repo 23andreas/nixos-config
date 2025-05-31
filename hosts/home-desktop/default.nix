@@ -10,38 +10,19 @@ let
 in
 {
   imports = [
-    ../../modules/nix/core
-
     ./hardware-configuration.nix
-    # ./logitech-receiver-wake-on-suspend-fix.nix
+    ./logitech-receiver-wake-on-suspend-fix.nix
 
+    ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/workstation.nix
 
-    ../../modules/nix/hardware/nvidia.nix
+    ../../modules/nix/hardware/bluetooth.nix
     ../../modules/nix/hardware/intel.nix
+    ../../modules/nix/hardware/nvidia.nix
     ../../modules/nix/hardware/ssd.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];
-
-  sops.secrets = {
-    "users/andreas/hashed-password".neededForUsers = true;
-    "users/andreas/anthropic-api-key" = {
-      owner = "andreas";
-    };
-    "users/andreas/openai-api-key" = {
-      owner = "andreas";
-    };
-    "users/andreas/groq-api-key" = {
-      owner = "andreas";
-    };
-    "users/andreas/tavily-api-key" = {
-      owner = "andreas";
-    };
-    "${hostname}/github-access-token-file" = { };
-    "${hostname}/cachix-credentials-file" = { };
-    "${hostname}/ssh-key/public" = { };
-  };
 
   users.users.andreas = {
     isNormalUser = true;
@@ -56,6 +37,11 @@ in
     shell = pkgs.fish;
     hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
   };
+
+  environment.systemPackages = with pkgs; [
+    os-prober
+    veracrypt
+  ];
 
   home-manager = {
     users.andreas = {
@@ -82,54 +68,37 @@ in
     useUserPackages = true;
   };
 
-  nix.settings.allowed-users = [
-    "andreas"
-  ];
-
-  networking.hostName = hostname;
-
-  # _23andreas = {
-  #   hostname = hostname;
-  #   users = {
-  #     andreas = {
-  #       # homeManagerFile = builtins.toPath ../../modules/home-manager/users/andreas.nix;
-  #       hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
-  #       groups = [
-  #         "networkmanager"
-  #         "docker"
-  #         "wheel"
-  #       ];
-  #       nixSettingsAllowed = true;
-  #       envVarFiles = {
-  #         ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
-  #         OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
-  #         GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
-  #         TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
-  #       };
-  #     };
-  #   };
-  # };
-
-  virtualisation.docker.enable = true;
-
-  # Windows :(
-  time.hardwareClockInLocalTime = true;
-
-  environment.sessionVariables = {
-    # NIXOS_OZONE_WL = "1";
+  sops.secrets = {
+    "users/andreas/hashed-password".neededForUsers = true;
+    "users/andreas/anthropic-api-key" = {
+      owner = "andreas";
+    };
+    "users/andreas/openai-api-key" = {
+      owner = "andreas";
+    };
+    "users/andreas/groq-api-key" = {
+      owner = "andreas";
+    };
+    "users/andreas/tavily-api-key" = {
+      owner = "andreas";
+    };
+    "${hostname}/github-access-token-file" = { };
+    "${hostname}/cachix-credentials-file" = { };
+    "${hostname}/ssh-key/public" = { };
   };
 
-  nix.extraOptions = ''
-    !include ${config.sops.secrets."${hostname}/github-access-token-file".path}
-  '';
+  nix = {
+    settings.allowed-users = [ "andreas" ];
+    extraOptions = ''
+      !include ${config.sops.secrets."${hostname}/github-access-token-file".path}
+    '';
+  };
 
-  # TODO move this?
-  environment.systemPackages = with pkgs; [
-    os-prober
-    # recyclarr
-    # tdl
-    veracrypt
-  ];
+  networking.hostName = hostname;
+  virtualisation.docker.enable = true;
+  time.hardwareClockInLocalTime = true; # Windows :(
+
+  hardware.keyboard.zsa.enable = true;
 
   # Boot loader
   boot = {
@@ -145,7 +114,6 @@ in
     };
   };
 
-  hardware.keyboard.zsa.enable = true;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

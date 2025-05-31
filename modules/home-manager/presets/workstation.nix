@@ -8,7 +8,6 @@
     ../system/hyprland
     ../system/hyprlock.nix
     ../system/hyprpaper.nix
-    ../system/shell.nix
     ../system/swaync
     # TODO temp workarounds
     ../system/temp-workarounds.nix

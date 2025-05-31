@@ -18,9 +18,6 @@ in
       # TODO move this
       sops
 
-      # TODO Audio control, move to sound.nix?
-      pwvucontrol
-
       wget
       curl
     ];

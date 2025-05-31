@@ -1,5 +1,8 @@
 { config, lib, ... }:
 
+let
+  hostname = config.networking.hostName;
+in
 {
   services.fail2ban = {
     enable = true;
@@ -56,8 +59,7 @@
           inherit locations;
           forceSSL = true;
           enableACME = true;
-          basicAuthFile =
-            config.sops.secrets."${config._23andreas.hostname}/nginx-andreas-basic-auth-file".path;
+          basicAuthFile = config.sops.secrets."${hostname}/nginx-andreas-basic-auth-file".path;
         };
 
         proxy =
@@ -115,7 +117,8 @@
       dnsProvider = "cloudflare";
       domain = "*.gafro.net";
       environmentFile =
-        config.sops.secrets."${config._23andreas.hostname}/acme-cloudflare-environment-file".path;
+
+        config.sops.secrets."${hostname}/acme-cloudflare-environment-file".path;
     };
   };
 }

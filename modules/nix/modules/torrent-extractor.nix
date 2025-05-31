@@ -1,8 +1,8 @@
-# TODO fix this
 { pkgs, ... }:
 
 let
-  torrentExtractor = pkgs.writeScriptBin "torrent-extractor" ''
+  torrentExtractor = pkgs.writeShellScriptBin "torrent-extractor" ''
+    export PATH="/run/current-system/sw/bin:$PATH"
     shopt -s nullglob
 
     download_dir="$1"

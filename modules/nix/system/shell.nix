@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -34,6 +35,10 @@ in
     '';
   };
 
+  environment.systemPackages = [
+    pkgs.starship
+  ];
+
   programs.starship.enable = true;
-  programs.starship.enableFishIntegration = true;
+  # programs.starship.enableFishIntegration = true;
 }

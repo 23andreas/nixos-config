@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ../modules/openssh.nix
-    ../modules/glances.nix
-    ../system/shell.nix
+    ../modules/cachix.nix
+    ../modules/sops.nix
     ../system/locale.nix
+    ../system/network.nix
     ../system/nix-settings.nix
   ];
 }
