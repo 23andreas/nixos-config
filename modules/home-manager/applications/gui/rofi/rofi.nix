@@ -10,6 +10,7 @@
 
     home.packages = with pkgs; [
       rofimoji
+      wtype # Rofimoji uses it for typing
       rofi-rbw-wayland
     ];
 
