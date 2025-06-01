@@ -89,18 +89,34 @@ jobs:
 
       - name: Scan for security issues
         id: security
-        run: | # https://stackoverflow.com/a/74232400
-          nix run nixpkgs/nixos-unstable#vulnix -- -w https://raw.githubusercontent.com/ckauhaus/nixos-vulnerability-roundup/master/whitelists/nixos-unstable.toml ./profile | tee /tmp/security.txt
-          OUTPUT_SECURITY="$(cat /tmp/security.txt)"
-          OUTPUT_SECURITY="${OUTPUT_SECURITY//'%'/'%25'}"
-          OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\n'/'%0A'}"
-          OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\r'/'%0D'}"
-          echo "$OUTPUT_SECURITY"
+        run: |
+          # run vulnix and capture its output (including newlines)
+          SECURITY_REPORT="$(nix run nixpkgs/nixos-unstable#vulnix -- \
+            -w https://raw.githubusercontent.com/ckauhaus/nixos-vulnerability-roundup/master/whitelists/nixos-unstable.toml \
+            ./profile | tee /tmp/security.txt)"
 
+          # choose a delimiter unlikely to appear in the report
           delimiter="$(openssl rand -hex 16)"
-          echo "security<<${delimiter}" >> "${GITHUB_OUTPUT}"
-          echo "$OUTPUT_SECURITY" >> "${GITHUB_OUTPUT}"
-          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
+
+          # emit a multiline output named `security`
+          printf 'security<<%s\n' "$delimiter" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$SECURITY_REPORT" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$delimiter" >> "$GITHUB_OUTPUT"
+
+      # - name: Scan for security issues
+      #   id: security
+      #   run: | # https://stackoverflow.com/a/74232400
+      #     nix run nixpkgs/nixos-unstable#vulnix -- -w https://raw.githubusercontent.com/ckauhaus/nixos-vulnerability-roundup/master/whitelists/nixos-unstable.toml ./profile | tee /tmp/security.txt
+      #     OUTPUT_SECURITY="$(cat /tmp/security.txt)"
+      #     OUTPUT_SECURITY="${OUTPUT_SECURITY//'%'/'%25'}"
+      #     OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\n'/'%0A'}"
+      #     OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\r'/'%0D'}"
+      #     echo "$OUTPUT_SECURITY"
+      #
+      #     delimiter="$(openssl rand -hex 16)"
+      #     echo "security<<${delimiter}" >> "${GITHUB_OUTPUT}"
+      #     echo "$OUTPUT_SECURITY" >> "${GITHUB_OUTPUT}"
+      #     echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - name: Comment report in pr
         uses: marocchino/sticky-pull-request-comment@v2
