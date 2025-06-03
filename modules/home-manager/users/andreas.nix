@@ -20,6 +20,8 @@
   wayland.windowManager.hyprland.enable = true;
   wallpaper.path = "${config.home.homeDirectory}/Pictures/Wallpapers/0040.jpg";
 
+  programs.fish.enable = true;
+
   programs = {
     atuin.enable = true;
     git.enable = true;
