@@ -5,9 +5,9 @@ on:
   # Manual triggering
   workflow_dispatch:
 
-  # Every day 06 
+  # Every day 03 UTC time
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "0 3 * * *"
 
 jobs:
   flake-update:
