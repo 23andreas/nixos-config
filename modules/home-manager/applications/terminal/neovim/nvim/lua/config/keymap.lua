@@ -1,3 +1,4 @@
+-- TODO CLEANUP
 vim.g.mapleader = " "
 
 -- Quit vim
@@ -30,10 +31,10 @@ vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format({ async = false 
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrap" })
 
 -- Navigate windows
-vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
+-- vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
+-- vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
+-- vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
+-- vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
 -- Navigate windows in terminal mode as well
 vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { silent = true })
@@ -68,3 +69,45 @@ vim.keymap.set("n", "<ESC>", ":noh<CR>", { silent = true })
 
 -- ESC in terminal
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+-- Global diagnostic navigation
+vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>",
+  { noremap = true, silent = true, desc = "Diagnostic: Go to previous" })
+vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>",
+  { noremap = true, silent = true, desc = "Diagnostic: Go to next" })
+vim.keymap.set("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>",
+  { noremap = true, silent = true, desc = "Diagnostic: Show diagnostics" })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+
+    -- Go to definition and type definition
+    -- vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    -- vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+
+    -- Hover and references
+    -- vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+
+    -- Code action and rename
+    -- vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    -- vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+
+    -- Signature help
+    -- vim.keymap.set("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+
+    -- Toggle inlay hints (only if supported)
+    if vim.lsp.inlay_hint then
+      vim.keymap.set("n", "<leader>th", function()
+        -- Toggle inlay hints on or off for this buffer
+        if vim.lsp.inlay_hint.is_enabled(bufnr) then
+          vim.lsp.inlay_hint.disable(bufnr)
+        else
+          vim.lsp.inlay_hint.enable(bufnr)
+        end
+      end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
+    end
+  end,
+})

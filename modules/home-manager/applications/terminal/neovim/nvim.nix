@@ -22,6 +22,10 @@ in
       nixd
       nixfmt-rfc-style
 
+      # Rust
+      rust-analyzer
+      rustlings
+
       # telescope
       fzf
       fd

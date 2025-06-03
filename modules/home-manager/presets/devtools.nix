@@ -30,6 +30,10 @@ in
 
       # OpenAI
       codex
+
+      # Rust TODO move into a shell.nix
+      cargo
+      rustc
     ];
 
     programs.git.enable = true;

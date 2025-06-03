@@ -22,4 +22,10 @@ require("lazy").setup("plugins", {
   }
 })
 
+vim.lsp.enable({
+  "lua",
+  "rust",
+  "eslint",
+})
+
 require("config")
