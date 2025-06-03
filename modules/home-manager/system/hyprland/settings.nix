@@ -10,22 +10,16 @@
       gaps_out = 5;
       border_size = 0;
 
-      # "col.active_border" = "rgb(f5e0dc)";
-      # "col.active_border" = "$lavender";
-      # "col.inactive_border" = "0x00000000";
-
       no_border_on_floating = false;
     };
 
     master = {
-      # no_gaps_when_only = 1;
       orientation = "center";
       slave_count_for_center_master = 0;
       mfact = 0.48;
     };
 
     dwindle = {
-      # no_gaps_when_only = 1;
       preserve_split = true;
     };
 
@@ -40,23 +34,10 @@
       "move 0 0,title:^(meet.google.com is sharing)(.*)$"
     ];
 
-    # workspace = [
-    #   "w[t1], gapsout:5 550"
-    # ];
-
     decoration = {
-      # rounding = 0;
-      # shadow = {
-      #   enabled = true;
-      # };
       dim_inactive = true;
       dim_strength = 0.17;
-      # border_part_of_window = false;
     };
-
-    # opengl = {
-    # force_introspection = 0;
-    # };
 
     group = {
       "col.border_active" = "$red";
@@ -103,20 +84,11 @@
       numlock_by_default = true;
     };
 
-    # windowrulev2 = [
-    #   "workspace 1,^(Slack)$"
-    #   "workspace 9,^(1Password)$"
-    #   "workspace 0,(Spotify)"
-    # ];
-
     exec-once = [
       "dbus-update-activation-environment --systemd &"
-      "hyprpaper &"
       "swaync &"
       "avizo-service &"
       "clipse -listen"
-      # "[workspace 8 silent] uwsm app -- todoist-electron"
-      # "[workspace 9 silent] uwsm app -- 1password"
       "[workspace 10 silent] uwsm app -- spotify"
     ];
   };
