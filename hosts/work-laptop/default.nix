@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  config,
   inputs,
   ...
 }:
@@ -20,6 +20,8 @@ in
     # nixos-hardware.nixosModules.dell-xps-15-9520
     ./hardware-copy.nix
     ../../modules/nix/hardware/bluetooth.nix
+
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   users.users.andreas = {
@@ -36,6 +38,13 @@ in
     hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
   };
 
+  programs.shell.envVarFiles = {
+    ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
+    OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
+    GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
+    TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
+  };
+
   home-manager = {
     users.andreas = {
       home = {
@@ -50,36 +59,28 @@ in
     };
     extraSpecialArgs = {
       inputs = inputs;
-      envVarFiles = {
-        ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
-        OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
-        GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
-        TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
-      };
     };
     useGlobalPkgs = true;
     useUserPackages = true;
   };
 
-  sops = {
-    secrets = {
-      "users/andreas/hashed-password".neededForUsers = true;
-      "users/andreas/anthropic-api-key" = {
-        owner = "andreas";
-      };
-      "users/andreas/openai-api-key" = {
-        owner = "andreas";
-      };
-      "users/andreas/groq-api-key" = {
-        owner = "andreas";
-      };
-      "users/andreas/tavily-api-key" = {
-        owner = "andreas";
-      };
-      "${hostname}/cachix-credentials-file" = { };
-      "${hostname}/github-access-token-file" = { };
-      "${hostname}/ssh-key/public" = { };
+  sops.secrets = {
+    "users/andreas/hashed-password".neededForUsers = true;
+    "users/andreas/anthropic-api-key" = {
+      owner = "andreas";
     };
+    "users/andreas/openai-api-key" = {
+      owner = "andreas";
+    };
+    "users/andreas/groq-api-key" = {
+      owner = "andreas";
+    };
+    "users/andreas/tavily-api-key" = {
+      owner = "andreas";
+    };
+    "${hostname}/github-access-token-file" = { };
+    "${hostname}/cachix-credentials-file" = { };
+    "${hostname}/ssh-key/public" = { };
   };
 
   nix = {
@@ -105,7 +106,7 @@ in
   # Boot loader
   boot = {
     loader = {
-      efi.canTouchEfiVariables = true;
+     efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
         devices = [ "nodev" ];
