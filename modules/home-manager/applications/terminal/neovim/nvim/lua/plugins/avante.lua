@@ -18,12 +18,23 @@ return {
     -- end,
     provider = "openai",
     cursor_applying_provider = 'groq',
-    openai = {
-      endpoint = "https://api.openai.com/v1",
-      model = "gpt-4o",
-      timeout = 30000,
-      temperature = 0,
-      max_tokens = 4096,
+    providers = {
+      openai = {
+        endpoint = "https://api.openai.com/v1",
+        model = "gpt-4o",
+        timeout = 30000,
+        extra_request_body = {
+          temperature = 0,
+        },
+        max_tokens = 4096,
+      },
+      groq = {
+        __inherited_from = 'openai',
+        api_key_name = 'GROQ_API_KEY',
+        endpoint = 'https://api.groq.com/openai/v1/',
+        model = 'llama-3.3-70b-versatile',
+        max_tokens = 32768,
+      },
     },
     rag_service = {
       enabled = false
@@ -37,15 +48,6 @@ return {
     web_search_engine = {
       provider = "tavily",
     },
-    vendors = {
-      groq = {
-        __inherited_from = 'openai',
-        api_key_name = 'GROQ_API_KEY',
-        endpoint = 'https://api.groq.com/openai/v1/',
-        model = 'llama-3.3-70b-versatile',
-        max_tokens = 32768,
-      },
-    }
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
