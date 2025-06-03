@@ -4,8 +4,11 @@
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
 
+  security.pam.services.gdm.enableGnomeKeyring = true;
+
   environment.systemPackages = with pkgs; [
     polkit_gnome
+    libsecret
   ];
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
