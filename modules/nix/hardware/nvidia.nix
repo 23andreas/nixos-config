@@ -33,7 +33,8 @@
     libva-utils
     # vdpauinfo
 
-    # vulkan-tools
+    vulkan-tools
+    vulkan-loader
     # vulkan-validation-layers
 
     libvdpau-va-gl
