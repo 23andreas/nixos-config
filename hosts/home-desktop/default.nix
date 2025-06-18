@@ -11,13 +11,13 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./disk-config.nix
     ./logitech-receiver-wake-on-suspend-fix.nix
 
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/workstation.nix
 
     ../../modules/nix/hardware/bluetooth.nix
-    ../../modules/nix/hardware/intel.nix
     ../../modules/nix/hardware/nvidia.nix
     ../../modules/nix/hardware/ssd.nix
 

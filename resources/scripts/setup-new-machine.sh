@@ -33,5 +33,5 @@ read -rp "Target IP: " target_ip
 read -rp "Nix config hostname (--flake '.#<hostname>'): " hostname
 
 cd ../../
-nixos-anywhere --extra-files "$temp" --flake ".#${hostname}" root@"${target_ip}"
+nixos-anywhere --extra-files "$temp" --flake ".#${hostname}" root@"${target_ip}" -i "/home/andreas/.ssh/id_ed25519"
 

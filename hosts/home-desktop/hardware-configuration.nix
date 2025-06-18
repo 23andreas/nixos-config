@@ -11,7 +11,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     initrd = {
       kernelModules = [ ];
@@ -26,25 +26,25 @@
     };
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/a1321626-dd8e-4bc1-9a7b-a8f0fbfbe16c";
-      fsType = "ext4";
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/BC65-0215";
-      fsType = "vfat";
-    };
-  };
-
-  swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/1e47c0f0-d679-4beb-8c5d-dde9fef6992c";
-    }
-  ];
+  # fileSystems = {
+  #   "/" = {
+  #     device = "/dev/disk/by-uuid/a1321626-dd8e-4bc1-9a7b-a8f0fbfbe16c";
+  #     fsType = "ext4";
+  #   };
+  #
+  #   "/boot" = {
+  #     device = "/dev/disk/by-uuid/BC65-0215";
+  #     fsType = "vfat";
+  #   };
+  # };
+  #
+  # swapDevices = [
+  #   {
+  #     device = "/dev/disk/by-uuid/1e47c0f0-d679-4beb-8c5d-dde9fef6992c";
+  #   }
+  # ];
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

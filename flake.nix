@@ -64,7 +64,7 @@
         home-desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ (import ./hosts/home-desktop) ];
-          specialArgs = { inherit self inputs; };
+          specialArgs = { inherit self inputs disko; };
         };
 
         work-laptop = nixpkgs.lib.nixosSystem {
