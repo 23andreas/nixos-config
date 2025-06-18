@@ -32,6 +32,7 @@ return {
         "python",
         "rasi",
         "regex",
+        "rust",
         "scss",
         "sql",
         "ssh_config",
