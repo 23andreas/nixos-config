@@ -12,7 +12,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
-    ./logitech-receiver-wake-on-suspend-fix.nix
+    # ./logitech-receiver-wake-on-suspend-fix.nix
 
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/workstation.nix
