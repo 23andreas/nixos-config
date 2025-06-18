@@ -63,6 +63,7 @@ in
         "$mod, backslash, exec, kitty --class clipse -e clipse"
         "$mod, P, exec, pkill rofi || rofi-rbw --selector-args=\"-theme rbw.rasi\""
         "$mod, E, exec, pkill rofi || rofimoji"
+        "$mod, E, exec, pkill rofi || rofi -show calc -modi calc -no-show-match -no-sort"
         "$mod, Return, exec, ${uwsm} kitty"
         "$mod, semicolon, exec, ${uwsm} google-chrome-stable --profile-directory='Default'"
         "$mod+Alt, semicolon, exec, ${uwsm} google-chrome-stable --profile-directory='Profile 1'"
