@@ -32,6 +32,34 @@ in
     ];
   };
 
+  # services.k3s = {
+  #   enable = true;
+  #   role = "server";
+  #   token = "hello";
+  #   clusterInit = true;
+  #
+  #   extraFlags = [
+  #     "--write-kubeconfig-mode=644"
+  #     "--tls-san"
+  #     "192.168.1.6"
+  #   ];
+  # };
+  #
+  # containers.worker1 = {
+  #   autoStart = true;
+  #   config =
+  #     { pkgs, config, ... }:
+  #     {
+  #       networking.hostName = "worker1";
+  #       services.k3s = {
+  #         enable = true;
+  #         role = "agent";
+  #         serverAddr = "https://192.168.1.6:6443";
+  #         token = "hello";
+  #       };
+  #     };
+  # };
+
   # IDEAS
   # Monitoring
   # - Grafana

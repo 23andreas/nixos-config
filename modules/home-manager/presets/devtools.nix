@@ -25,8 +25,10 @@ in
       # Using EOL electron
       # beekeeper-studio
 
+      k9s
       kubectl
       kubeseal
+      minikube
 
       # OpenAI
       codex
