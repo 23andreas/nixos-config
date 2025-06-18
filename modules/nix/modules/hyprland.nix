@@ -38,6 +38,10 @@
     pkgs.hyprland-qtutils
   ];
 
+  environment.variables = {
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+  };
+
   xdg.portal = {
     enable = true;
     # wlr.enable = true;
