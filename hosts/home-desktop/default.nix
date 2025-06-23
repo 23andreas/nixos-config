@@ -96,6 +96,7 @@ in
   };
 
   networking.hostName = hostname;
+  networking.networkmanager.wifi.powersave = false;
   virtualisation.docker.enable = true;
   time.hardwareClockInLocalTime = true; # Windows :(
 
