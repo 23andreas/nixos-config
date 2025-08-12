@@ -116,7 +116,8 @@ in
         IOSchedulingClass = "idle";
         IOSchedulingPriority = "7";
         LimitNOFILE = "infinity";
-      } // (if cfg.maxMemory != null then { MemoryMax = cfg.maxMemory; } else { });
+      }
+      // (if cfg.maxMemory != null then { MemoryMax = cfg.maxMemory; } else { });
     };
     environment.systemPackages = with pkgs; [ cfg.package ];
 

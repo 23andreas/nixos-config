@@ -116,9 +116,7 @@ in
     certs."gafro.net" = {
       dnsProvider = "cloudflare";
       domain = "*.gafro.net";
-      environmentFile =
-
-        config.sops.secrets."${hostname}/acme-cloudflare-environment-file".path;
+      environmentFile = config.sops.secrets."${hostname}/acme-cloudflare-environment-file".path;
     };
   };
 }

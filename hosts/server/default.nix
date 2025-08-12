@@ -13,7 +13,7 @@ in
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/server.nix
 
-    ../../modules/nix/modules/home-assistant.nix
+    # ../../modules/nix/modules/home-assistant.nix
   ];
 
   users.users.andreas = {
@@ -87,9 +87,9 @@ in
         owner = "nginx";
       };
       "${hostname}/acme-cloudflare-environment-file" = { };
-      "${hostname}/mqtt_secrets" = {
-        owner = "zigbee2mqtt";
-      };
+      # "${hostname}/mqtt_secrets" = {
+      #   owner = "zigbee2mqtt";
+      # };
     };
   };
 

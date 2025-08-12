@@ -9,8 +9,14 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
+  # Fix for wifi disconnecting
+  # Realtek RTL8922AE
+
+  hardware.firmware = with pkgs; [ linux-firmware ];
+  hardware.enableRedistributableFirmware = true;
+
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     initrd = {

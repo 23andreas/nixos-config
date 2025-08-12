@@ -14,6 +14,9 @@ in
     ./disk-config.nix
     # ./logitech-receiver-wake-on-suspend-fix.nix
 
+    # TEMP: Wifi diconnecting fix
+    # ./disable-wifi-powersave.nix
+
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/workstation.nix
 
@@ -31,6 +34,8 @@ in
       "networkmanager"
       "docker"
       "wheel"
+      "audio"
+      "rtkit"
     ];
     group = "users";
     home = "/home/andreas";
@@ -41,13 +46,19 @@ in
   environment.systemPackages = with pkgs; [
     os-prober
     veracrypt
+
   ];
+
+  programs.steam = {
+    enable = true;
+  };
 
   programs.shell.envVarFiles = {
     ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
     OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
     GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
     TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
+    # GITHUB_PERSONAL_ACCESS_TOKEN = config.sops.secrets."users/andreas/github-access-token".path;
   };
 
   home-manager = {
@@ -96,7 +107,6 @@ in
   };
 
   networking.hostName = hostname;
-  networking.networkmanager.wifi.powersave = false;
   virtualisation.docker.enable = true;
   time.hardwareClockInLocalTime = true; # Windows :(
 

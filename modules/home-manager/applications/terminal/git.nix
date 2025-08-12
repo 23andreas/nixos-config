@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   gitIsEnabled = config.programs.git.enable;
@@ -16,5 +21,6 @@ in
         autoSetupRemote = true;
       };
     };
+    delta.enable = true;
   };
 }

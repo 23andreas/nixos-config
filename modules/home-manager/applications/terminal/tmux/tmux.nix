@@ -27,6 +27,8 @@ in
         bind-key b set-option status
         bind o display-popup -E "tms"
 
+        bind J join-pane -s '{marked}'
+
         # Vim keys for switching pane
         bind h select-pane -L
         bind j select-pane -D

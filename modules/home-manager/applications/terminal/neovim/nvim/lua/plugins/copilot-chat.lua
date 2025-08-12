@@ -76,8 +76,7 @@ return {
       {
         "<leader>iu",
         function()
-          local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+          vim.cmd("CopilotChatPrompts")
         end,
         mode = { "v", "n" },
         desc = "Prompt actions",

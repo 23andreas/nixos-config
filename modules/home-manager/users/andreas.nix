@@ -23,6 +23,7 @@
   programs.fish.enable = true;
 
   programs = {
+    aichat.enable = true;
     atuin.enable = true;
     git.enable = true;
     hyprlock.enable = true;
@@ -69,6 +70,7 @@
 
     packages = with pkgs; [
       google-chrome
+      brave
       obsidian
       slack
       spotify

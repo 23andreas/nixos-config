@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -13,8 +14,8 @@ in
 
     home.packages = with pkgs; [
       ripgrep
-      nodejs
 
+      #LSP
       lua-language-server
       typescript-language-server
       typescript
@@ -24,6 +25,7 @@ in
 
       # Rust
       rust-analyzer
+      rustfmt
       rustlings
 
       # telescope
@@ -42,6 +44,11 @@ in
 
       # Copilot
       copilot-language-server
+
+      # ai terminals
+      claude-code
+      goose-cli
+      delta # used for diff
     ];
 
     programs.neovim = {
@@ -51,6 +58,10 @@ in
       vimAlias = true;
 
       withNodeJs = true;
+
+      plugins = [
+        inputs.mcphub-nvim.packages."${pkgs.system}".default
+      ];
 
       # extraLuaPackages = ps: [ ps.magick ];
       # extraPackages = [ pkgs.imagemagick ];

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../modules/nix/modules/qbittorrent-nox.nix
+    # ../../modules/nix/modules/qbittorrent-nox.nix
     ../../modules/nix/modules/torrent-extractor.nix
   ];
 
@@ -20,8 +20,8 @@
       in
       {
         enable = true;
-        port = 7219;
-        settings = {
+        webuiPort = 7219;
+        serverConfig = {
           LegalNotice = {
             Accepted = true;
           };
@@ -59,7 +59,7 @@
             "WebUI\\Address" = "0.0.0.0";
           };
         };
-        maxMemory = "8G";
+        # maxMemory = "8G";
         user = "qbittorrent";
         group = "media";
       };
@@ -67,10 +67,10 @@
       let
         plexLatest = pkgs.plex.override {
           plexRaw = pkgs.plexRaw.overrideAttrs (old: rec {
-            version = "1.41.8.9834-071366d65";
+            version = "1.41.9.9961-46083195d";
             src = pkgs.fetchurl {
               url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb";
-              sha256 = "sha256-fhm61vxJOWba2ngLzHCssqSCgO9JG7zurBJ90fSnAS4=";
+              sha256 = "sha256-Yish1h8PZLwkd7YNOl1baZ+8qgdDkv3yS70j0hPU3EI=";
             };
           });
         };
@@ -99,13 +99,13 @@
     prowlarr = {
       enable = true;
     };
-    audiobookshelf = {
-      enable = false;
-      port = 8000;
-      host = "0.0.0.0";
-      openFirewall = true;
-      user = "andreas";
-      group = "media";
-    };
+    # audiobookshelf = {
+    #   enable = false;
+    #   port = 8000;
+    #   host = "0.0.0.0";
+    #   openFirewall = true;
+    #   user = "andreas";
+    #   group = "media";
+    # };
   };
 }

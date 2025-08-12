@@ -9,11 +9,27 @@ return {
     ".git",
     "Cargo.toml",
   },
-
   single_file_support = true,
   capabilities = {
     experimental = {
       serverStatusNotification = true,
+    },
+  },
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
+      assist = {
+        importGranularity = "module",
+        importPrefix = "by_self",
+      },
+      cargo = {
+        allFeatures = true,
+      },
+      procMacro = {
+        enable = true,
+      },
     },
   },
   before_init = function(init_params, config)
