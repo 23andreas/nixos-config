@@ -21,6 +21,7 @@
       {
         enable = true;
         webuiPort = 7219;
+        torrentingPort = 39603;
         serverConfig = {
           LegalNotice = {
             Accepted = true;
@@ -46,7 +47,7 @@
             "Downloads\\SavePath" = "/media/torrent/downloads";
             "Downloads\\StartInPause" = false;
             "Downloads\\RunExternalProgramEnabled" = true;
-            "Downloads\\RunExternalProgram" = "torrent-extractor \"%F\"";
+            "Downloads\\RunExternalProgram" = "/run/current-system/sw/bin/torrent-extractor \"%F\"";
             "Queueing\\MaxActiveDownloads" = 1;
             "Queueing\\MaxActiveTorrents" = 1000;
             "Queueing\\MaxActiveUploads" = 1000;
