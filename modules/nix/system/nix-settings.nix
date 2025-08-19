@@ -29,4 +29,7 @@
     };
   };
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "beekeeper-studio-5.2.12"
+  ];
 }

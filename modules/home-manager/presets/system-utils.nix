@@ -30,6 +30,22 @@ in
       enable = true;
     };
 
+    # TODO move this
+    programs.spotify-player = {
+      enable = true;
+
+      # settings = {
+      #   enable_streaming = "Always";
+      #   device = {
+      #     name = "spotify-player";
+      #     backend = "pulseaudio";
+      #
+      #   };
+      # };
+    };
+
+    # services.spotifyd.enable = true;
+
     programs.yazi = {
       enable = true;
       enableFishIntegration = true;

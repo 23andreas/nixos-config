@@ -11,9 +11,14 @@ in
 {
   options.home.presets.dev = {
     enable = lib.mkEnableOption "Enable dev tools";
+
   };
 
   config = lib.mkIf cfg.enable {
+    nixpkgs.config.permittedInsecurePackages = [
+      "beekeeper-studio-5.2.12"
+    ];
+
     home.packages = with pkgs; [
       vim
 
@@ -27,7 +32,9 @@ in
 
       postman
       # Using EOL electron
-      # beekeeper-studio
+      beekeeper-studio
+
+      redisinsight
 
       k9s
       kubectl
@@ -42,6 +49,7 @@ in
       cargo
       rustc
       clippy
+
     ];
 
     programs.vscode.enable = true;

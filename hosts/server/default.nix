@@ -73,12 +73,6 @@ in
     services.sudo.sshAgentAuth = true;
   };
 
-  # Move to sonarr?
-  # nixpkgs.config.permittedInsecurePackages = [
-  #   "dotnet-sdk-6.0.428"
-  #   "aspnetcore-runtime-6.0.36"
-  # ];
-
   sops = {
     secrets = {
       "users/andreas/hashed-password".neededForUsers = true;
