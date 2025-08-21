@@ -46,9 +46,10 @@
     enable = true;
     # wlr.enable = true;
     # xdgOpenUsePortal = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
-    ];
+    # extraPortals = with pkgs; [
+    # xdg-desktop-portal-hyprland
+    # kdePackages.xdg-desktop-portal-kde
+    # xdg-desktop-portal-gtk
+    # ];
   };
 }

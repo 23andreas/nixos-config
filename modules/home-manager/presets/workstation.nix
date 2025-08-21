@@ -2,7 +2,8 @@
   imports = [
     ../system/avizo.nix
     ../system/dark-mode.nix
-    ../system/gnome.nix
+    # ../system/gnome.nix
+    ../system/kde.nix
     ../system/gtk.nix
     ../system/hypridle.nix
     ../system/hyprland

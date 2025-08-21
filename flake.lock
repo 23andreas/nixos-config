@@ -199,11 +199,19 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1755569926,
         "narHash": "sha256-s7D28zPHlFWVZ7dDxm0L1o5+t423rMJUfgCMGUeyYSk=",
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "c613ac14f5600033bf84ae75c315d5ce24a0229b",
+=======
+        "lastModified": 1755755322,
+        "narHash": "sha256-spCxkNihCk3uT3LUrUwzdEAjLA/E0EtEgF3KVI05nlM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "282b4c98de97da6667cb03de4f427371734bc39c",
+>>>>>>> 57fc71c (add kde)
         "type": "github"
       },
       "original": {
@@ -403,11 +411,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1755186698,
-        "narHash": "sha256-wNO3+Ks2jZJ4nTHMuks+cxAiVBGNuEBXsT29Bz6HASo=",
+        "lastModified": 1755615617,
+        "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fbcf476f790d8a217c3eab4e12033dc4a0f6d23c",
+        "rev": "20075955deac2583bb12f07151c2df830ef346b4",
         "type": "github"
       },
       "original": {
@@ -429,6 +437,29 @@
         "url": "https://devimages-cdn.apple.com/design/resources/download/NY.dmg"
       }
     },
+    "plasma-manager": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754575879,
+        "narHash": "sha256-aHTxuS6ZWUsupYJaxSO+uaHlvU3rywnqITAPkWQ2ZKc=",
+        "owner": "AlexNabokikh",
+        "repo": "plasma-manager",
+        "rev": "c3da2f1d1b7047388c255fce9f17ea9aa3b01bf9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AlexNabokikh",
+        "repo": "plasma-manager",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "apple-fonts": "apple-fonts",
@@ -440,6 +471,7 @@
         "minimal-tmux": "minimal-tmux",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
+        "plasma-manager": "plasma-manager",
         "sops-nix": "sops-nix"
       }
     },

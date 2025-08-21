@@ -24,6 +24,12 @@
     catppuccin.url = "github:catppuccin/nix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
+
+    plasma-manager = {
+      url = "github:AlexNabokikh/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   nixConfig = {

@@ -93,6 +93,7 @@ in
   # TODO Move these?
   services.hardware.bolt.enable = true;
   services.thermald.enable = true;
+  services.displayManager.sddm.enableHidpi = true;
   powerManagement.powertop.enable = true;
   environment.systemPackages = with pkgs; [
     power-profiles-daemon
@@ -106,7 +107,7 @@ in
   # Boot loader
   boot = {
     loader = {
-     efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
         devices = [ "nodev" ];

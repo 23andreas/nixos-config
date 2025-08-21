@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  osConfig,
   ...
 }:
 
@@ -17,6 +18,10 @@
     flavor = "macchiato";
   };
 
+  # TEMP FIX
+  # htps://github.com/nix-community/home-manager/issues/7124#issuecomment-2912133129
+  xdg.portal.extraPortals = osConfig.xdg.portal.extraPortals;
+
   wayland.windowManager.hyprland.enable = true;
   wallpaper.path = "${config.home.homeDirectory}/Pictures/Wallpapers/0040.jpg";
 
@@ -26,7 +31,7 @@
     aichat.enable = true;
     atuin.enable = true;
     git.enable = true;
-    hyprlock.enable = true;
+    # hyprlock.enable = true;
     kitty.enable = true;
     mpv.enable = true;
     neovim.enable = true;
@@ -45,18 +50,18 @@
     };
     tmux.enable = true;
     vesktop.enable = true;
-    waybar.enable = true;
+    # waybar.enable = true;
     zoxide.enable = true;
   };
 
   services = {
-    avizo.enable = true;
+    # avizo.enable = true;
     clipse.enable = true;
-    hypridle.enable = true;
-    hyprpaper.enable = true;
-    playerctld.enable = true;
+    # hypridle.enable = true;
+    # hyprpaper.enable = true;
+    # playerctld.enable = true;
     ssh-agent.enable = true;
-    swaync.enable = true;
+    # swaync.enable = true;
   };
 
   home = {

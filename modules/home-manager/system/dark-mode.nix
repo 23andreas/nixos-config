@@ -22,14 +22,14 @@ in
     };
 
     gtk = lib.mkIf config.gtk.enable {
-      # theme = {
-      #   name = "Adwaita-dark";
-      #   package = pkgs.gnome-themes-extra;
-      # };
-      theme = lib.mkDefault {
-        name = "adw-gtk3-dark";
-        package = pkgs.adw-gtk3;
+      theme = {
+        name = "Adwaita-dark";
+        package = pkgs.gnome-themes-extra;
       };
+      # theme = lib.mkDefault {
+      #   name = "adw-gtk3-dark";
+      #   package = pkgs.adw-gtk3;
+      # };
     };
 
     qt = lib.mkIf config.qt.enable {
