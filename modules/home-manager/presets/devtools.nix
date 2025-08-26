@@ -53,6 +53,7 @@ in
     ];
 
     programs.vscode.enable = true;
+    programs.opencode.enable = true;
 
     programs.git.enable = true;
     programs.neovim.enable = true;

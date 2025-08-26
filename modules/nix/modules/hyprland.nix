@@ -39,7 +39,7 @@
   ];
 
   environment.variables = {
-    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    # ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   xdg.portal = {

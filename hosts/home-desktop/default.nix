@@ -43,6 +43,8 @@ in
     hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
   };
 
+  hardware.logitech.wireless.enable = true;
+
   environment.systemPackages = with pkgs; [
     os-prober
     veracrypt

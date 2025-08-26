@@ -52,6 +52,7 @@
     vesktop.enable = true;
     # waybar.enable = true;
     zoxide.enable = true;
+    chromium.enable = true;
   };
 
   services = {
@@ -75,7 +76,7 @@
 
     packages = with pkgs; [
       google-chrome
-      brave
+      # brave
       obsidian
       slack
       spotify

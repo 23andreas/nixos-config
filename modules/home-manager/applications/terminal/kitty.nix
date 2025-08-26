@@ -29,6 +29,9 @@ in
         cursor_trail = 1;
         cursor_trail_decay = "0.1 0.3";
       };
+      keybindings = {
+        "ctrl+shift+u" = "no_op";
+      };
     };
   };
 }

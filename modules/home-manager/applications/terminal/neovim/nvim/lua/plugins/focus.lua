@@ -21,18 +21,18 @@ return {
       "<cmd>FocusToggle<CR>",
       desc = "Toggle Focus"
     },
-    {
-      "<leader>om",
-      mode = "n",
-      "<cmd>FocusMaximise<CR>",
-      desc = "Focus maximise"
-    },
-    {
-      "<leader>oe",
-      mode = "n",
-      "<cmd>FocusEqualise<CR>",
-      desc = "Focus equalise"
-    },
+    -- {
+    --   "<leader>om",
+    --   mode = "n",
+    --   "<cmd>FocusMaximise<CR>",
+    --   desc = "Focus maximise"
+    -- },
+    -- {
+    --   "<leader>oe",
+    --   mode = "n",
+    --   "<cmd>FocusEqualise<CR>",
+    --   desc = "Focus equalise"
+    -- },
   },
   config = function(_, opts)
     require("focus").setup(opts)

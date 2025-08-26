@@ -43,34 +43,34 @@
           };
         };
       }
-      {
-        apply = {
-          desktops = "Desktop_1";
-          desktopsrule = "3";
-        };
-        description = "Assign Slack to Desktop 1";
-        match = {
-          window-class = {
-            value = "Slack";
-            type = "substring";
-          };
-          window-types = [ "normal" ];
-        };
-      }
-      {
-        apply = {
-          desktops = "Desktop_10";
-          desktopsrule = "3";
-        };
-        description = "Assign Spotify to Desktop 10";
-        match = {
-          window-class = {
-            value = "Spoitfy";
-            type = "substring";
-          };
-          window-types = [ "normal" ];
-        };
-      }
+      # {
+      #   apply = {
+      #     desktops = "Desktop_1";
+      #     desktopsrule = "3";
+      #   };
+      #   description = "Assign Slack to Desktop 1";
+      #   match = {
+      #     window-class = {
+      #       value = "Slack";
+      #       type = "substring";
+      #     };
+      #     window-types = [ "normal" ];
+      #   };
+      # }
+      # {
+      #   apply = {
+      #     desktops = "Desktop_10";
+      #     desktopsrule = "3";
+      #   };
+      #   description = "Assign Spotify to Desktop 10";
+      #   match = {
+      #     window-class = {
+      #       value = "Spoitfy";
+      #       type = "substring";
+      #     };
+      #     window-types = [ "normal" ];
+      #   };
+      # }
     ];
 
     kwin = {
@@ -99,28 +99,101 @@
       };
 
       virtualDesktops = {
-        number = 10;
+        number = 5;
         names = [
           "Desktop 1"
           "Desktop 2"
           "Desktop 3"
           "Desktop 4"
           "Desktop 5"
-          "Desktop 6"
-          "Desktop 7"
-          "Desktop 8"
-          "Desktop 9"
-          "Desktop 10"
         ];
       };
     };
+
+    panels = [
+      {
+        alignment = "center";
+        height = 25;
+        lengthMode = "fill";
+        location = "top";
+        opacity = "translucent";
+        widgets = [
+          {
+            name = "org.kde.plasma.pager";
+            config = {
+              showWindowOutlines = true;
+              showApplicationIconsOnWindowOutlines = true;
+            };
+          }
+          {
+            name = "org.kde.plasma.panelspacer";
+          }
+          {
+            name = "org.kde.plasma.digitalclock";
+            config = {
+              Appearance = {
+                # autoFontAndSize = false;
+                # customDateFormat = "ddd, MMM d";
+                dateDisplayFormat = "BesideTime";
+                dateFormat = "longDate";
+                showWeekNumbers = true;
+                # fontSize = 11;
+                # fontStyleName = "Regular";
+                # fontWeight = 400;
+                # use24hFormat = 2;
+              };
+            };
+          }
+          {
+            name = "org.kde.plasma.panelspacer";
+          }
+          {
+            systemTray = {
+              icons.scaleToFit = false;
+              items = {
+                showAll = false;
+                shown = [
+                  "org.kde.plasma.devicenotifier"
+                  "org.kde.plasma.keyboardlayout"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.volume"
+                  "org.kde.plasma.clipboard"
+                  "org.kde.plasma.bluetooth"
+                ];
+                hidden = [
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.brightness"
+                  "org.kde.plasma.mediacontroller"
+                  "plasmashell_microphone"
+                  "xdg-desktop-portal-kde"
+                  "zoom"
+                  "1password"
+                  "kde.merkuro.contact.applet"
+                ];
+                configs = {
+                  "org.kde.plasma.notifications".config = {
+                    Shortcuts = {
+                      global = "Meta+N";
+                    };
+                  };
+                };
+              };
+            };
+          }
+        ];
+      }
+    ];
 
     overrideConfig = true;
 
     configFile = {
       baloofilerc."Basic Settings"."Indexing-Enabled" = false;
       gwenviewrc.ThumbnailView.AutoplayVideos = true;
-      kcminputrc.Keyboard.RepeatDelay = 400;
+      kcminputrc = {
+        Keyboard.RepeatDelay = 400;
+        # Mouse.cursorTheme = "phinger-cursors-light";
+      };
+      krunnerrc.General.FreeFloating = true;
 
       plasmanotifyrc.Notifications = {
         PopupPosition = "TopRight";
@@ -154,19 +227,20 @@
       klipperrc.General.MaxClipItems = 100;
 
       kwinrc = {
+        Desktops.Rows = 1;
         Plugins = {
           krohnkiteEnabled = true;
           diminactiveEnabled = true;
           # screenedgeEnabled = false;
         };
-        # "Script-krohnkite" = {
-        #   floatingClass = "brave-nngceckbapebfimnlniiiahkandclblb-Default,org.kde.kcalc";
-        #   screenGapBetween = 6;
-        #   screenGapBottom = 6;
-        #   screenGapLeft = 6;
-        #   screenGapRight = 6;
-        #   screenGapTop = 6;
-        # };
+        "Script-krohnkite" = {
+          floatingClass = "brave-nngceckbapebfimnlniiiahkandclblb-Default,org.kde.kcalc,systemsettings";
+          screenGapBetween = 3;
+          screenGapBottom = 5;
+          screenGapLeft = 5;
+          screenGapRight = 5;
+          screenGapTop = 5;
+        };
         "Effect-diminactive" = {
           strength = 20;
         };
@@ -394,28 +468,48 @@
         KrohnkiteShiftUp = "Meta+Alt+K";
         KrohnkiteShiftRight = "Meta+Alt+L";
 
-        "Switch to Desktop 1" = "Meta+1";
-        "Switch to Desktop 2" = "Meta+2";
-        "Switch to Desktop 3" = "Meta+3";
-        "Switch to Desktop 4" = "Meta+4";
-        "Switch to Desktop 5" = "Meta+5";
-        "Switch to Desktop 6" = "Meta+6";
-        "Switch to Desktop 7" = "Meta+7";
-        "Switch to Desktop 8" = "Meta+8";
-        "Switch to Desktop 9" = "Meta+9";
-        "Switch to Desktop 10" = "Meta+0";
+        "Switch to Desktop 1" = [
+          "Meta+1"
+          "Meta+6"
+        ];
+        "Switch to Desktop 2" = [
+          "Meta+2"
+          "Meta+7"
+        ];
+        "Switch to Desktop 3" = [
+          "Meta+3"
+          "Meta+8"
+        ];
+        "Switch to Desktop 4" = [
+          "Meta+4"
+          "Meta+9"
+        ];
+        "Switch to Desktop 5" = [
+          "Meta+5"
+          "Meta+0"
+        ];
 
         # Move window to desktop shortcuts
-        "Window to Desktop 1" = "Meta+Alt+1";
-        "Window to Desktop 2" = "Meta+Alt+2";
-        "Window to Desktop 3" = "Meta+Alt+3";
-        "Window to Desktop 4" = "Meta+Alt+4";
-        "Window to Desktop 5" = "Meta+Alt+5";
-        "Window to Desktop 6" = "Meta+Alt+6";
-        "Window to Desktop 7" = "Meta+Alt+7";
-        "Window to Desktop 8" = "Meta+Alt+8";
-        "Window to Desktop 9" = "Meta+Alt+9";
-        "Window to Desktop 10" = "Meta+Alt+0";
+        "Window to Desktop 1" = [
+          "Meta+Alt+1"
+          "Meta+Alt+6"
+        ];
+        "Window to Desktop 2" = [
+          "Meta+Alt+2"
+          "Meta+Alt+7"
+        ];
+        "Window to Desktop 3" = [
+          "Meta+Alt+3"
+          "Meta+Alt+8"
+        ];
+        "Window to Desktop 4" = [
+          "Meta+Alt+4"
+          "Meta+Alt+9"
+        ];
+        "Window to Desktop 5" = [
+          "Meta+Alt+5"
+          "Meta+Alt+0"
+        ];
 
         # Disable default zoom shortcuts to avoid conflicts
         "Zoom In" = "Meta+Ctrl+=";
@@ -427,13 +521,14 @@
         KrohnkiteIncrease = "Meta+Alt+Equal";
         KrohnkiteDecrease = "Meta+Alt+Minus";
       };
+
     };
 
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
       colorScheme = "BreezeDark";
       iconTheme = "breeze-dark";
-      cursorTheme = "breeze_cursors";
+      cursor.theme = "breeze_cursors";
 
       enableMiddleClickPaste = false;
     };

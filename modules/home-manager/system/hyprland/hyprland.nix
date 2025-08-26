@@ -22,10 +22,10 @@
     ];
 
     home.sessionVariables = {
-      XDG_SESSION_TYPE = "wayland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      CLUTTER_BACKEND = "wayland";
+      # XDG_SESSION_TYPE = "wayland";
+      # XDG_SESSION_DESKTOP = "Hyprland";
+      # XDG_CURRENT_DESKTOP = "Hyprland";
+      # CLUTTER_BACKEND = "wayland";
     };
 
     xdg.configFile."xdg-desktop-portal-hyprland" = {

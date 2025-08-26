@@ -40,14 +40,17 @@ in
 
       # for copilot chat
       lynx
-      python313Packages.jedi-language-server
+      # python312Packages.jedi-language-server
 
       # Copilot
       copilot-language-server
 
+      #Opencode
+      lsof
+
       # ai terminals
       claude-code
-      goose-cli
+      # goose-cli
       delta # used for diff
     ];
 

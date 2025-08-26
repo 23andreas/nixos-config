@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = [
-    pkgs.blueberry
+  environment.systemPackages = with pkgs; [
+    kdePackages.bluedevil
   ];
 
   hardware.bluetooth.enable = true;

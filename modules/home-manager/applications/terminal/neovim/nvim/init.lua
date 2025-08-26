@@ -26,7 +26,7 @@ vim.lsp.enable({
   "eslint",
   "lua",
   "nixd",
-  "rust"
+  "rust",
 })
 
 -- Enable default LSP keymaps

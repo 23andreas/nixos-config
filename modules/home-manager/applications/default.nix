@@ -3,6 +3,7 @@
 {
   imports = [
     ./gui/rofi/rofi.nix
+    ./gui/brave.nix
     # ./gui/dicord.nix
     # ./gui/google-chrome.nix
     # ./gui/mpv.nix
