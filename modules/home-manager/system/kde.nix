@@ -43,36 +43,45 @@
           };
         };
       }
-      # {
-      #   apply = {
-      #     desktops = "Desktop_1";
-      #     desktopsrule = "3";
-      #   };
-      #   description = "Assign Slack to Desktop 1";
-      #   match = {
-      #     window-class = {
-      #       value = "Slack";
-      #       type = "substring";
-      #     };
-      #     window-types = [ "normal" ];
-      #   };
-      # }
-      # {
-      #   apply = {
-      #     desktops = "Desktop_10";
-      #     desktopsrule = "3";
-      #   };
-      #   description = "Assign Spotify to Desktop 10";
-      #   match = {
-      #     window-class = {
-      #       value = "Spoitfy";
-      #       type = "substring";
-      #     };
-      #     window-types = [ "normal" ];
-      #   };
-      # }
+      {
+        description = "Slack desktop 1";
+        match = {
+          window-class = {
+            value = "Slack";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktops = {
+            value = "Desktops_1";
+            apply = "initially";
+          };
+          activity = {
+            value = "d3ec6d8f-3e27-451c-ac9a-f0370ee90c00";
+            apply = "initially";
+          };
+        };
+      }
+      {
+        description = "Spotify desktop 5";
+        match = {
+          window-class = {
+            value = "Spotify";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktops = {
+            value = "Desktops_5";
+            apply = "initially";
+          };
+        };
+      }
     ];
-
     kwin = {
       effects = {
         cube.enable = false;
@@ -132,15 +141,15 @@
             name = "org.kde.plasma.digitalclock";
             config = {
               Appearance = {
-                # autoFontAndSize = false;
-                # customDateFormat = "ddd, MMM d";
+                autoFontAndSize = false;
+                boldText = true;
                 dateDisplayFormat = "BesideTime";
                 dateFormat = "longDate";
+                fontFamily = "SFProDisplay Nerd Font SemiBold";
+                fontStyleName = "Regular";
+                fontSize = 10;
+                fontWeight = 600;
                 showWeekNumbers = true;
-                # fontSize = 11;
-                # fontStyleName = "Regular";
-                # fontWeight = 400;
-                # use24hFormat = 2;
               };
             };
           }
@@ -214,10 +223,15 @@
       kdeglobals = {
         General = {
           BrowserApplication = "brave-browser.desktop";
+
+          font = "SFProText Nerd Font,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+          menuFont = "SFProText Nerd Font,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+          smallestReadableFont = "SFProText Nerd Font,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+          toolBarFont = "SFProDisplay Nerd Font,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+          XftAntialias = true;
+          XftHintStyle = "hintslight";
+          XftSubPixel = "none";
         };
-        # Icons = {
-        #   Theme = "Tela-circle-dark";
-        # };
         KDE = {
           AnimationDurationFactor = 1;
         };
@@ -240,6 +254,16 @@
           screenGapLeft = 5;
           screenGapRight = 5;
           screenGapTop = 5;
+
+          binaryTreeLayoutOrder = 0;
+          cascadeLayoutOrder = 0;
+          columnsLayoutOrder = 4;
+          floatingLayoutOrder = 0;
+          quarterLayoutOrder = 0;
+          spiralLayoutOrder = 0;
+          spreadLayoutOrder = 5;
+          stackedLayoutOrder = 0;
+          stairLayoutOrder = 0;
         };
         "Effect-diminactive" = {
           strength = 20;
@@ -451,6 +475,7 @@
         "activate task manager entry 9" = [ ];
         "activate task manager entry 10" = [ ];
       };
+      "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Del";
 
       kwin = {
         "Window Close" = "Meta+C";
@@ -467,6 +492,12 @@
         KrohnkiteShiftDown = "Meta+Alt+J";
         KrohnkiteShiftUp = "Meta+Alt+K";
         KrohnkiteShiftRight = "Meta+Alt+L";
+        KrohnkiteIncreaseRatio = "Meta+Equal";
+        KrohnkiteDecreaseRatio = "Meta+Minus";
+        KrohnkiteIncrease = "Meta+I";
+        KrohnkiteDecrease = "Meta+D";
+        KrohnkitetoggleDock = "Meta+Z";
+        KrohnkiteToggleFloat = "Meta+Y";
 
         "Switch to Desktop 1" = [
           "Meta+1"
@@ -514,21 +545,14 @@
         # Disable default zoom shortcuts to avoid conflicts
         "Zoom In" = "Meta+Ctrl+=";
         "Zoom Out" = "Meta+Ctrl+-";
-
-        # Krohnkite resize shortcuts
-        KrohnkiteIncreaseRatio = "Meta+Equal";
-        KrohnkiteDecreaseRatio = "Meta+Minus";
-        KrohnkiteIncrease = "Meta+Alt+Equal";
-        KrohnkiteDecrease = "Meta+Alt+Minus";
       };
-
     };
 
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
       colorScheme = "BreezeDark";
       iconTheme = "breeze-dark";
-      cursor.theme = "breeze_cursors";
+      # cursor.theme = "breeze_cursors";
 
       enableMiddleClickPaste = false;
     };
