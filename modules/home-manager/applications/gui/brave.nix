@@ -9,13 +9,11 @@ let
   braveEnabled = config.programs.chromium.enable;
 in
 {
-
   config = lib.mkIf braveEnabled {
     programs.chromium = {
       package = pkgs.brave;
       commandLineArgs = [
-        "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo"
-
+        "--enable-gpu-rasterization"
       ];
       extensions = [
         {
