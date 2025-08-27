@@ -75,6 +75,10 @@ in
         bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
         bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
         bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
+
+        # Make tmux set the terminal/window title to the session name
+        set -g set-titles on
+        set -g set-titles-string '#{pane_current_command} (#{session_name})'
       '';
       plugins = with pkgs; [
         tmuxPlugins.sensible
