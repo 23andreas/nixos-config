@@ -48,7 +48,6 @@ in
   environment.systemPackages = with pkgs; [
     os-prober
     veracrypt
-
   ];
 
   programs.steam = {
