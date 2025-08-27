@@ -94,10 +94,7 @@ in
   services.hardware.bolt.enable = true;
   services.thermald.enable = true;
   services.displayManager.sddm.enableHidpi = true;
-  powerManagement.powertop.enable = true;
-  environment.systemPackages = with pkgs; [
-    power-profiles-daemon
-  ];
+  services.power-profiles-daemon.enable = true;
 
   networking.hostName = hostname;
   virtualisation.docker.enable = true;
