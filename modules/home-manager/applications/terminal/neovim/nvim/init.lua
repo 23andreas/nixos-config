@@ -25,6 +25,7 @@ require("lazy").setup("plugins", {
 
 vim.lsp.enable({
   "eslint",
+  "json",
   "lua",
   "nixd",
   "rust",
