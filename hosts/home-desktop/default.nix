@@ -36,6 +36,7 @@ in
       "wheel"
       "audio"
       "rtkit"
+      "dialout"
     ];
     group = "users";
     home = "/home/andreas";

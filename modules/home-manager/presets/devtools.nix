@@ -50,6 +50,19 @@ in
       rustc
       clippy
 
+      arduino-cli
+      arduino-ide
+
+      cargo-generate
+
+      # CLI for AVR microcontrollers
+      avrdude
+      # flash onto AVR microcontrollers using avrdude
+      ravedude
+
+      openscad
+      openscad-lsp
+      freecad
     ];
 
     programs.vscode.enable = true;
