@@ -80,25 +80,27 @@ in
         };
 
         "sonarr.gafro.net" = proxy 8989 { };
-        "audiobookshelf.gafro.net" = proxy 8000 { };
+        # "audiobookshelf.gafro.net" = proxy 8000 { };
         "radarr.gafro.net" = proxy 7878 { };
         "bazarr.gafro.net" = proxy 6767 { };
         "prowlarr.gafro.net" = proxy 9696 { };
         "qbittorrent.gafro.net" = proxy 7219 { };
 
+        "syncthing.gafro.net" = proxy 8384 { };
+
         "glances.gafro.net" = proxy 61208 { };
 
-        "ha.gafro.net" = {
-          forceSSL = true;
-          enableACME = true;
-          extraConfig = ''
-            proxy_buffering off;
-          '';
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:2164/";
-            proxyWebsockets = true;
-          };
-        };
+        # "ha.gafro.net" = {
+        #   forceSSL = true;
+        #   enableACME = true;
+        #   extraConfig = ''
+        #     proxy_buffering off;
+        #   '';
+        #   locations."/" = {
+        #     proxyPass = "http://127.0.0.1:2164/";
+        #     proxyWebsockets = true;
+        #   };
+        # };
       };
   };
 
