@@ -63,6 +63,8 @@ in
       openscad
       openscad-lsp
       freecad
+
+      webkitgtk_6_0
     ];
 
     programs.vscode.enable = true;
