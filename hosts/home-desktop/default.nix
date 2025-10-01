@@ -13,7 +13,7 @@ in
     ./hardware-configuration.nix
     ./disk-config.nix
     ./wireguard.nix
-    # ./logitech-receiver-wake-on-suspend-fix.nix
+    ./logitech-receiver-wake-on-suspend-fix.nix
 
     # TEMP: Wifi diconnecting fix
     # ./disable-wifi-powersave.nix
@@ -116,6 +116,12 @@ in
   };
 
   networking.hostName = hostname;
+  networking.interfaces.eno1.wakeOnLan.enable = true;
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="net", NAME=="enp4s0", RUN+="${pkgs.ethtool}/bin/ethtool -s $name wol g"
+  '';
+
   virtualisation.docker.enable = true;
   time.hardwareClockInLocalTime = true; # Windows :(
 

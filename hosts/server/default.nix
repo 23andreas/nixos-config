@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 let
   hostname = "server";
+  home-desktop-wol = pkgs.writeShellScriptBin "home-desktop-wol" ''
+    ${pkgs.wakeonlan}/bin/wakeonlan -i home-desktop.lan a0:ad:9f:1e:52:a7
+  '';
 in
 {
   imports = [
@@ -34,6 +37,11 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    wakeonlan
+    home-desktop-wol
+  ];
 
   # services.k3s = {
   #   enable = true;
