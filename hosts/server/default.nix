@@ -9,6 +9,9 @@ in
     ./media-services.nix
 
     ./nginx.nix
+    ./postgresql.nix
+    ./n8n.nix
+    ./wireguard.nix
 
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/server.nix
@@ -81,6 +84,11 @@ in
         owner = "nginx";
       };
       "${hostname}/acme-cloudflare-environment-file" = { };
+      "${hostname}/wireguard-private-key" = {
+        owner = "root";
+        group = "root";
+        mode = "0600";
+      };
       # "${hostname}/mqtt_secrets" = {
       #   owner = "zigbee2mqtt";
       # };

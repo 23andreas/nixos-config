@@ -12,6 +12,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
+    ./wireguard.nix
 
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/workstation.nix
@@ -41,8 +42,6 @@ in
   programs.shell.envVarFiles = {
     ANTHROPIC_API_KEY = config.sops.secrets."users/andreas/anthropic-api-key".path;
     OPENAI_API_KEY = config.sops.secrets."users/andreas/openai-api-key".path;
-    GROQ_API_KEY = config.sops.secrets."users/andreas/groq-api-key".path;
-    TAVILY_API_KEY = config.sops.secrets."users/andreas/tavily-api-key".path;
   };
 
   home-manager = {
@@ -72,15 +71,14 @@ in
     "users/andreas/openai-api-key" = {
       owner = "andreas";
     };
-    "users/andreas/groq-api-key" = {
-      owner = "andreas";
-    };
-    "users/andreas/tavily-api-key" = {
-      owner = "andreas";
-    };
     "${hostname}/github-access-token-file" = { };
     "${hostname}/cachix-credentials-file" = { };
     "${hostname}/ssh-key/public" = { };
+    "${hostname}/wireguard-private-key" = {
+      owner = "root";
+      group = "root";
+      mode = "0600";
+    };
   };
 
   nix = {

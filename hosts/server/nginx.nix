@@ -90,6 +90,69 @@ in
 
         "glances.gafro.net" = proxy 61208 { };
 
+        # "n8n.gafro.net" = proxy 5678 { };
+        "n8n.gafro.net" = {
+          forceSSL = true;
+          enableACME = true;
+
+          # Keep your global basic auth file, but we'll disable it in specific locations below
+          basicAuthFile = config.sops.secrets."${hostname}/nginx-andreas-basic-auth-file".path;
+
+          # Per-vhost tweaks (override your global strict cookie path for n8n)
+          extraConfig = ''
+            proxy_read_timeout 600s;
+            proxy_send_timeout 600s;
+            client_max_body_size 50m;
+
+            # Override global SameSite=strict which can break n8n auth flow
+            proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
+          '';
+
+          locations = {
+            # UI (HTML) — Basic Auth applies here via server-level basicAuthFile
+            "/" = {
+              proxyPass = "http://127.0.0.1:5678/";
+              proxyWebsockets = true;
+            };
+
+            # n8n API — NO Basic Auth (n8n handles session)
+            "/rest/" = {
+              proxyPass = "http://127.0.0.1:5678/rest/";
+              proxyWebsockets = true;
+              extraConfig = "auth_basic off;";
+            };
+
+            # WebSocket/SSE — NO Basic Auth
+            "/socket.io/" = {
+              proxyPass = "http://127.0.0.1:5678/socket.io/";
+              proxyWebsockets = true;
+              extraConfig = "auth_basic off;";
+            };
+
+            # Webhooks — must be public
+            "/webhook/" = {
+              proxyPass = "http://127.0.0.1:5678/webhook/";
+              proxyWebsockets = true;
+              extraConfig = "auth_basic off;";
+            };
+            "/webhook-test/" = {
+              proxyPass = "http://127.0.0.1:5678/webhook-test/";
+              proxyWebsockets = true;
+              extraConfig = "auth_basic off;";
+            };
+
+            # Optional: health/metrics — NO Basic Auth
+            "/healthz" = {
+              proxyPass = "http://127.0.0.1:5678/healthz";
+              extraConfig = "auth_basic off;";
+            };
+            "/metrics" = {
+              proxyPass = "http://127.0.0.1:5678/metrics";
+              extraConfig = "auth_basic off;";
+            };
+          };
+        };
+
         # "ha.gafro.net" = {
         #   forceSSL = true;
         #   enableACME = true;
