@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 let
   hostname = "server";
+  # TODO move this
   home-desktop-wol = pkgs.writeShellScriptBin "home-desktop-wol" ''
-    ${pkgs.wakeonlan}/bin/wakeonlan -i home-desktop.lan a0:ad:9f:1e:52:a7
+    ${pkgs.wakeonlan}/bin/wakeonlan -i 192.168.1.7 a0:ad:9f:1e:52:a7
   '';
 in
 {
@@ -35,6 +36,7 @@ in
     hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID1bMDwYyT2X3vVJDe/tyM0+t1Q6eiiPO8JwuXLW1YcG"
     ];
   };
 
