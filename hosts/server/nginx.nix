@@ -90,6 +90,19 @@ in
 
         "glances.gafro.net" = proxy 61208 { };
 
+        "tailscale.gafro.net" = {
+          forceSSL = true;
+          enableACME = true;
+
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8080/";
+            proxyWebsockets = true; # Enable WebSocket support for TS2021 protocol
+            extraConfig = "auth_basic off;"; # Disable auth for all headscale endpoints
+          };
+        };
+
+        "mealie.gafro.net" = proxy 9925 { };
+
         # "n8n.gafro.net" = proxy 5678 { };
         "n8n.gafro.net" = {
           forceSSL = true;

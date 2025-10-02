@@ -12,7 +12,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
-    ./wireguard.nix
+    # ./wireguard.nix
     ./logitech-receiver-wake-on-suspend-fix.nix
 
     # TEMP: Wifi diconnecting fix
@@ -24,6 +24,8 @@ in
     ../../modules/nix/hardware/bluetooth.nix
     ../../modules/nix/hardware/nvidia.nix
     ../../modules/nix/hardware/ssd.nix
+
+    ../../modules/nix/modules/tailscale.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -38,6 +40,7 @@ in
       "audio"
       "rtkit"
       "dialout"
+      "operator"
     ];
     group = "users";
     home = "/home/andreas";
@@ -115,6 +118,7 @@ in
     '';
   };
 
+  # services.tailscale-headscale.enable = true;
   networking.hostName = hostname;
   networking.interfaces.eno1.wakeOnLan.enable = true;
 

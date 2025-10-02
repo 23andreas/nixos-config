@@ -15,7 +15,9 @@ in
     ./nginx.nix
     ./postgresql.nix
     ./n8n.nix
-    ./wireguard.nix
+    ./mealie.nix
+    # ./wireguard.nix
+    ./headscale.nix
 
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/server.nix

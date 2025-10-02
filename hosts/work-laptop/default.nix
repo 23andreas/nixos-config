@@ -12,7 +12,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
-    ./wireguard.nix
+    # ./wireguard.nix
 
     ../../modules/nix/presets/core.nix
     ../../modules/nix/presets/workstation.nix
@@ -21,6 +21,8 @@ in
     # nixos-hardware.nixosModules.dell-xps-15-9520
     ./hardware-copy.nix
     ../../modules/nix/hardware/bluetooth.nix
+
+    ../../modules/nix/modules/tailscale.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -93,6 +95,8 @@ in
   services.thermald.enable = true;
   services.displayManager.sddm.enableHidpi = true;
   services.power-profiles-daemon.enable = true;
+
+  services.tailscale-headscale.enable = true;
 
   networking.hostName = hostname;
   virtualisation.docker.enable = true;
