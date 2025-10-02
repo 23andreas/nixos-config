@@ -1,8 +1,9 @@
-{ config, ... }:
-let
-  hostname = config.networking.hostName;
-in
 {
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "server";
+  };
+
   services.headscale = {
     enable = true;
     address = "0.0.0.0";

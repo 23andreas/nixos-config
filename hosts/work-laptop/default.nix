@@ -83,6 +83,20 @@ in
     };
   };
 
+  services.openssh = {
+    enable = true;
+    authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
+    ];
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitEmptyPasswords = false;
+      X11Forwarding = false;
+      LoginGraceTime = "10s";
+    };
+  };
+
   nix = {
     settings.allowed-users = [ "andreas" ];
     extraOptions = ''
