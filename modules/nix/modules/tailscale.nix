@@ -23,6 +23,7 @@
     serviceConfig = {
       ExecStart = "${pkgs.tail-tray}/bin/tail-tray";
       Restart = "on-failure";
+      Environment = "PATH=${pkgs.tailscale}/bin:${pkgs.coreutils}/bin";
     };
   };
 }
