@@ -39,6 +39,9 @@ in
     home = "/home/andreas";
     shell = pkgs.fish;
     hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
+    ];
   };
 
   programs.shell.envVarFiles = {
@@ -85,9 +88,6 @@ in
 
   services.openssh = {
     enable = true;
-    authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOZWSjNZelhP3CAaIrmLiMMeaTP6EqPz+m6WDVh1meX"
-    ];
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;

@@ -46,6 +46,9 @@ in
     home = "/home/andreas";
     shell = pkgs.fish;
     hashedPasswordFile = config.sops.secrets."users/andreas/hashed-password".path;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID1bMDwYyT2X3vVJDe/tyM0+t1Q6eiiPO8JwuXLW1YcG"
+    ];
   };
 
   hardware.logitech.wireless.enable = true;
@@ -113,9 +116,6 @@ in
 
   services.openssh = {
     enable = true;
-    authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID1bMDwYyT2X3vVJDe/tyM0+t1Q6eiiPO8JwuXLW1YcG"
-    ];
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
