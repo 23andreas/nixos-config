@@ -110,8 +110,6 @@ in
   services.displayManager.sddm.enableHidpi = true;
   services.power-profiles-daemon.enable = true;
 
-  services.tailscale-headscale.enable = true;
-
   networking.hostName = hostname;
   virtualisation.docker.enable = true;
 
