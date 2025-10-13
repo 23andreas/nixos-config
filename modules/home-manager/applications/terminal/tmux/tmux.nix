@@ -21,24 +21,25 @@ in
       clock24 = true;
       mouse = true;
       newSession = false;
-      prefix = "C-Space";
+      prefix = "C-a";
       terminal = "tmux-256color";
       extraConfig = ''
+
+        # Show hide status bar
         bind-key b set-option status
+        # Tms
         bind o display-popup -E "tms"
 
-        bind J join-pane -s '{marked}'
-
-        # Vim keys for switching pane
-        bind h select-pane -L
-        bind j select-pane -D
-        bind k select-pane -U
-        bind l select-pane -R
+        bind j join-pane -v
+        bind J join-pane 
 
         set-option -g status-interval 5
         # set-option -g automatic-rename on
         # set-option -g automatic-rename-format '#{b:pane_current_command} (#{b:pane_current_path})'
 
+        # vim-tmux-naviator plug related stuff
+        # Smart pane switching with awareness of Vim splits.
+        # See: https://github.com/christoomey/vim-tmux-navigator 
         is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
           | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
         bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
@@ -56,10 +57,13 @@ in
         bind-key -T copy-mode-vi 'C-k' select-pane -U
         bind-key -T copy-mode-vi 'C-l' select-pane -R
         bind-key -T copy-mode-vi 'C-\' select-pane -l
+        # end
 
         # Start windows and panes at 1, not 0
         set -g base-index 1
         setw -g pane-base-index 1
+        # Auto renumber windows on close
+        set -g renumber-windows on
 
         # image.nvim 
         set -gq allow-passthrough on
