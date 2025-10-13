@@ -49,7 +49,6 @@ in
       lsof
 
       # ai terminals
-      claude-code
       # goose-cli
       delta # used for diff
     ];
