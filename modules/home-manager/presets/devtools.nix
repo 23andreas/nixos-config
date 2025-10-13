@@ -68,7 +68,39 @@ in
     ];
 
     programs.vscode.enable = true;
-    programs.opencode.enable = true;
+
+    programs.claude-code = {
+      enable = true;
+      mcpServers = {
+        playwright = {
+          type = "stdio";
+          command = "npx";
+          args = [
+            "@playwright/mcp@latest"
+          ];
+          env = { };
+        };
+        taskmaster-ai = {
+          type = "stdio";
+          command = "npx";
+          args = [
+            "-y"
+            "task-master-ai"
+          ];
+          "env" = { };
+        };
+
+      };
+    };
+
+    programs.opencode = {
+      enable = true;
+      commands = {
+        create-prd = ./commands/create-prd.md;
+        generate-tasks = ./commands/generate-tasks.md;
+        process-tasks = ./commands/process-task-list.md;
+      };
+    };
 
     programs.git.enable = true;
     programs.neovim.enable = true;
