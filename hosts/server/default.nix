@@ -96,6 +96,11 @@ in
         owner = "nginx";
       };
       "${hostname}/acme-cloudflare-environment-file" = { };
+      "${hostname}/mealie-credentials" = {
+        # owner = "mealie";
+        # group = "mealie";
+        # mode = "0400";
+      };
       "${hostname}/wireguard-private-key" = {
         owner = "root";
         group = "root";
@@ -108,6 +113,10 @@ in
   };
 
   networking.hostName = hostname;
+  
+  # Fix NetworkManager DNS - override previous dns=none setting
+  networking.networkmanager.dns = "default";
+
 
   hardware.graphics = {
     enable = true;

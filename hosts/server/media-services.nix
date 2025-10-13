@@ -13,6 +13,11 @@
     7219
     39603
   ];
+
+  services.tautulli = {
+    enable = true;
+  };
+
   services = {
     qbittorrent =
       let
@@ -30,6 +35,12 @@
             "Session\\PieceExtentAffinity" = true;
             "Session\\Port" = qbittorrentPort;
           };
+
+          AutoRun = {
+            "enabled" = true;
+            "program" = "/run/current-system/sw/bin/torrent-extractor \"%F\"";
+          };
+
           Preferences = {
             "Advanced\\AnonymousMode" = false;
             "Advanced\\osCache" = false;
@@ -46,11 +57,9 @@
             "Connection\\UPnP" = false;
             "Downloads\\SavePath" = "/media/torrent/downloads";
             "Downloads\\StartInPause" = false;
-            "Downloads\\RunExternalProgramEnabled" = true;
-            "Downloads\\RunExternalProgram" = "/run/current-system/sw/bin/torrent-extractor \"%F\"";
-            "Queueing\\MaxActiveDownloads" = 1;
-            "Queueing\\MaxActiveTorrents" = 1000;
-            "Queueing\\MaxActiveUploads" = 1000;
+            "Queueing\\MaxActiveDownloads" = 5;
+            "Queueing\\MaxActiveTorrents" = 100;
+            "Queueing\\MaxActiveUploads" = 100;
             "Queueing\\QueueingEnabled" = true;
             "WebUI\\AuthSubnetWhitelist" = "192.168.1.0/24";
             "WebUI\\AuthSubnetWhitelistEnabled" = true;

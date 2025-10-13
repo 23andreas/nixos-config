@@ -85,6 +85,7 @@ in
         "bazarr.gafro.net" = proxy 6767 { };
         "prowlarr.gafro.net" = proxy 9696 { };
         "qbittorrent.gafro.net" = proxy 7219 { };
+        "tautulli.gafro.net" = proxy 8181 { };
 
         "syncthing.gafro.net" = proxy 8384 { };
 
@@ -101,7 +102,20 @@ in
           };
         };
 
-        "mealie.gafro.net" = proxy 9925 { };
+        "mealie.gafro.net" = {
+          forceSSL = true;
+          enableACME = true;
+
+          extraConfig = ''
+            client_max_body_size 0;
+          '';
+
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:9925/";
+            proxyWebsockets = true;
+            extraConfig = "auth_basic off;";
+          };
+        };
 
         # "n8n.gafro.net" = proxy 5678 { };
         "n8n.gafro.net" = {

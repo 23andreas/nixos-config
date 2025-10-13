@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   services.mealie = {
@@ -7,13 +7,8 @@
     port = 9925;
 
     settings = {
-      # Database configuration
-      # DB_ENGINE = "postgres";
-      # POSTGRES_SERVER = "/run/postgresql";
-      # # POSTGRES_PORT = "5432";
-      # POSTGRES_DB = "mealie";
-      # POSTGRES_USER = "mealie";
-      # No password needed - using Unix socket with peer auth
+      # Database configuration - using SQLite for simplicity
+      DB_ENGINE = "sqlite";
 
       # Basic app settings
       BASE_URL = "https://mealie.garfro.net"; # Update with your domain
@@ -29,10 +24,14 @@
       # SMTP_FROM_EMAIL = "";
       # SMTP_USER = "";
       # SMTP_PASSWORD = "";
+
+      # OPENAI_MODEL = "gpt-4o"; # or "gpt-3.5-turbo"
+      OPENAI_ENABLE_IMAGE_SERVICES = "false";
+      OPENAI_WORKERS = 1;
     };
 
     # Optional: Use credentialsFile for sensitive data
-    # credentialsFile = config.sops.secrets."server/mealie-credentials".path;
+    credentialsFile = config.sops.secrets."server/mealie-credentials".path;
   };
 
   # Ensure mealie user has access to database
