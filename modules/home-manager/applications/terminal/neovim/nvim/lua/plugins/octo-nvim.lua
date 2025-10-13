@@ -7,10 +7,12 @@ return {
   cmd = "Octo",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "ibhagwan/fzf-lua",
+    -- "ibhagwan/fzf-lua",
     "nvim-tree/nvim-web-devicons"
   },
   config = function()
-    require "octo".setup()
+    require("octo").setup({
+      use_local_fs = true,
+    })
   end
 }
