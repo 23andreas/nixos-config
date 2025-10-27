@@ -8,6 +8,11 @@ return {
     },
     event = "VeryLazy",
     opts = {
+      disable_hint = true,
+      disable_signs = true,
+      filewatcher = {
+        enabled = false,
+      },
       graph_style = "kitty",
       integrations = {
         telescope = true,
