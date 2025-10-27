@@ -86,6 +86,7 @@ in
       imports = [
         ../../modules/home-manager/users/andreas.nix
         inputs.catppuccin.homeModules.catppuccin
+        inputs.vicinae.homeManagerModules.default
       ];
     };
     extraSpecialArgs = {

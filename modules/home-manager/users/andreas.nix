@@ -18,6 +18,14 @@
     flavor = "macchiato";
   };
 
+  services.vicinae = {
+    enable = true;
+    autoStart = true;
+    settings = {
+      theme.name = "catppuccin-mocha";
+    };
+  };
+
   # TEMP FIX
   # htps://github.com/nix-community/home-manager/issues/7124#issuecomment-2912133129
   xdg.portal.extraPortals = osConfig.xdg.portal.extraPortals;

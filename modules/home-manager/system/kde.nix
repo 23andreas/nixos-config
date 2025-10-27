@@ -297,6 +297,12 @@
         command = "kitty";
       };
 
+      launch-vicinae = {
+        name = "Launch Vicinae";
+        key = "Meta+Space";
+        command = "vicinae toggle";
+      };
+
       # Application launcher
       # rofi-drun = {
       #   name = "Rofi Application Launcher";
@@ -460,7 +466,7 @@
         "Lock Session" = [ ];
       };
       krunner = {
-        "_launch" = "Meta+Space";
+        "_launch" = [ ];
       };
       plasmashell = {
         "activate application launcher" = [ ];
