@@ -4,7 +4,7 @@ return {
   -- optional: provides snippets for the snippet source
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'Kaiser-Yang/blink-cmp-avante',
+    -- 'Kaiser-Yang/blink-cmp-avante',
   },
   -- use a release tag to download pre-built binaries
   version = 'v0.*',
@@ -36,16 +36,7 @@ return {
     -- default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
-      default = { 'avante', 'lsp', 'path', 'snippets', 'buffer' },
-      providers = {
-        avante = {
-          module = 'blink-cmp-avante',
-          name = 'Avante',
-          opts = {
-            -- options for blink-cmp-avante
-          }
-        }
-      },
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
       -- completion = {
       --   enabled_providers = { "lsp", "path", "snippets", "luasnip", "buffer", "codecompanion" },
       -- },
