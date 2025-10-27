@@ -44,6 +44,7 @@ in
 
       # Copilot
       copilot-language-server
+      # nodejs_22
 
       #Opencode
       lsof
@@ -59,7 +60,7 @@ in
       viAlias = true;
       vimAlias = true;
 
-      withNodeJs = true;
+      # withNodeJs = true;
 
       plugins = [
         inputs.mcphub-nvim.packages."${pkgs.system}".default
