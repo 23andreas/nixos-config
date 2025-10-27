@@ -29,6 +29,7 @@ vim.lsp.enable({
   "lua",
   "nixd",
   "rust",
+  "copilot",
 })
 
 -- Enable default LSP keymaps

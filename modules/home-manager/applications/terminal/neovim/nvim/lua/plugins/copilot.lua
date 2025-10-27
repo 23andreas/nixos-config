@@ -26,12 +26,12 @@ return {
         hide_during_completion = true,
         debounce = 75,
         keymap = {
-          accept = "<M-l>",
+          accept = "<M-;>",
           accept_word = false,
           accept_line = false,
           next = "<M-]>",
           prev = "<M-[>",
-          dismiss = "<C-]>",
+          -- dismiss = "<C-]>",
         },
       },
       filetypes = {
@@ -45,8 +45,12 @@ return {
         cvs = false,
         ["."] = false,
       },
-      copilot_node_command = 'node', -- Node.js version must be > 18.x
+      -- TODO Fix this hack
+      copilot_node_command = "/etc/profiles/per-user/andreas/bin/node",
       server_opts_overrides = {},
     },
+    config = function(_, opts)
+      require("copilot").setup(opts)
+    end,
   }
 }
