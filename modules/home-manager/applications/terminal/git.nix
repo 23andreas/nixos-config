@@ -9,18 +9,24 @@ let
   gitIsEnabled = config.programs.git.enable;
 in
 {
-  config.programs.git = lib.mkIf gitIsEnabled {
-    # TODO Set these options elsewhere?
+  programs.git = lib.mkIf gitIsEnabled {
     package = pkgs.gitFull;
-    userName = "Andreas Skønberg";
-    userEmail = "andreas.skonberg@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        email = "andreas.skonberg@gmail.com";
+        name = "Andreas Skønberg";
+
+      };
       credential.helper = "libsecret";
       init.defaultBranch = "main";
       push = {
         autoSetupRemote = true;
       };
     };
-    delta.enable = true;
+  };
+
+  programs.delta = lib.mkIf gitIsEnabled {
+    enable = true;
+    enableGitIntegration = true;
   };
 }
