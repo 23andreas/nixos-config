@@ -65,6 +65,9 @@ in
       freecad
 
       webkitgtk_6_0
+
+      # Global Node.js for copilot and other tools
+      nodejs_22
     ];
 
     programs.vscode.enable = true;
