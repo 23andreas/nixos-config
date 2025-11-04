@@ -1,0 +1,21 @@
+diff --git a/lua/copilot/client/init.lua b/lua/copilot/client/init.lua
+index 535210b..4b704ec 100644
+--- a/lua/copilot/client/init.lua
++++ b/lua/copilot/client/init.lua
+@@ -55,12 +55,13 @@ function M.buf_attach(force, bufnr)
+     return
+   end
+ 
+-  if M.buf_is_attached(bufnr) then
++  local attach_status = util.get_buffer_attach_status(bufnr)
++  if attach_status == util.ATTACH_STATUS_ATTACHED or attach_status == util.ATTACH_STATUS_FORCE_ATTACHED then
+     logger.trace("buffer already attached")
+     return
+   end
+ 
+-  if (not force) and util.get_buffer_attach_status(bufnr) == util.ATTACH_STATUS_MANUALLY_DETACHED then
++  if (not force) and attach_status == util.ATTACH_STATUS_MANUALLY_DETACHED then
+     logger.trace("buffer not attaching as it was manually detached")
+     return
+   end
+

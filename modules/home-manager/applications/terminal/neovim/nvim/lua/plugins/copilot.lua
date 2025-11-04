@@ -1,6 +1,17 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    patch = "copilot.lua.diff",
+    dependencies = {
+      {
+        "copilotlsp-nvim/copilot-lsp",
+        init = function()
+          -- Set debounce before plugin loads
+          vim.g.copilot_nes_debounce = 500
+        end,
+      },
+    },
+    cmd = "Copilot",
     event = "InsertEnter",
     build = ":Copilot auth",
     opts = {
@@ -33,6 +44,15 @@ return {
           prev = "<M-[>",
           -- dismiss = "<C-]>",
         },
+      },
+      nes = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept_and_goto = "<tab>",
+          accept = false,
+          dismiss = "<Esc>"
+        }
       },
       filetypes = {
         yaml = false,
