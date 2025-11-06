@@ -133,26 +133,34 @@ return {
     -- words = { enabled = true },
   },
   keys = {
-    { "<leader>.",  function() Snacks.scratch() end,                desc = "Toggle Scratch Buffer" },
-    { "<leader>S",  function() Snacks.scratch.select() end,         desc = "Select Scratch Buffer" },
-    { "<leader>n",  function() Snacks.notifier.show_history() end,  desc = "Notification History" },
-    { "<leader>gB", function() Snacks.gitbrowse() end,              desc = "Git Browse",               mode = { "n", "v" } },
+    { "<leader>.",        function() Snacks.scratch() end,                       desc = "Toggle Scratch Buffer" },
+    { "<leader>S",        function() Snacks.scratch.select() end,                desc = "Select Scratch Buffer" },
+    { "<leader>n",        function() Snacks.notifier.show_history() end,         desc = "Notification History" },
+    { "<leader>gB",       function() Snacks.gitbrowse() end,                     desc = "Git Browse",                 mode = { "n", "v" } },
 
-    { "<leader>jj", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
-    { "<leader>,",  function() Snacks.picker.buffers() end,         desc = "Buffers" },
-    { "<leader>/",  function() Snacks.picker.grep() end,            desc = "Grep" },
-    { "<leader>:",  function() Snacks.picker.command_history() end, desc = "Command History" },
-    { "<leader>jf", function() Snacks.picker.files() end,           desc = "Find Files" },
-    { "<leader>jr", function() Snacks.picker.recent() end,          desc = "Recent" },
+    { "<leader><leader>", function() Snacks.picker.smart() end,                  desc = "Smart Find Files" },
+    { "<leader>,",        function() Snacks.picker.buffers() end,                desc = "Buffers" },
+    { "<leader>/",        function() Snacks.picker.grep() end,                   desc = "Grep" },
+    { "<leader>:",        function() Snacks.picker.command_history() end,        desc = "Command History" },
+    -- { "<leader>jf",       function() Snacks.picker.files() end,           desc = "Find Files" },
+    { "<leader>fo",       function() Snacks.picker.recent() end,                 desc = "Recent" },
+    { "<leader>fr",       function() Snacks.picker.lsp_references() end,         nowait = true,                       desc = "References" },
 
-    { "<leader>gb", function() Snacks.picker.git_branches() end,    desc = "Git Branches" },
-    { "<leader>gl", function() Snacks.picker.git_log() end,         desc = "Git Log" },
-    { "<leader>gL", function() Snacks.picker.git_log_line() end,    desc = "Git Log Line" },
-    { "<leader>gs", function() Snacks.picker.git_status() end,      desc = "Git Status" },
-    { "<leader>gS", function() Snacks.picker.git_stash() end,       desc = "Git Stash" },
-    { "<leader>gd", function() Snacks.picker.git_diff() end,        desc = "Git Diff (Hunks)" },
-    { "<leader>gf", function() Snacks.picker.git_log_file() end,    desc = "Git Log File" },
 
-    { "<leader>sw", function() Snacks.picker.grep_word() end,       desc = "Visual selection or word", mode = { "n", "x" } },
+    { "<leader>gb",       function() Snacks.picker.git_branches() end,           desc = "Git Branches" },
+    { "<leader>gl",       function() Snacks.picker.git_log() end,                desc = "Git Log" },
+    { "<leader>gL",       function() Snacks.picker.git_log_line() end,           desc = "Git Log Line" },
+    { "<leader>gs",       function() Snacks.picker.git_status() end,             desc = "Git Status" },
+    { "<leader>gS",       function() Snacks.picker.git_stash() end,              desc = "Git Stash" },
+    { "<leader>gd",       function() Snacks.picker.git_diff() end,               desc = "Git Diff (Hunks)" },
+    { "<leader>gf",       function() Snacks.picker.git_log_file() end,           desc = "Git Log File" },
+
+    { "<leader>sw",       function() Snacks.picker.grep_word() end,              desc = "Visual selection or word",   mode = { "n", "x" } },
+
+    { "<leader>u",        function() Snacks.picker.undo() end,                   desc = "Undo History" },
+
+    { "<leader>gp",       function() Snacks.picker.gh_pr() end,                  desc = "GitHub Pull Requests (open)" },
+    { "<leader>gP",       function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
+
   }
 }

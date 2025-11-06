@@ -2,9 +2,8 @@ return {
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
-      "nvim-telescope/telescope.nvim", -- optional
+      "nvim-lua/plenary.nvim",  -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
     },
     event = "VeryLazy",
     opts = {
@@ -15,8 +14,8 @@ return {
       },
       graph_style = "kitty",
       integrations = {
-        telescope = true,
-        diffview = true
+        diffview = true,
+        snacks = true
       },
       commit_popup = {
         kind = "split",
@@ -33,9 +32,6 @@ return {
         item = { "", "" }, -- Customizes signs for opened/closed items
         -- hunk = { "", "" }, -- Customizes signs for hunks
       },
-      telescope_sorter = function()
-        return require("telescope").extensions.fzf.native_fzf_sorter()
-      end
     },
     keys = {
       {
