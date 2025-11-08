@@ -68,6 +68,8 @@ in
 
       # Global Node.js for copilot and other tools
       nodejs_22
+
+      wakatime-cli
     ];
 
     programs.vscode.enable = true;

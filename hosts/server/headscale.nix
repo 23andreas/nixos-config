@@ -51,19 +51,43 @@
       # Log configuration
       # log_level = "info";
 
-      # DERP configuration (use Tailscale's DERP servers)
+      # DERP configuration with embedded DERP server
       derp = {
+        # Keep Tailscale's public DERP servers as fallback
+        # Once your embedded DERP is working well, you can set urls = [] for complete privacy
         urls = [
           "https://controlplane.tailscale.com/derpmap/default"
         ];
         auto_update_enabled = true;
         update_frequency = "24h";
+
+        # Embedded DERP server configuration
+        server = {
+          enabled = true;
+          region_id = 999;
+          region_code = "gafro";
+          region_name = "Gafro DERP Server";
+          stun_listen_addr = "0.0.0.0:3478";
+
+          # Using your public IP (note: update if IP changes, or use DNS hostname)
+          ipv4 = "193.91.129.32";
+          # ipv6 = "YOUR_IPV6_HERE";  # Add if you have IPv6
+
+          # Only allow your authenticated Headscale clients to use this DERP
+          verify_clients = true;
+
+          # Automatically add this DERP region to the map
+          automatically_add_embedded_derp_region = true;
+
+          # Private key will be auto-generated at this path
+          private_key_path = "/var/lib/headscale/derp_server_private.key";
+        };
       };
     };
   };
 
-  # Database configuration moved to postgresql.nix
-
-  # Open firewall for metrics (optional)
-  # networking.firewall.allowedTCPPorts = [ 9090 ];
+  networking.firewall.allowedUDPPorts = [
+    41641
+    3478
+  ];
 }

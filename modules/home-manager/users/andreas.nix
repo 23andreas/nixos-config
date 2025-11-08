@@ -18,9 +18,12 @@
     flavor = "macchiato";
   };
 
-  services.vicinae = {
+  programs.vicinae = {
     enable = true;
-    autoStart = true;
+    systemd = {
+      enable = true;
+      autoStart = true;
+    };
     settings = {
       theme.name = "catppuccin-mocha";
     };
@@ -37,7 +40,7 @@
 
   programs = {
     aichat.enable = true;
-    atuin.enable = true;
+    atuin.enable = false;
     git.enable = true;
     # hyprlock.enable = true;
     kitty.enable = true;

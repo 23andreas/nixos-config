@@ -2,7 +2,7 @@ return {
   "folke/sidekick.nvim",
   event = "VeryLazy", -- or "BufEnter"
   opts = {
-    nes = { enabled = false },
+    nes = { enabled = true },
     -- add any options here
     cli = {
       mux = {

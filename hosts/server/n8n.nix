@@ -3,13 +3,11 @@
     enable = true;
     openFirewall = true;
 
-    webhookUrl = "https://n8n.gafro.net/";
-
-    settings = {
+    environment = {
       N8N_HOST = "n8n.gafro.net";
-      N8N_PORT = 5678;
+      N8N_PORT = "5678";
       N8N_PROTOCOL = "https";
-      N8N_SECURE_COOKIE = true;
+      N8N_SECURE_COOKIE = "true";
 
       DB_TYPE = "postgresdb";
       DB_POSTGRESDB_HOST = "/run/postgresql";
@@ -18,7 +16,9 @@
 
       GENERIC_TIMEZONE = "Europe/Oslo";
 
-      N8N_PROXY_HOPS = 1;
+      N8N_PROXY_HOPS = "1";
+
+      WEBHOOK_URL = "https://n8n.gafro.net/";
     };
   };
 }

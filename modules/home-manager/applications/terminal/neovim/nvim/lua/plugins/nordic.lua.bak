@@ -1,0 +1,30 @@
+return {
+  'AlexvZyl/nordic.nvim',
+  lazy = false,
+  priority = 1000,
+  opts = {
+    bold_keywords = false,
+    italic_comments = false,
+    cursorline = {
+      -- Bold font in cursorline.
+      bold = false,
+      -- Bold cursorline number.
+      bold_number = true,
+      -- Available styles: 'dark', 'light'.
+      theme = 'dark',
+      -- Blending the cursorline bg with the buffer bg.
+      blend = 0.1,
+    },
+    transparent = {
+      bg = true,
+      float = false,
+    },
+    ts_context = {
+      dark_background = false,
+    }
+  },
+  config = function(_, opts)
+    require('nordic').setup(opts)
+    vim.cmd.colorscheme 'nordic'
+  end
+}

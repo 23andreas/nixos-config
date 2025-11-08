@@ -28,6 +28,8 @@ in
 
         cursor_trail = 1;
         cursor_trail_decay = "0.1 0.3";
+        background_opacity = 0.9;
+        background_blur = 20;
       };
       keybindings = {
         "ctrl+shift+u" = "no_op";

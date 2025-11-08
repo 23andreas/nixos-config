@@ -30,6 +30,10 @@ return {
       ]]
       return {
         model = "gpt-4.1",
+        window = {
+          layout = 'vertical',
+          -- width = 0.33
+        },
         highlight_headers = false,
         mappings = {
           show_diff = {

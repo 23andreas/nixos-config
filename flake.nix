@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   nixConfig = {
@@ -53,7 +48,6 @@
       disko,
       nixos-hardware,
       cachix-deploy,
-      vicinae,
       ...
     }@inputs:
     let

@@ -3,15 +3,23 @@ return {
   lazy = false,
   priority = 1000,
   opts = {
-    transparent_background = true,
-    no_italic = true,
     flavour = "macchiato", -- latte, frappe, macchiato, mocha
-    custom_highlights = function(colors)
-      return {
-        SnacksIndent = { fg = colors.surface0 },
-        SnacksIndentScope = { fg = colors.overlay2 }
-      }
-    end,
+    transparent_background = true,
+    float = {
+      transparent = true,
+    },
+    -- dim_inactive = {
+    --   enabled = true,
+    --   shade = "dark",
+    --   percentage = 0.15,
+    -- },
+    no_italic = true,
+    -- custom_highlights = function(colors)
+    --   return {
+    --     -- SnacksIndent = { fg = colors.surface0 },
+    --     -- SnacksIndentScope = { fg = colors.overlay2 }
+    --   }
+    -- end,
     integrations = {
       blink_cmp = true,
       diffview = true,
@@ -27,7 +35,11 @@ return {
       treesitter_context = true,
       octo = true,
       render_markdown = true,
-      telescope = true,
+      snacks = {
+        enabled = true,
+        -- indent_scope_color = "",
+      },
+      -- telescope = true,
       lsp_trouble = true,
       which_key = true,
     }

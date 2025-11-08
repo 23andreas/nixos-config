@@ -4,7 +4,6 @@
   ...
 }:
 {
-
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
   ];
@@ -15,17 +14,6 @@
 
   programs.plasma = {
     enable = true;
-
-    spectacle = {
-      shortcuts = {
-        # captureEntireDesktop = "";
-        # captureRectangularRegion = "";
-        # launch = "";
-        # recordRegion = "Meta+Shift+R";
-        # recordScreen = "Meta+Ctrl+R";
-        # recordWindow = "";
-      };
-    };
 
     window-rules = [
       {
@@ -55,7 +43,7 @@
         };
         apply = {
           desktops = {
-            value = "Desktops_1";
+            value = "Desktop_1";
             apply = "initially";
           };
           activity = {
@@ -76,7 +64,28 @@
         };
         apply = {
           desktops = {
-            value = "Desktops_5";
+            value = "Desktop_5";
+            apply = "initially";
+          };
+        };
+      }
+      {
+        description = "Vesktop";
+        match = {
+          window-class = {
+            value = "vesktop";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktops = {
+            value = "Desktop_1";
+            apply = "initially";
+          };
+          activity = {
+            value = "95d614da-6314-4bcd-9032-b5ea30c864cd";
             apply = "initially";
           };
         };
@@ -86,14 +95,9 @@
       effects = {
         cube.enable = false;
         desktopSwitching.animation = "slide";
-        # dimAdminMode.enable = false;
-
         fallApart.enable = false;
-        # fps.enable = false;
         minimization.animation = "off";
         shakeCursor.enable = false;
-        # slideBack.enable = false;
-        # snapHelper.enable = false;
         translucency.enable = false;
         windowOpenClose.animation = "off";
         wobblyWindows.enable = false;
@@ -255,13 +259,17 @@
           screenGapRight = 5;
           screenGapTop = 5;
 
-          binaryTreeLayoutOrder = 0;
+          columnsLayoutOrder = 1;
+          binaryTreeLayoutOrder = 2;
+          monocleLayoutOrder = 3;
+          spreadLayoutOrder = 4;
+
+          tileLayoutOrder = 0;
+          threeColumnLayoutOrder = 0;
           cascadeLayoutOrder = 0;
-          columnsLayoutOrder = 4;
           floatingLayoutOrder = 0;
           quarterLayoutOrder = 0;
           spiralLayoutOrder = 0;
-          spreadLayoutOrder = 5;
           stackedLayoutOrder = 0;
           stairLayoutOrder = 0;
         };
@@ -283,10 +291,6 @@
         };
         ImageSave.imageCompressionQuality = 100;
       };
-    };
-    dataFile = {
-      "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
-      # "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
     };
 
     hotkeys.commands = {
@@ -559,19 +563,13 @@
       colorScheme = "BreezeDark";
       iconTheme = "breeze-dark";
       # cursor.theme = "breeze_cursors";
+      wallpaper = "/home/andreas/Pictures/Wallpapers/alps.jpg";
 
       enableMiddleClickPaste = false;
     };
 
-    # kwin.nightColor = {
-    #   enable = true;
-    #   mode = "times";
-    #   morning = "06:00";
-    #   evening = "22:00";
-    #   temperature = {
-    #     day = 6500;
-    #     night = 4500;
-    #   };
-    # };
+    kscreenlocker = {
+      appearance.wallpaper = "/home/andreas/Pictures/Wallpapers/aishot-1773.jpg";
+    };
   };
 }

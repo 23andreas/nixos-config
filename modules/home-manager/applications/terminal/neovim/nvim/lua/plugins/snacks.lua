@@ -11,7 +11,90 @@ return {
     dashboard = {
       enabled = true,
       sections = {
-        { section = "header" },
+        -- { section = "header" },
+        -- 🧠 Git Status Section (staged + unstaged)
+        function()
+          local in_git = Snacks.git.get_root() ~= nil
+          return {
+            pane = 1,
+            section = "terminal",
+            icon = " ",
+            title = "Git Status",
+            cmd =
+            "git --no-pager diff --stat -B -M -C origin/$(git rev-parse --abbrev-ref HEAD) || echo 'Not a git repo'",
+            height = 12,
+            padding = 1,
+            enabled = in_git,
+            ttl = 5 * 60,
+            indent = 3,
+          }
+        end,
+        -- 📦 Unpushed Commits Section
+        function()
+          local in_git = Snacks.git.get_root() ~= nil
+          return {
+            pane = 1,
+            section = "terminal",
+            icon = " ",
+            title = "Unpushed Commits",
+            cmd = "git log origin/$(git rev-parse --abbrev-ref HEAD)..HEAD --oneline || echo 'No unpushed commits'",
+            height = 8,
+            padding = 1,
+            enabled = in_git,
+            ttl = 5 * 60,
+            indent = 3,
+          }
+        end,
+
+        -- ⏱️ WakaTime Summary Section
+        {
+          pane = 1,
+          section = "terminal",
+          icon = "󰔚 ",
+          title = "WakaTime Summary (Today)",
+          cmd = "wakatime-cli --today",
+          height = 5,
+          padding = 1,
+          ttl = 5 * 60,
+          indent = 3,
+        },
+        {
+          pane = 2,
+          section = "terminal",
+          icon = " ",
+          title = "My Open Pull Requests",
+          cmd = [[
+    gh pr list --author "@me" -L 5 --json number,title,headRefName,url \
+      --template "{{range .}}{{printf \"#%v  %s [%s\\n\" .number .title .headRefName}}{{end}}" \
+      2>/dev/null || echo "No open PRs found for current user"
+  ]],
+          height = 8,
+          padding = 1,
+          ttl = 5 * 60,
+          indent = 3,
+          enabled = vim.fn.executable("gh") == 1,
+          key = "p",
+          desc = "Open my PRs in browser",
+          action = function()
+            vim.fn.jobstart({ "gh", "pr", "list", "--author", "@me", "--web" }, { detach = true })
+          end,
+          keys = {
+            o = {
+              desc = "Open first PR",
+              action = function()
+                local handle = io.popen("gh pr list --author '@me' -L 1 --json url --template '{{(index . 0).url}}'")
+                if not handle then return end
+                local url = handle:read("*a")
+                handle:close()
+                if url and url ~= "" then
+                  vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+                else
+                  print("No open PRs found for current user")
+                end
+              end,
+            },
+          },
+        },
         -- {
         --   pane = 2,
         --   section = "terminal",
@@ -19,70 +102,70 @@ return {
         --   height = 5,
         --   padding = 1,
         -- },
-        { section = "keys",  gap = 1, padding = 1 },
-        {
-          pane = 2,
-          icon = " ",
-          desc = "Browse Repo",
-          padding = 1,
-          key = "b",
-          action = function()
-            Snacks.gitbrowse()
-          end,
-        },
-        function()
-          local in_git = Snacks.git.get_root() ~= nil
-          local cmds = {
-            -- {
-            --   title = "Notifications",
-            --   cmd = "gh notify -s -a -n5",
-            --   action = function()
-            --     vim.ui.open("https://github.com/notifications")
-            --   end,
-            --   key = "n",
-            --   icon = " ",
-            --   height = 5,
-            --   enabled = true,
-            -- },
-            -- {
-            --   title = "Open Issues",
-            --   cmd = "gh issue list -L 3",
-            --   key = "i",
-            --   action = function()
-            --     vim.fn.jobstart("gh issue list --web", { detach = true })
-            --   end,
-            --   icon = " ",
-            --   height = 7,
-            -- },
-            -- {
-            {
-              icon = " ",
-              title = "Open PRs",
-              cmd = "gh pr list -L 3 | awk 'NR>1' | cat",
-              key = "P",
-              action = function()
-                vim.fn.jobstart('gh pr list --web', { detach = true })
-              end,
-              height = 7,
-            },
-            {
-              icon = " ",
-              title = "Git Status",
-              cmd = "git --no-pager diff --stat -B -M -C",
-              height = 10,
-            },
-          }
-          return vim.tbl_map(function(cmd)
-            return vim.tbl_extend("force", {
-              pane = 2,
-              section = "terminal",
-              enabled = in_git,
-              padding = 1,
-              ttl = 5 * 60,
-              indent = 3,
-            }, cmd)
-          end, cmds)
-        end,
+        -- { section = "keys",  gap = 1, padding = 1 },
+        -- {
+        --   pane = 2,
+        --   icon = " ",
+        --   desc = "Browse Repo",
+        --   padding = 1,
+        --   key = "b",
+        --   action = function()
+        --     Snacks.gitbrowse()
+        --   end,
+        -- },
+        -- function()
+        --   local in_git = Snacks.git.get_root() ~= nil
+        --   local cmds = {
+        --     -- {
+        --     --   title = "Notifications",
+        --     --   cmd = "gh notify -s -a -n5",
+        --     --   action = function()
+        --     --     vim.ui.open("https://github.com/notifications")
+        --     --   end,
+        --     --   key = "n",
+        --     --   icon = " ",
+        --     --   height = 5,
+        --     --   enabled = true,
+        --     -- },
+        --     -- {
+        --     --   title = "Open Issues",
+        --     --   cmd = "gh issue list -L 3",
+        --     --   key = "i",
+        --     --   action = function()
+        --     --     vim.fn.jobstart("gh issue list --web", { detach = true })
+        --     --   end,
+        --     --   icon = " ",
+        --     --   height = 7,
+        --     -- },
+        --     -- {
+        --     -- {
+        --     --   icon = " ",
+        --     --   title = "Open PRs",
+        --     --   cmd = "gh pr list -L 3 | awk 'NR>1' | cat",
+        --     --   key = "P",
+        --     --   action = function()
+        --     --     vim.fn.jobstart('gh pr list --web', { detach = true })
+        --     --   end,
+        --     --   height = 7,
+        --     -- },
+        --     {
+        --       icon = " ",
+        --       title = "Git Status",
+        --       cmd = "git --no-pager diff --stat -B -M -C origin/$(git rev-parse --abbrev-ref HEAD)",
+        --       height = 20,
+        --     },
+        --   }
+        --   return vim.tbl_map(function(cmd)
+        --     return vim.tbl_extend("force", {
+        --       pane = 2,
+        --       section = "terminal",
+        --       enabled = in_git,
+        --       padding = 1,
+        --       ttl = 5 * 60,
+        --       indent = 3,
+        --     }, cmd)
+        --   end, cmds)
+        -- end,
         { section = "startup" },
       },
 
@@ -104,6 +187,34 @@ return {
         sidekick_send = function(...)
           return require("sidekick.cli.picker.snacks").send(...)
         end,
+        flash = function(picker)
+          require("flash").jump({
+            pattern = "^",
+            label = { after = { 0, 0 } },
+            search = {
+              mode = "search",
+              exclude = {
+                function(win)
+                  return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+                end,
+              },
+            },
+            action = function(match)
+              local idx = picker.list:row2idx(match.pos[1])
+              picker.list:_move(idx, true, true)
+            end,
+          })
+        end,
+      },
+      formatters = {
+        file = {
+          filename_first = true,
+          truncate = "center",
+          min_width = 40,
+          filename_only = false,
+          icon_width = 2,
+          git_status_hl = true,
+        }
       },
       previewers = {
         diff = {
@@ -141,6 +252,7 @@ return {
     { "<leader><leader>", function() Snacks.picker.smart() end,                  desc = "Smart Find Files" },
     { "<leader>,",        function() Snacks.picker.buffers() end,                desc = "Buffers" },
     { "<leader>/",        function() Snacks.picker.grep() end,                   desc = "Grep" },
+    { "<leader>?",        function() Snacks.picker.resume() end,                 desc = "Resume" },
     { "<leader>:",        function() Snacks.picker.command_history() end,        desc = "Command History" },
     -- { "<leader>jf",       function() Snacks.picker.files() end,           desc = "Find Files" },
     { "<leader>fo",       function() Snacks.picker.recent() end,                 desc = "Recent" },
