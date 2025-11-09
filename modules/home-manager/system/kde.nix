@@ -3,6 +3,20 @@
   pkgs,
   ...
 }:
+let
+  currentActivityIconWidget = pkgs.stdenv.mkDerivation {
+    name = "plasma-current-activity-icon";
+    version = "5.1";
+    src = ./plasmoids/org.kde.currentactivityicon;
+
+    dontBuild = true;
+
+    installPhase = ''
+      mkdir -p $out/share/plasma/plasmoids/org.kde.currentactivityicon
+      cp -r $src/* $out/share/plasma/plasmoids/org.kde.currentactivityicon/
+    '';
+  };
+in
 {
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
@@ -10,6 +24,7 @@
 
   home.packages = with pkgs; [
     kdePackages.krohnkite
+    # currentActivityIconWidget
   ];
 
   programs.plasma = {
@@ -28,6 +43,48 @@
           window-class = {
             value = ".*";
             type = "regex";
+          };
+        };
+      }
+      {
+        description = "Brave work to work activity";
+        match = {
+          window-class = {
+            value = "brave-work";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktops = {
+            value = "Desktop_2";
+            apply = "initially";
+          };
+          activity = {
+            value = "d3ec6d8f-3e27-451c-ac9a-f0370ee90c00";
+            apply = "initially";
+          };
+        };
+      }
+      {
+        description = "Brave personal to personal activity";
+        match = {
+          window-class = {
+            value = "brave-personal";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktops = {
+            value = "Desktop_2";
+            apply = "initially";
+          };
+          activity = {
+            value = "95d614da-6314-4bcd-9032-b5ea30c864cd";
+            apply = "initially";
           };
         };
       }
@@ -90,6 +147,48 @@
           };
         };
       }
+      {
+        description = "Fusion";
+        match = {
+          window-class = {
+            value = "kitty-fusion";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktops = {
+            value = "Desktop_2";
+            apply = "initially";
+          };
+          activity = {
+            value = "d3ec6d8f-3e27-451c-ac9a-f0370ee90c00";
+            apply = "initially";
+          };
+        };
+      }
+      {
+        description = "Nixos config";
+        match = {
+          window-class = {
+            value = "kitty-nixos-config";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktops = {
+            value = "Desktop_4";
+            apply = "initially";
+          };
+          activity = {
+            value = "95d614da-6314-4bcd-9032-b5ea30c864cd";
+            apply = "initially";
+          };
+        };
+      }
     ];
     kwin = {
       effects = {
@@ -131,6 +230,9 @@
         location = "top";
         opacity = "translucent";
         widgets = [
+          # {
+          #   name = "org.kde.currentactivityicon";
+          # }
           {
             name = "org.kde.plasma.pager";
             config = {
@@ -219,7 +321,7 @@
           "d3ec6d8f-3e27-451c-ac9a-f0370ee90c00" = "Work";
         };
         activities-icons = {
-          "95d614da-6314-4bcd-9032-b5ea30c864cd" = "yast-kernel";
+          "95d614da-6314-4bcd-9032-b5ea30c864cd" = "bomber";
           "d3ec6d8f-3e27-451c-ac9a-f0370ee90c00" = "utilities-terminal";
         };
       };
@@ -307,6 +409,12 @@
         command = "vicinae toggle";
       };
 
+      # launch-tms = {
+      #   name = "Launch TMS Project Selector";
+      #   key = "Meta+T";
+      #   command = "tms-launcher";
+      # };
+
       # Application launcher
       # rofi-drun = {
       #   name = "Rofi Application Launcher";
@@ -352,14 +460,14 @@
       brave-default = {
         name = "Brave Browser (Default)";
         key = "Meta+Alt+;";
-        command = "brave --profile-directory=Default";
+        command = "brave --class=brave-work --profile-directory=Default";
       };
 
       # Browser - Profile 1
       brave-profile1 = {
         name = "Brave Browser (Profile 1)";
         key = "Meta+;";
-        command = "brave --profile-directory=\"Profile 1\"";
+        command = "brave --class=brave-personal --profile-directory=\"Profile 1\"";
       };
 
       # Power menu
@@ -488,10 +596,11 @@
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Del";
 
       kwin = {
+
         "Window Close" = "Meta+C";
         "Window Fullscreen" = "Meta+F";
         "Show Desktop" = [ ];
-        "Toggle Tiles Editor" = [ ];
+        "Toggles Tiles Editor" = [ ];
 
         KrohnkiteFocusLeft = "Meta+H";
         KrohnkiteFocusDown = "Meta+J";

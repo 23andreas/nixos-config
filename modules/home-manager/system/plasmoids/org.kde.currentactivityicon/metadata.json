@@ -1,0 +1,21 @@
+{
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Authors": [
+      {
+        "Email": "you@example.com",
+        "Name": "You"
+      }
+    ],
+    "Category": "Utilities",
+    "Description": "Shows the current activity's icon",
+    "EnabledByDefault": true,
+    "Icon": "activities",
+    "Id": "org.kde.currentactivityicon",
+    "License": "MIT",
+    "Name": "Current Activity Icon",
+    "Version": "6",
+    "Website": ""
+  },
+  "X-Plasma-API-Minimum-Version": "6.0"
+}

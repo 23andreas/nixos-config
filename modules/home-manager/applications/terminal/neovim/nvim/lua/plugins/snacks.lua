@@ -12,6 +12,34 @@ return {
       enabled = true,
       sections = {
         -- { section = "header" },
+        -- ⏱️ WakaTime Summary Section
+        {
+          pane = 1,
+          section = "terminal",
+          icon = "󰔚 ",
+          title = "WakaTime Summary (Today)",
+          cmd = "wakatime-cli --today",
+          height = 5,
+          padding = 1,
+          ttl = 5 * 60,
+          indent = 3,
+        },
+        -- 📦 Unpushed Commits Section
+        function()
+          local in_git = Snacks.git.get_root() ~= nil
+          return {
+            pane = 1,
+            section = "terminal",
+            icon = " ",
+            title = "Unpushed Commits",
+            cmd = "git log origin/$(git rev-parse --abbrev-ref HEAD)..HEAD --oneline || echo 'No unpushed commits'",
+            height = 8,
+            padding = 1,
+            enabled = in_git,
+            ttl = 5 * 60,
+            indent = 3,
+          }
+        end,
         -- 🧠 Git Status Section (staged + unstaged)
         function()
           local in_git = Snacks.git.get_root() ~= nil
@@ -29,35 +57,6 @@ return {
             indent = 3,
           }
         end,
-        -- 📦 Unpushed Commits Section
-        function()
-          local in_git = Snacks.git.get_root() ~= nil
-          return {
-            pane = 1,
-            section = "terminal",
-            icon = " ",
-            title = "Unpushed Commits",
-            cmd = "git log origin/$(git rev-parse --abbrev-ref HEAD)..HEAD --oneline || echo 'No unpushed commits'",
-            height = 8,
-            padding = 1,
-            enabled = in_git,
-            ttl = 5 * 60,
-            indent = 3,
-          }
-        end,
-
-        -- ⏱️ WakaTime Summary Section
-        {
-          pane = 1,
-          section = "terminal",
-          icon = "󰔚 ",
-          title = "WakaTime Summary (Today)",
-          cmd = "wakatime-cli --today",
-          height = 5,
-          padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
-        },
         {
           pane = 2,
           section = "terminal",

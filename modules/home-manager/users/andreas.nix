@@ -25,7 +25,7 @@
       autoStart = true;
     };
     settings = {
-      theme.name = "catppuccin-mocha";
+      # theme.name = "catppuccin-mocha";
     };
   };
 

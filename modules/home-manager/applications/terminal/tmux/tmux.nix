@@ -8,6 +8,21 @@
 
 let
   tmuxIsEnabled = config.programs.tmux.enable;
+  tms-launcher = pkgs.writeShellApplication {
+    name = "tms-launcher";
+    runtimeInputs = [
+      pkgs.kitty
+      pkgs.bash
+    ];
+    text = ''
+      set -euo pipefail
+
+      # Launch a new Kitty window and start tms
+      kitty --detach --instance-group tms-launcher \
+        --title "TMS Project Selector" \
+        -e bash -lc "tms"
+    '';
+  };
 in
 {
   options.nixosConfig.shell.tmux = {
@@ -15,7 +30,11 @@ in
   };
 
   config = lib.mkIf tmuxIsEnabled {
-    home.packages = [ pkgs.tmux-sessionizer ];
+    home.packages = [
+      pkgs.tmux-sessionizer
+      tms-launcher
+    ];
+
     programs.tmux = {
       keyMode = "vi";
       clock24 = true;

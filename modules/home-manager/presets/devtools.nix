@@ -7,6 +7,40 @@
 
 let
   cfg = config.home.presets.dev;
+
+  nixosConfigLauncher = pkgs.writeShellScript "launch-nixos-config-tmux" ''
+    #!/usr/bin/env bash
+    set -e
+
+    # Check if window with this class already exists
+    if ${pkgs.xdotool}/bin/xdotool search --class kitty-nixos-config &>/dev/null; then
+      # Window exists, activate it
+      ${pkgs.xdotool}/bin/xdotool search --class kitty-nixos-config windowactivate
+    else
+      # Window doesn't exist, create it
+      kitty --listen-on unix:/tmp/mykitty \
+        --class kitty-nixos-config \
+        --directory=/home/andreas/code/nixos-config \
+        -e tmux new -A -s nixos-config
+    fi
+  '';
+
+  fusionLauncher = pkgs.writeShellScript "launch-fusion-tmux" ''
+    #!/usr/bin/env bash
+    set -e
+
+    # Check if window with this class already exists
+    if ${pkgs.xdotool}/bin/xdotool search --class kitty-fusion &>/dev/null; then
+      # Window exists, activate it
+      ${pkgs.xdotool}/bin/xdotool search --class kitty-fusion windowactivate
+    else
+      # Window doesn't exist, create it
+      kitty --listen-on unix:/tmp/mykitty \
+        --class kitty-fusion \
+        --directory=/home/andreas/code/work/fusion \
+        -e tmux new -A -s fusion
+    fi
+  '';
 in
 {
   options.home.presets.dev = {
@@ -18,6 +52,30 @@ in
     nixpkgs.config.permittedInsecurePackages = [
       "beekeeper-studio-5.2.12"
     ];
+
+    xdg.desktopEntries."nixos-config" = {
+      name = "nixos-config TMUX";
+      comment = "Open or reuse Kitty window with tmux in the nixos-config folder";
+      exec = "${nixosConfigLauncher}";
+      icon = "kitty";
+      terminal = false;
+      categories = [
+        "Utility"
+        "TerminalEmulator"
+      ];
+    };
+
+    xdg.desktopEntries."fusion-tmux" = {
+      name = "fusion TMUX";
+      comment = "Open or reuse Kitty window with tmux in the fusion folder";
+      exec = "${fusionLauncher}";
+      icon = "kitty";
+      terminal = false;
+      categories = [
+        "Utility"
+        "TerminalEmulator"
+      ];
+    };
 
     home.packages = with pkgs; [
       vim
