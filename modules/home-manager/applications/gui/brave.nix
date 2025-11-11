@@ -14,6 +14,7 @@ in
       package = pkgs.brave;
       commandLineArgs = [
         "--enable-gpu-rasterization"
+        "--disable-features=GlobalShortcutsPortal"
       ];
       extensions = [
         {
