@@ -89,6 +89,7 @@
       google-chrome
       # brave
       obsidian
+      capacities
       slack
       spotify
       todoist-electron

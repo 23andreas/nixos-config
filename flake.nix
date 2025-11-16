@@ -52,7 +52,18 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+
+      # Custom overlay for our packages
+      overlay = final: prev: {
+        capacities = prev.callPackage "${self}/pkgs/capacities.nix" { };
+      };
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [ overlay ];
+      };
+
       cachix-deploy-lib = cachix-deploy.lib pkgs;
       cachixDeployments = [
         "server"
@@ -70,13 +81,19 @@
 
         home-desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ (import ./hosts/home-desktop) ];
+          modules = [
+            (import ./hosts/home-desktop)
+            { nixpkgs.overlays = [ overlay ]; }
+          ];
           specialArgs = { inherit self inputs disko; };
         };
 
         work-laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ (import ./hosts/work-laptop) ];
+          modules = [
+            (import ./hosts/work-laptop)
+            { nixpkgs.overlays = [ overlay ]; }
+          ];
           specialArgs = {
             inherit
               self
@@ -89,7 +106,10 @@
 
         server = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ (import ./hosts/server) ];
+          modules = [
+            (import ./hosts/server)
+            { nixpkgs.overlays = [ overlay ]; }
+          ];
           specialArgs = { inherit self inputs disko; };
         };
       };
