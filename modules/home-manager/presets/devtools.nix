@@ -49,9 +49,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.config.permittedInsecurePackages = [
-      "beekeeper-studio-5.2.12"
-    ];
+
 
     xdg.desktopEntries."nixos-config" = {
       name = "nixos-config TMUX";

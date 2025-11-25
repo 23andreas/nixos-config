@@ -63,7 +63,7 @@ in
       # withNodeJs = true;
 
       plugins = [
-        inputs.mcphub-nvim.packages."${pkgs.system}".default
+        inputs.mcphub-nvim.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       # extraLuaPackages = ps: [ ps.magick ];

@@ -106,7 +106,7 @@ in
       plugins = with pkgs; [
         tmuxPlugins.sensible
         {
-          plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;
+          plugin = inputs.minimal-tmux.packages.${pkgs.stdenv.hostPlatform.system}.default;
           extraConfig = ''
             # set -g @minimal-tmux-indicator false
             set -g @minimal-tmux-indicator-str "  #S  "

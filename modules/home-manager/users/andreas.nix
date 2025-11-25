@@ -16,6 +16,7 @@
     enable = true;
     accent = "blue";
     flavor = "macchiato";
+    vicinae.enable = false;
   };
 
   programs.vicinae = {
@@ -54,10 +55,16 @@
     rofi.enable = true;
     ssh = {
       enable = true;
-      extraConfig = ''
-        Host *
-          IdentityFile ~/.ssh/id_ed25519
-      '';
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        identityFile = "~/.ssh/id_ed25519";
+        extraOptions = {
+          AddKeysToAgent = "yes";
+          HashKnownHosts = "yes";
+          GSSAPIAuthentication = "no";
+          ServerAliveInterval = "0";
+        };
+      };
     };
     tmux.enable = true;
     vesktop.enable = true;
