@@ -58,8 +58,8 @@
             "Downloads\\SavePath" = "/media/torrent/downloads";
             "Downloads\\StartInPause" = false;
             "Queueing\\MaxActiveDownloads" = 5;
-            "Queueing\\MaxActiveTorrents" = 100;
-            "Queueing\\MaxActiveUploads" = 100;
+            "Queueing\\MaxActiveTorrents" = 1000;
+            "Queueing\\MaxActiveUploads" = 1000;
             "Queueing\\QueueingEnabled" = true;
             "WebUI\\AuthSubnetWhitelist" = "192.168.1.0/24";
             "WebUI\\AuthSubnetWhitelistEnabled" = true;
