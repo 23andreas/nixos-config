@@ -117,5 +117,25 @@
     #   user = "andreas";
     #   group = "media";
     # };
+    jellyfin = {
+      enable = true;
+      group = "media";
+      openFirewall = true;
+    };
   };
+
+  # Jellyfin hardware acceleration
+  systemd.services.jellyfin = {
+    environment = {
+      LIBVA_DRIVER_NAME = "iHD";
+    };
+    serviceConfig = {
+      DeviceAllow = [ "/dev/dri/renderD128" ];
+    };
+  };
+
+  # Ensure /mnt/drive exists and jellyfin can access it
+  # systemd.tmpfiles.rules = [
+  #   "d /mnt/drive 0755 root media -"
+  # ];
 }

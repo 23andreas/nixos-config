@@ -45,6 +45,7 @@ in
   environment.systemPackages = with pkgs; [
     wakeonlan
     home-desktop-wol
+    veracrypt
   ];
 
   # services.k3s = {
@@ -113,15 +114,24 @@ in
   };
 
   networking.hostName = hostname;
-  
+
   # Fix NetworkManager DNS - override previous dns=none setting
   networking.networkmanager.dns = "default";
 
-
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  };
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
+      intel-ocl
+
+      intel-media-driver
+      intel-vaapi-driver
+      intel-vdpau-driver
+
       vpl-gpu-rt
+      intel-compute-runtime-legacy1
     ];
   };
 

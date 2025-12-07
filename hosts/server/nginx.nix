@@ -16,6 +16,17 @@ in
           bantime = 3600;
         };
       };
+      #   jellyfin = {
+      #     settings = {
+      #       enabled = true;
+      #       port = "http,https";
+      #       filter = "jellyfin";
+      #       logpath = "/var/lib/jellyfin/log/log_*.log";
+      #       maxretry = 3;
+      #       findtime = 600;
+      #       bantime = 3600;
+      #     };
+      #   };
     };
   };
 
@@ -86,6 +97,29 @@ in
         "prowlarr.gafro.net" = proxy 9696 { };
         "qbittorrent.gafro.net" = proxy 7219 { };
         "tautulli.gafro.net" = proxy 8181 { };
+
+        "jellyfin.gafro.net" = {
+          forceSSL = true;
+          enableACME = true;
+          
+          extraConfig = ''
+            client_max_body_size 20M;
+            # Override global cookie policy for Jellyfin
+            proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
+          '';
+
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8096/";
+            extraConfig = ''
+              proxy_buffering off;
+            '';
+          };
+
+          locations."/socket" = {
+            proxyPass = "http://127.0.0.1:8096/socket";
+            proxyWebsockets = true;
+          };
+        };
 
         "syncthing.gafro.net" = proxy 8384 { };
 
