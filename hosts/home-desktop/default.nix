@@ -13,7 +13,7 @@ in
     ./hardware-configuration.nix
     ./disk-config.nix
     # ./wireguard.nix
-    ./logitech-receiver-wake-on-suspend-fix.nix
+    # ./logitech-receiver-wake-on-suspend-fix.nix
 
     # TEMP: Wifi diconnecting fix
     # ./disable-wifi-powersave.nix
