@@ -128,7 +128,7 @@ in
 
       intel-media-driver
       intel-vaapi-driver
-      intel-vdpau-driver
+      libva-vdpau-driver
 
       vpl-gpu-rt
       intel-compute-runtime-legacy1
