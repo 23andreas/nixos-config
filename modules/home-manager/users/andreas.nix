@@ -61,7 +61,6 @@
         extraOptions = {
           AddKeysToAgent = "yes";
           HashKnownHosts = "yes";
-          GSSAPIAuthentication = "no";
           ServerAliveInterval = "0";
         };
       };
