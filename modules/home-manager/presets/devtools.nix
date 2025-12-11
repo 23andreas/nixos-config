@@ -50,7 +50,6 @@ in
 
   config = lib.mkIf cfg.enable {
 
-
     xdg.desktopEntries."nixos-config" = {
       name = "nixos-config TMUX";
       comment = "Open or reuse Kitty window with tmux in the nixos-config folder";
@@ -126,6 +125,8 @@ in
       nodejs_22
 
       wakatime-cli
+
+      jiratui
     ];
 
     programs.vscode.enable = true;
