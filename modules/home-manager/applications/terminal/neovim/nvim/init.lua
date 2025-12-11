@@ -28,7 +28,7 @@ vim.lsp.enable({
   "json",
   "lua",
   "nixd",
-  "rust",
+  -- "rust", -- now handled by rustacean.nvim
   -- "copilot",
 })
 
